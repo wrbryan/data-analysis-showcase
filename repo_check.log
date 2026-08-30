@@ -1,0 +1,245 @@
+Repo check started at 
+Creating virtualenv .copilot_check_venv
+Requirement already satisfied: pip in ./.copilot_check_venv/lib/python3.13/site-packages (25.2)
+Collecting pip
+  Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+Collecting wheel
+  Downloading wheel-0.48.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting setuptools
+  Downloading setuptools-84.0.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting packaging>=24.0 (from wheel)
+  Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 15.2 MB/s  0:00:00
+Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+Downloading setuptools-84.0.0-py3-none-any.whl (818 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 818.2/818.2 kB 8.9 MB/s  0:00:00
+Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 25.2
+    Uninstalling pip-25.2:
+      Successfully uninstalled pip-25.2
+
+Successfully installed packaging-26.3 pip-26.2.1 setuptools-84.0.0 wheel-0.48.0
+No requirements.txt files found under projects/
+No notebooks in projects/athlete-events
+No notebooks in projects/car-sales
+Executing notebooks in projects/duckdb-csv-gui
+Executing projects/duckdb-csv-gui/duckdb_csv_gui.ipynb
+[NbConvertApp] Converting notebook projects/duckdb-csv-gui/duckdb_csv_gui.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/bin/jupyter-nbconvert", line 6, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/jupyter_core/application.py", line 284, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/traitlets/config/application.py", line 1080, in launch_instance
+    app.start()
+    ~~~~~~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources, input_buffer=input_buffer
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources=resources
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        nbformat.read(file_stream, as_version=4), resources=resources, **kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+                ~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/preprocessors/base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/opt/anaconda3/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pathlib import Path
+
+from duckdb_csv_gui import build_gui
+
+project_dir = Path.cwd()
+gui = build_gui(project_dir)
+gui
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 3[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m pathlib [38;5;28;01mimport[39;00m Path
+[32m      2[39m 
+[32m----> [39m[32m3[39m [38;5;28;01mfrom[39;00m duckdb_csv_gui [38;5;28;01mimport[39;00m build_gui
+[32m      4[39m 
+[32m      5[39m project_dir = Path.cwd()
+[32m      6[39m gui = build_gui(project_dir)
+
+[36mFile [39m[32m~/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/projects/duckdb-csv-gui/duckdb_csv_gui.py:7[39m
+[32m      4[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpathlib[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Path
+[32m      5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Dict, List
+[32m----> [39m[32m7[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mduckdb[39;00m
+[32m      8[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mipywidgets[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mwidgets[39;00m
+[32m      9[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mmatplotlib[39;00m[34;01m.[39;00m[34;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mplt[39;00m
+
+[31mModuleNotFoundError[39m: No module named 'duckdb'
+
+FAIL: projects/duckdb-csv-gui/duckdb_csv_gui.ipynb
+Executing projects/duckdb-csv-gui/duckdb_csv_gui_colab.ipynb
+[NbConvertApp] Converting notebook projects/duckdb-csv-gui/duckdb_csv_gui_colab.ipynb to notebook
+/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/bin/jupyter-nbconvert", line 6, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/jupyter_core/application.py", line 284, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/traitlets/config/application.py", line 1080, in launch_instance
+    app.start()
+    ~~~~~~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources, input_buffer=input_buffer
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        notebook_filename, resources=resources
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        nbformat.read(file_stream, as_version=4), resources=resources, **kw
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/exporters/exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+                ~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/preprocessors/base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/opt/anaconda3/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/.copilot_check_venv/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%pip install -q duckdb ipywidgets pandas gspread matplotlib
+from google.colab import output, auth
+from google.auth import default
+output.enable_custom_widget_manager()
+
+try:
+    auth.authenticate_user()
+    creds, _ = default()
+except Exception:
+    pass
+
+------------------
+
+----- stdout -----
+Note: you may need to restart the kernel to use updated packages.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 2[39m
+[32m      1[39m get_ipython().run_line_magic([33m'pip'[39m, [33m'install -q duckdb ipywidgets pandas gspread matplotlib'[39m)
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m google.colab [38;5;28;01mimport[39;00m output, auth
+[32m      3[39m [38;5;28;01mfrom[39;00m google.auth [38;5;28;01mimport[39;00m default
+[32m      4[39m output.enable_custom_widget_manager()
+[32m      5[39m 
+
+[31mModuleNotFoundError[39m: No module named 'google.colab'
+
+FAIL: projects/duckdb-csv-gui/duckdb_csv_gui_colab.ipynb
+No notebooks in projects/heart-disease
+No notebooks in projects/jetstream
+Checking Python scripts for syntax errors
+py_compile projects/car-sales/car_sales_app.py
+py_compile projects/car-sales/util_car.py
+py_compile projects/duckdb-csv-gui/duckdb_csv_gui.py
+py_compile projects/heart-disease/heart_analysis_app.py
+py_compile projects/heart-disease/util_heart.py
+--- Summary ---
+Some notebook executions failed (see details below).
+No syntax errors detected in checked scripts.
+Repo check finished at 

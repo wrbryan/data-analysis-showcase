@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Environments
+.env
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/
+excel/
+
+# macOS
+.DS_Store

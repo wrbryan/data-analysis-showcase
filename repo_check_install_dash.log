@@ -1,0 +1,21 @@
+Install+smoke started at Sat Aug 29 22:06:30 CDT 2026
+Installing dash
+Installing dash[bootstrap]
+WARNING: dash 4.4.1 does not provide the extra 'bootstrap'
+---
+Script: projects/car-sales/car_sales_app.py
+Traceback (most recent call last):
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/projects/car-sales/car_sales_app.py", line 2, in <module>
+    import dash_bootstrap_components as dbc
+ModuleNotFoundError: No module named 'dash_bootstrap_components'
+SMOKE_FAIL: projects/car-sales/car_sales_app.py
+---
+Script: projects/heart-disease/heart_analysis_app.py
+Traceback (most recent call last):
+  File "/Users/william/PycharmProjects/copilot-worktrees/data-analysis-showcase/wrbryan-ideal-lamp/projects/heart-disease/heart_analysis_app.py", line 2, in <module>
+    import dash_bootstrap_components as dbc
+ModuleNotFoundError: No module named 'dash_bootstrap_components'
+SMOKE_FAIL: projects/heart-disease/heart_analysis_app.py
+--- Summary ---
+Some smoke-runs failed.
+Install+smoke finished at Sat Aug 29 22:06:43 CDT 2026
