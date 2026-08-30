@@ -1,0 +1,29 @@
+body {
+  background-color: #ffffff;
+  color: #18212b;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/assets/360_F_698210333_ievKq1e2mqtPIbjIubJdOFdUoqI4rTlm.jpg") center center / cover no-repeat;
+  opacity: 0.38;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.main-shell {
+  padding-bottom: 2rem;
+}
+
+.dashboard-title {
+  letter-spacing: 0.01em;
+}
+
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner td,
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner th {
+  line-height: 1.2;
+}
