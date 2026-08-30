@@ -1,6 +1,6 @@
 Portfolio landing page
 
-This is a recruiter-friendly landing page that summarizes the showcase and links to curated projects.
+This is a browser-friendly landing page that summarizes the showcase and links to curated projects.
 
 Summary
 
