@@ -28,8 +28,8 @@ The dashboard presents two intentionally separate decisions:
 From the repository root:
 
 ```bash
-python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
-python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
+python projects/01-inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/01-inventory-accuracy-stockout-risk/python/analyze_inventory.py
 ```
 
 ## Import files
@@ -37,7 +37,7 @@ python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
 Import the five CSV output files from:
 
 ```text
-projects/inventory-accuracy-stockout-risk/outputs/
+projects/01-inventory-accuracy-stockout-risk/outputs/
 ```
 
 | File | Grain | Use |

@@ -14,11 +14,11 @@ Quick links
 
 Featured case study
 
-- [Inventory Accuracy & Stockout Risk](../projects/inventory-accuracy-stockout-risk/README.md) — reproducible synthetic inventory-control analysis separating SKU-level replenishment risk from SKU/location cycle-count work.
-- [Two-page executive reporting package](../projects/inventory-accuracy-stockout-risk/reporting/inventory-accuracy-stockout-risk-report.pdf)
-- [Executive Control Tower PNG](../projects/inventory-accuracy-stockout-risk/reporting/01-executive-control-tower.png)
-- [Action Queues and Evidence PNG](../projects/inventory-accuracy-stockout-risk/reporting/02-action-queues-and-evidence.png)
-- [Executive brief](../projects/inventory-accuracy-stockout-risk/docs/executive_brief.md) | [Python reporting methodology](../projects/inventory-accuracy-stockout-risk/docs/reporting_package_methodology.md)
+- [Inventory Accuracy & Stockout Risk](../projects/01-inventory-accuracy-stockout-risk/README.md) — reproducible synthetic inventory-control analysis separating SKU-level replenishment risk from SKU/location cycle-count work.
+- [Two-page executive reporting package](../projects/01-inventory-accuracy-stockout-risk/reporting/inventory-accuracy-stockout-risk-report.pdf)
+- [Executive Control Tower PNG](../projects/01-inventory-accuracy-stockout-risk/reporting/01-executive-control-tower.png)
+- [Action Queues and Evidence PNG](../projects/01-inventory-accuracy-stockout-risk/reporting/02-action-queues-and-evidence.png)
+- [Executive brief](../projects/01-inventory-accuracy-stockout-risk/docs/executive_brief.md) | [Python reporting methodology](../projects/01-inventory-accuracy-stockout-risk/docs/reporting_package_methodology.md)
 
 Short notes for recruiters
 

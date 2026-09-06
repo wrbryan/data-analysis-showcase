@@ -16,9 +16,9 @@ should not be conflated:
 ## Run from repository root
 
 ```bash
-python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
-python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
-python -m py_compile projects/inventory-accuracy-stockout-risk/python/*.py
+python projects/01-inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/01-inventory-accuracy-stockout-risk/python/analyze_inventory.py
+python -m py_compile projects/01-inventory-accuracy-stockout-risk/python/*.py
 ```
 
 The fixed seed is `20260905`. Full five-file inputs are regenerated in

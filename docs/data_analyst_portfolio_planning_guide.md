@@ -10,21 +10,18 @@ The portfolio combines operations reporting, interactive dashboards, notebook wo
 
 Create a small set of interview-ready projects with different analytical surfaces rather than many generic dashboards.
 
-The current portfolio includes these eight projects:
+The current portfolio includes these six projects, numbered to match their
+folder names:
 
-1. Inventory Accuracy & Stockout Risk
-2. Warehouse Throughput & Labor Utilization
-3. CMMS Maintenance & Work-Order Analytics
-4. Athlete Events
-5. Car Sales
-6. DuckDB CSV GUI
-7. Heart Disease
-8. Excel-only Analysis
+1. `01-inventory-accuracy-stockout-risk` — Inventory Accuracy & Stockout Risk
+2. `02-athlete_events` — Athlete Events
+3. `03-car-sales` — Car Sales
+4. `04-duckdb-csv-gui` — DuckDB CSV GUI
+5. `05-heart-disease` — Heart Disease
+6. `06-excel-only-analysis` — Excel-only Analysis
 
-The broader repository also includes five completed or in-progress projects that
-demonstrate additional data-analysis workflows. Their walkthroughs are included
-below so every project in `projects/` has a clear business purpose, workflow,
-and review path.
+The walkthroughs below cover every project currently in `projects/` so each has
+a clear business purpose, workflow, and review path.
 
 ## Target Skills to Demonstrate
 
@@ -37,7 +34,7 @@ and review path.
 
 ---
 
-# Inventory Accuracy & Stockout Risk — Operations Reporting Case Study
+# 01 — Inventory Accuracy & Stockout Risk
 
 ## Business scenario
 
@@ -150,254 +147,9 @@ Prioritize weekly cycle counts for the 20 percent of SKUs responsible for most a
 
 ---
 
-# Warehouse Throughput & Labor Utilization — Operations Reporting Case Study
-
-## Business scenario
-
-A warehouse is missing ship-by deadlines during peak periods. Leadership needs to determine whether the main cause is staffing, workload volume, order complexity, replenishment delays, picking performance, packing congestion, or carrier cutoff timing.
-
-## Core business question
-
-Which operational conditions drive late shipments and backlog, and what staffing or process change should be tested first?
-
-## Questions to answer
-
-- How many orders, lines, units, and pallets are processed by day, hour, shift, and department?
-- Which workflow step has the lowest throughput or largest queue?
-- When do productivity, backlog, or on-time shipment results decline?
-- Are late orders linked to order size, product category, staffing level, warehouse zone, shift, or carrier cutoff?
-- How many labor hours are needed to meet volume and service-level targets?
-- Where is the primary operational bottleneck?
-
-## Suggested data tables
-
-### orders
-
-| Field | Description |
-|---|---|
-| order_id | Unique order identifier |
-| release_time | Time order entered the fulfillment queue |
-| promised_ship_date | Required ship date/time |
-| ship_time | Actual ship date/time |
-| order_lines | Number of order lines |
-| unit_count | Number of units |
-| pallet_count | Number of pallets |
-| priority | Customer or operational priority |
-| zone | Warehouse zone |
-| carrier | Carrier/service type |
-
-### labor_hours
-
-| Field | Description |
-|---|---|
-| work_date | Work date |
-| shift | Shift identifier |
-| department | Receiving, putaway, replenishment, picking, packing, shipping |
-| scheduled_hours | Planned labor hours |
-| worked_hours | Actual labor hours |
-| overtime_hours | Overtime labor hours |
-| headcount | Associates working |
-
-### process_events
-
-| Field | Description |
-|---|---|
-| order_id | Unique order identifier |
-| process_step | Receiving, picking, packing, staging, shipping, etc. |
-| start_time | Step start time |
-| end_time | Step end time |
-| status | Completed, delayed, exception, rework |
-| exception_code | Delay/error category |
-
-### exceptions
-
-| Field | Description |
-|---|---|
-| exception_id | Unique exception identifier |
-| event_time | Time of exception |
-| order_id | Related order |
-| exception_type | Short pick, damage, system issue, replenishment delay, etc. |
-| shift | Shift identifier |
-| zone | Warehouse zone |
-| resolved_time | Time issue was resolved |
-
-## Key KPIs
-
-- Orders processed per labor hour
-- Units picked per labor hour
-- Lines picked per hour
-- Receiving dock-to-stock time
-- Order cycle time: order released to shipment
-- On-time shipment rate
-- Backlog volume and backlog aging
-- Overtime percentage
-- Error, damage, or rework rate
-- Labor utilization by department and shift
-
-## Dashboard pages
-
-1. Executive overview: volume, on-time shipment rate, backlog, labor hours, overtime, and primary issue.
-2. Throughput trends: orders, lines, units, and pallets by hour, day, shift, zone, and department.
-3. Labor analysis: productivity by shift, department, workload band, and staffing level.
-4. Process flow analysis: cycle time at receiving, putaway, replenishment, picking, packing, staging, and shipping.
-5. Exceptions and action plan: late-order drivers, root-cause categories, owners, and pilot measures.
-
-## Process map
-
-Receiving -> Putaway -> Replenishment -> Picking -> Packing -> Staging -> Shipping
-
-Measure time, queue size, volume, and exceptions at every stage. The stage with the highest queue, longest delay, or greatest association with late orders is a candidate bottleneck.
-
-## Recommended analysis steps
-
-1. Create a timestamp-based process-cycle-time table.
-2. Flag late shipments based on promised versus actual ship time.
-3. Compare labor hours, workload, and productivity by shift and department.
-4. Analyze exception frequency and resolution time.
-5. Identify the operational factors most associated with late shipments.
-6. Propose a pilot staffing or workflow intervention and define success metrics.
-
-## Example final recommendation
-
-Move two cross-trained associates to replenishment from 1:00 PM to 4:00 PM during high-volume days. Replenishment delays occur before the largest increase in late picks and backlog. Pilot the adjustment for four weeks and measure on-time shipment, backlog aging, and lines picked per labor hour.
-
----
-
-# CMMS Maintenance & Work-Order Analytics — Operations Reporting Case Study
-
-## Business scenario
-
-A manufacturing, industrial, or facilities team has growing work-order backlog, frequent unplanned downtime, and inconsistent preventive-maintenance completion. Management needs a recurring KPI dashboard and a work-prioritization method.
-
-## Core business question
-
-How can the maintenance team reduce backlog, downtime, and reactive work while protecting preventive-maintenance capacity for critical assets?
-
-## Questions to answer
-
-- How many work orders are open, completed, overdue, and aging?
-- What share of work is preventive, corrective, emergency, planned, or reactive?
-- Which assets, locations, or failure codes create the most downtime and cost?
-- Are preventive-maintenance tasks completed on time?
-- Which teams, shifts, or vendors have the longest response and completion times?
-- Which open work orders should be prioritized based on asset criticality, safety, downtime risk, and age?
-
-## Suggested data tables
-
-### work_orders
-
-| Field | Description |
-|---|---|
-| wo_id | Unique work-order identifier |
-| created_date | Work-order creation date/time |
-| due_date | Required completion date/time |
-| start_date | Labor start date/time |
-| completed_date | Completion date/time |
-| status | Open, in progress, complete, deferred, cancelled |
-| priority | Priority category |
-| work_type | PM, corrective, emergency, inspection, etc. |
-| asset_id | Related asset |
-| estimated_hours | Estimated labor hours |
-| actual_hours | Actual labor hours |
-| labor_cost | Labor cost |
-
-### assets
-
-| Field | Description |
-|---|---|
-| asset_id | Unique asset identifier |
-| asset_name | Asset name |
-| asset_class | Equipment type/class |
-| location | Asset location |
-| criticality | Business/safety criticality rating |
-| install_date | Installation date |
-
-### downtime_events
-
-| Field | Description |
-|---|---|
-| event_id | Unique event identifier |
-| asset_id | Related asset |
-| start_time | Downtime start |
-| end_time | Downtime end |
-| downtime_hours | Total downtime duration |
-| failure_code | Failure reason/category |
-
-### maintenance_labor
-
-| Field | Description |
-|---|---|
-| technician_id | Technician identifier |
-| team | Maintenance team |
-| shift | Shift identifier |
-| available_hours | Available work hours |
-| worked_hours | Worked hours |
-
-### parts_usage
-
-| Field | Description |
-|---|---|
-| wo_id | Related work order |
-| part_id | Part identifier |
-| quantity | Quantity used |
-| unit_cost | Unit cost |
-| supplier | Supplier |
-| lead_time_days | Part lead time |
-
-## Key KPIs
-
-| KPI | Meaning |
-|---|---|
-| Work-order completion rate | Completed work orders / total due work orders |
-| On-time completion rate | Work orders completed by due date / work orders due |
-| Backlog hours | Estimated labor hours for unfinished work orders |
-| Average response time | Time from work-order creation to labor start |
-| Mean time to repair (MTTR) | Average time needed to restore an asset after failure |
-| Mean time between failures (MTBF) | Average operating time between failures |
-| PM compliance | Preventive-maintenance tasks completed by due date |
-| Planned vs. unplanned ratio | Scheduled work share compared with reactive work share |
-| Downtime by asset | Total downtime attributable to each asset or asset class |
-
-## Dashboard pages
-
-1. Executive overview: open work orders, overdue work, backlog hours, PM compliance, downtime, and top risk assets.
-2. Work-order backlog: aging, priority, status, work type, and labor-hour workload.
-3. Asset reliability: downtime, MTTR, MTBF, failure code, and asset criticality.
-4. Preventive maintenance: schedule compliance, late PMs, PM-to-reactive-work ratio, and critical-asset coverage.
-5. Prioritization and action tracker: work-order risk score, recommended owner, due date, and expected impact.
-
-## Prioritization model
-
-Create a transparent score from factors such as:
-
-- Asset criticality
-- Safety or compliance impact
-- Work-order priority
-- Work-order age
-- Downtime impact
-- Recurring failure history
-- Availability of parts
-
-Clearly label this as a planning model, not an official maintenance-risk procedure.
-
-## Recommended analysis steps
-
-1. Standardize work-order statuses and work-type categories.
-2. Calculate response time, completion time, due-date compliance, and backlog age.
-3. Separate planned work from reactive and emergency work.
-4. Join work orders to assets, downtime events, labor, and parts data.
-5. Rank assets and failure codes by downtime, maintenance cost, repeat incidents, and criticality.
-6. Create a work-order prioritization score and propose capacity protections for critical PM work.
-
-## Example final recommendation
-
-Protect weekly preventive-maintenance capacity for critical assets, establish escalation thresholds for work orders open longer than 14 days, and review the highest-downtime failure codes monthly. The intended result is less reactive maintenance, reduced backlog, and lower operational downtime.
-
----
-
 # Additional Project Walkthroughs
 
-## Athlete Events — Interactive Participation Explorer
+## 02 — Athlete Events — Interactive Participation Explorer
 
 ### Purpose
 
@@ -414,10 +166,10 @@ filterable browser-based analysis rather than a static chart.
 
 ### Existing implementation
 
-- Entrypoint: `projects/athlete_events/athlete_events.py`
+- Entrypoint: `projects/02-athlete_events/athlete_events.py`
 - Interface: Dash with reusable layout and callback components.
 - Supporting assets: `components/` and `assets/styles.css`.
-- Setup: `projects/athlete_events/setup.sh`.
+- Setup: `projects/02-athlete_events/setup.sh`.
 
 ### Walkthrough
 
@@ -435,7 +187,7 @@ filterable browser-based analysis rather than a static chart.
 This project demonstrates interactive dashboard architecture, public-data
 exploration, and the translation of user selections into updated evidence.
 
-## Car Sales — Interactive Sales and Specification Dashboard
+## 03 — Car Sales — Interactive Sales and Specification Dashboard
 
 ### Purpose
 
@@ -451,10 +203,10 @@ business-facing filter workflow with multiple chart types.
 
 ### Existing implementation
 
-- Entrypoint: `projects/car-sales/car_sales_app.py`
-- Utilities: `projects/car-sales/util_car.py`
-- Source data: `projects/car-sales/Car_sales.csv`
-- Visual components: `projects/car-sales/components_car/`.
+- Entrypoint: `projects/03-car-sales/car_sales_app.py`
+- Utilities: `projects/03-car-sales/util_car.py`
+- Source data: `projects/03-car-sales/Car_sales.csv`
+- Visual components: `projects/03-car-sales/components_car/`.
 - Narrative artifacts: `post.md` and `SUMMARY.md`.
 
 ### Walkthrough
@@ -472,7 +224,7 @@ business-facing filter workflow with multiple chart types.
 This project demonstrates interactive filtering, reusable chart components,
 and concise communication of sales and product-specification patterns.
 
-## DuckDB CSV GUI — Notebook Analytics Workflow
+## 04 — DuckDB CSV GUI — Notebook Analytics Workflow
 
 ### Purpose
 
@@ -488,11 +240,11 @@ approve relationships, query data, and produce report-ready views.
 
 ### Existing implementation
 
-- Core logic: `projects/duckdb-csv-gui/duckdb_csv_gui.py`
+- Core logic: `projects/04-duckdb-csv-gui/duckdb_csv_gui.py`
 - Local notebook: `duckdb_csv_gui.ipynb`
 - Colab notebook: `duckdb_csv_gui_colab.ipynb`
-- Requirements: `projects/duckdb-csv-gui/requirements.txt`
-- Reports: `projects/duckdb-csv-gui/reports/`.
+- Requirements: `projects/04-duckdb-csv-gui/requirements.txt`
+- Reports: `projects/04-duckdb-csv-gui/reports/`.
 
 ### Walkthrough
 
@@ -508,7 +260,7 @@ approve relationships, query data, and produce report-ready views.
 This project demonstrates lightweight data modeling, schema inspection,
 interactive relationship review, SQL exploration, and notebook-based delivery.
 
-## Heart Disease — Interactive Clinical Feature Explorer
+## 05 — Heart Disease — Interactive Clinical Feature Explorer
 
 ### Purpose
 
@@ -525,10 +277,10 @@ public-data demonstration and not a clinical decision tool.
 
 ### Existing implementation
 
-- Entrypoint: `projects/heart-disease/heart_analysis_app.py`
-- Utility module: `projects/heart-disease/util_heart.py`
-- Source data: `projects/heart-disease/heart.csv`
-- Visual components: `projects/heart-disease/components_heart/`.
+- Entrypoint: `projects/05-heart-disease/heart_analysis_app.py`
+- Utility module: `projects/05-heart-disease/util_heart.py`
+- Source data: `projects/05-heart-disease/heart.csv`
+- Visual components: `projects/05-heart-disease/components_heart/`.
 
 ### Walkthrough
 
@@ -546,7 +298,7 @@ public-data demonstration and not a clinical decision tool.
 This project demonstrates responsible public-data visualization, subgroup
 filtering, reusable dashboard components, and clear limits on interpretation.
 
-## Excel-only Analysis — Business Reporting Workspace
+## 06 — Excel-only Analysis — Business Reporting Workspace
 
 ### Purpose
 
@@ -564,7 +316,7 @@ Stockout Risk reporting package.
 
 ### Existing implementation
 
-- Workbook artifacts: `projects/excel-only-analysis/`.
+- Workbook artifacts: `projects/06-excel-only-analysis/`.
 - Project guide: `README.md`.
 - Summary and narrative: `SUMMARY.md` and `post.md`.
 - Included workbooks cover inventory reconciliation, operations KPIs, and
@@ -709,28 +461,24 @@ operations-portfolio-project/
 
 ---
 
-# 90-Day Project Plan
+# Current Portfolio Review Sequence
 
-## Month 1: Inventory Accuracy & Stockout Risk
+Review the six existing projects in numbered folder order. For each project,
+confirm the business question, reproduce the documented workflow, inspect the
+primary artifact, and record one evidence-based finding and one limitation.
 
-- Week 1: Define scenario, build/find data, create a data dictionary, and plan KPIs.
-- Week 2: Clean data in Excel, SQL, or Python; validate totals and create calculated fields.
-- Week 3: Build the inventory-risk dashboard and analyze top adjustment drivers.
-- Week 4: Create an executive brief, publish the README, and document recommendations.
-
-## Month 2: Warehouse Throughput & Labor Utilization
-
-- Week 5: Design process map and create order, labor, and process-event tables.
-- Week 6: Calculate process cycle times, late-order flags, workload, backlog, and labor productivity.
-- Week 7: Build dashboard pages for throughput, labor, bottlenecks, and exceptions.
-- Week 8: Write a pilot recommendation with metrics and an impact estimate.
-
-## Month 3: CMMS Work-Order Analytics
-
-- Week 9: Build work-order, asset, downtime, labor, and parts datasets.
-- Week 10: Calculate backlog, aging, PM compliance, response time, completion time, downtime, MTTR, and MTBF.
-- Week 11: Build a maintenance KPI dashboard and prioritization model.
-- Week 12: Create a five-slide executive briefing, finish documentation, and publish the case study.
+1. `01-inventory-accuracy-stockout-risk` — validate the reproducible inventory
+    analysis, executive reporting package, and decision-grain separation.
+2. `02-athlete_events` — run the Dash application and inspect the filter and
+    callback workflow.
+3. `03-car-sales` — review the interactive sales and vehicle-specification
+    views and their component structure.
+4. `04-duckdb-csv-gui` — open the notebook and trace CSV ingestion, relationship
+    review, SQL exploration, and report-ready output.
+5. `05-heart-disease` — review the filtered public-data dashboard and its limits
+    as a descriptive, non-clinical analysis.
+6. `06-excel-only-analysis` — inspect the workbook artifacts and their business
+    reporting narrative.
 
 ---
 
@@ -751,4 +499,8 @@ Before publishing each project, confirm all items below.
 
 # Recommended Sequence
 
-Start with Inventory Accuracy & Stockout Risk. It is the strongest direct fit for inventory-control experience, provides a compelling way to demonstrate Excel, SQL, visualization, and operational judgment, and can be completed with synthetic data if needed. Then build Warehouse Throughput & Labor Utilization, followed by CMMS Work-Order Analytics for a differentiated maintenance/operations specialization.
+Start with Inventory Accuracy & Stockout Risk because it is the strongest direct
+fit for inventory-control experience and demonstrates Excel, SQL, Python,
+visualization, validation, and operational judgment. Then review the five
+additional projects in numbered folder order to show breadth across interactive
+dashboards, notebooks, public-data analysis, and Excel reporting.

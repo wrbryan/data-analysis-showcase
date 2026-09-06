@@ -20,12 +20,12 @@ validated outputs; neither adds analytical logic or new KPIs.
 From the repository root:
 
 ```bash
-python -m pip install -r projects/inventory-accuracy-stockout-risk/requirements-reporting.txt
-python projects/inventory-accuracy-stockout-risk/python/generate_reporting_package.py
+python -m pip install -r projects/01-inventory-accuracy-stockout-risk/requirements-reporting.txt
+python projects/01-inventory-accuracy-stockout-risk/python/generate_reporting_package.py
 ```
 
 The script reads only the published files in
-`projects/inventory-accuracy-stockout-risk/outputs/`. It validates required
+`projects/01-inventory-accuracy-stockout-risk/outputs/`. It validates required
 columns, expected row counts, and all 26 `PASS` data-quality checks before
 creating the outputs.
 

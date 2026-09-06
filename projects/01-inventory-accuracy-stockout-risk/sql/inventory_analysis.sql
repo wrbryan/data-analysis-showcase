@@ -4,23 +4,23 @@
 
 CREATE OR REPLACE TABLE inventory_snapshot AS
 SELECT * FROM read_csv_auto(
-  'projects/inventory-accuracy-stockout-risk/data/generated/inventory_snapshot.csv'
+  'projects/01-inventory-accuracy-stockout-risk/data/generated/inventory_snapshot.csv'
 );
 CREATE OR REPLACE TABLE product_master AS
 SELECT * FROM read_csv_auto(
-  'projects/inventory-accuracy-stockout-risk/data/generated/product_master.csv'
+  'projects/01-inventory-accuracy-stockout-risk/data/generated/product_master.csv'
 );
 CREATE OR REPLACE TABLE transactions AS
 SELECT * FROM read_csv_auto(
-  'projects/inventory-accuracy-stockout-risk/data/generated/transactions.csv'
+  'projects/01-inventory-accuracy-stockout-risk/data/generated/transactions.csv'
 );
 CREATE OR REPLACE TABLE orders AS
 SELECT * FROM read_csv_auto(
-  'projects/inventory-accuracy-stockout-risk/data/generated/orders.csv'
+  'projects/01-inventory-accuracy-stockout-risk/data/generated/orders.csv'
 );
 CREATE OR REPLACE TABLE cycle_counts AS
 SELECT * FROM read_csv_auto(
-  'projects/inventory-accuracy-stockout-risk/data/generated/cycle_counts.csv'
+  'projects/01-inventory-accuracy-stockout-risk/data/generated/cycle_counts.csv'
 );
 
 -- ============================================================================
