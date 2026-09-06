@@ -5,6 +5,13 @@
 This guide explains how to build the Excel-based Executive Control Tower
 from the validated output files in this project.
 
+This `dashboard/` folder is the workbook-oriented presentation surface. It
+documents and stores the Excel Executive Control Tower artifact for users who
+need to inspect or refresh the dashboard in a spreadsheet workflow. The
+separate `reporting/` folder contains static Python-generated PDF/PNG evidence
+for quick review; it is not a second analysis or a replacement for this
+workbook artifact.
+
 The dashboard presents two intentionally separate decisions:
 
 1. SKU-level replenishment risk across all warehouse locations.

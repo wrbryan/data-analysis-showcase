@@ -49,6 +49,22 @@ This is a historical monitoring metric, not the current action queue.
 **All data is deterministic synthetic data.**  
 **No employer, client, customer, confidential, personal, or proprietary data is included.**
 
+## Presentation artifacts
+
+This project has two presentation artifacts with different purposes. They use
+the same validated output CSVs and do not represent separate analyses.
+
+- **`dashboard/` — workbook dashboard:** the Excel Executive Control Tower
+  source artifact and its build guide. Use it when reviewing how the dashboard
+  can be assembled, refreshed, and maintained in a spreadsheet workflow.
+- **`reporting/` — static reporting package:** the reproducible Python-generated
+  two-page PDF and matching PNGs. Use it for quick executive or portfolio
+  review without opening Excel.
+
+The dashboard is the workbook-oriented presentation surface; the reporting
+package is the portable, rendered evidence of the same results. Neither folder
+contains additional analytical logic, source data, or new KPIs.
+
 ## Delivered scope
 
 | Layer | Location |

@@ -3,6 +3,12 @@
 This folder contains the two-page Python-generated reporting package built only
 from the published Inventory Accuracy & Stockout Risk output CSVs.
 
+This `reporting/` folder is the portable, static presentation surface. Use it
+for recruiter, executive, or portfolio review without opening Excel. The
+separate `dashboard/` folder contains the workbook-oriented Excel Executive
+Control Tower artifact and build guide. Both surfaces present the same
+validated outputs; neither adds analytical logic or new KPIs.
+
 ## Files
 
 - `inventory-accuracy-stockout-risk-report.pdf` - two-page report.
