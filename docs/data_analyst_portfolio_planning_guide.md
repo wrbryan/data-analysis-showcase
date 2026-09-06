@@ -10,9 +10,16 @@ The portfolio combines operations reporting, interactive dashboards, notebook wo
 
 Create a small set of interview-ready projects with different analytical surfaces rather than many generic dashboards.
 
-1. Inventory Accuracy & Stockout Risk Dashboard
-2. Warehouse Throughput & Labor Utilization Dashboard
-3. CMMS Maintenance & Work-Order Analytics Dashboard
+The current portfolio includes these eight projects:
+
+1. Inventory Accuracy & Stockout Risk
+2. Warehouse Throughput & Labor Utilization
+3. CMMS Maintenance & Work-Order Analytics
+4. Athlete Events
+5. Car Sales
+6. DuckDB CSV GUI
+7. Heart Disease
+8. Excel-only Analysis
 
 The broader repository also includes five completed or in-progress projects that
 demonstrate additional data-analysis workflows. Their walkthroughs are included
