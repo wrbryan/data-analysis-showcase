@@ -25,7 +25,7 @@ Create three deep, interview-ready projects rather than many generic dashboards.
 
 ---
 
-# Project 1: Inventory Accuracy & Stockout Risk
+# Inventory Accuracy & Stockout Risk — Operations Reporting Case Study
 
 ## Business scenario
 

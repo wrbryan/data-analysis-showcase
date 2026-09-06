@@ -30,7 +30,7 @@ Project links:
 - [SKU Replenishment Priorities](projects/inventory-accuracy-stockout-risk/outputs/sku_replenishment_priorities.csv)
 - [SKU/Location Count Priorities](projects/inventory-accuracy-stockout-risk/outputs/sku_location_count_priorities.csv)
 
-All Project 1 data is deterministic synthetic data. It does not contain employer, client, customer, confidential, personal, or proprietary information.
+All Inventory Accuracy & Stockout Risk data is deterministic synthetic data. It does not contain employer, client, customer, confidential, personal, or proprietary information.
 
 ## What I Help Analyze
 
