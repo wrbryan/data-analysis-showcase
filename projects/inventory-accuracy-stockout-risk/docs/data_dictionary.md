@@ -1,13 +1,14 @@
 # Data dictionary
 
-All dates are ISO `YYYY-MM-DD`; quantities are non-negative units.
+## Source fields
+- `sku`, `location_id`: business keys.
+- `snapshot_date`, `transaction_date`, `count_date`, `order_date`: ISO dates.
+- `closing_quantity`, `system_quantity`, `counted_quantity`: unit balances.
+- `transaction_type`, `quantity`: movement classification and units.
+- `reorder_point`, `lead_time_days`: replenishment policy inputs.
 
-* `sku`: stable product identifier.
-* `location_id`: distribution-center identifier.
-* `opening_quantity`, `closing_quantity`: daily system balances.
-* `units_sold`, `units_received`: daily inventory movements.
-* `system_quantity`, `counted_quantity`: quantities at a physical cycle count.
-* `accuracy_pct`: pair-level record accuracy after absolute variance.
-* `days_of_cover`: current stock divided by average daily demand.
-* `risk_score` / `risk_band`: stockout prioritization output from 0–100 / Low,
-  Medium, High.
+## Output fields
+- `accuracy_pct`: pair-level cycle-count accuracy.
+- `risk_score`, `risk_band`: stockout prioritization.
+- `days_of_cover`: current stock divided by average daily sales.
+- `duplicate_key_count`, `null_value_count`, `status`: quality controls.

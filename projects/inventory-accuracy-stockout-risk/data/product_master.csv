@@ -1,0 +1,25 @@
+sku,product_name,category,unit_cost,reorder_point,lead_time_days
+SKU001,Item 01,Snacks,29.02,16,4
+SKU002,Item 02,Household,34.99,24,8
+SKU003,Item 03,Pantry,43.28,11,6
+SKU004,Item 04,Beverage,3.89,14,5
+SKU005,Item 05,Snacks,4.62,15,3
+SKU006,Item 06,Household,33.32,35,6
+SKU007,Item 07,Pantry,29.16,26,5
+SKU008,Item 08,Beverage,38.33,14,8
+SKU009,Item 09,Snacks,40.89,33,12
+SKU010,Item 10,Household,3.96,32,9
+SKU011,Item 11,Pantry,39.68,9,7
+SKU012,Item 12,Beverage,7.68,26,3
+SKU013,Item 13,Snacks,28.02,9,11
+SKU014,Item 14,Household,19.89,31,3
+SKU015,Item 15,Pantry,10.35,14,12
+SKU016,Item 16,Beverage,27.55,16,9
+SKU017,Item 17,Snacks,27.46,24,4
+SKU018,Item 18,Household,3.80,20,11
+SKU019,Item 19,Pantry,37.57,35,8
+SKU020,Item 20,Beverage,36.17,31,11
+SKU021,Item 21,Snacks,20.26,9,5
+SKU022,Item 22,Household,6.36,28,11
+SKU023,Item 23,Pantry,11.42,34,11
+SKU024,Item 24,Beverage,47.17,16,10

@@ -1,0 +1,4 @@
+file_name,row_count,duplicate_key_count,null_value_count,status
+inventory_snapshot.csv,70176,0,0,PASS
+transactions.csv,72571,2395,0,WARN
+cycle_counts.csv,2304,0,0,PASS
