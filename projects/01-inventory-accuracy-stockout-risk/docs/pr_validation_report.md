@@ -79,10 +79,10 @@ All **26** rows in `outputs/data_quality_checks.csv` are `PASS` with
 Validation commands:
 
 ```text
-python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
-python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
-python -m py_compile projects/inventory-accuracy-stockout-risk/python/*.py
-duckdb < projects/inventory-accuracy-stockout-risk/sql/inventory_analysis.sql
+python projects/01-inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/01-inventory-accuracy-stockout-risk/python/analyze_inventory.py
+python -m py_compile projects/01-inventory-accuracy-stockout-risk/python/*.py
+duckdb < projects/01-inventory-accuracy-stockout-risk/sql/inventory_analysis.sql
 ```
 
 Full generated inputs remain ignored; compact samples remain checked in.

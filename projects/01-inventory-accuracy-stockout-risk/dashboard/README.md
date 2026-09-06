@@ -5,6 +5,13 @@
 This guide explains how to build the Excel-based Executive Control Tower
 from the validated output files in this project.
 
+This `dashboard/` folder is the workbook-oriented presentation surface. It
+documents and stores the Excel Executive Control Tower artifact for users who
+need to inspect or refresh the dashboard in a spreadsheet workflow. The
+separate `reporting/` folder contains static Python-generated PDF/PNG evidence
+for quick review; it is not a second analysis or a replacement for this
+workbook artifact.
+
 The dashboard presents two intentionally separate decisions:
 
 1. SKU-level replenishment risk across all warehouse locations.
@@ -14,15 +21,15 @@ The dashboard presents two intentionally separate decisions:
 
 - Microsoft Excel with Power Query support.
 - A local copy of this repository.
-- Generated and analyzed Project 1 source/output files.
+- Generated and analyzed Inventory Accuracy & Stockout Risk source/output files.
 
 ## Reproduce the analysis
 
 From the repository root:
 
 ```bash
-python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
-python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
+python projects/01-inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/01-inventory-accuracy-stockout-risk/python/analyze_inventory.py
 ```
 
 ## Import files
@@ -30,7 +37,7 @@ python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
 Import the five CSV output files from:
 
 ```text
-projects/inventory-accuracy-stockout-risk/outputs/
+projects/01-inventory-accuracy-stockout-risk/outputs/
 ```
 
 | File | Grain | Use |

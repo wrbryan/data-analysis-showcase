@@ -9,8 +9,8 @@
 From the repository root:
 
 ```bash
-python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
-python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
+python projects/01-inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/01-inventory-accuracy-stockout-risk/python/analyze_inventory.py
 ```
 
 Full inputs are written to ignored `data/generated/`; compact checked-in

@@ -14,15 +14,15 @@ The dashboard presents two intentionally separate decisions:
 
 - Microsoft Excel with Power Query support.
 - A local copy of this repository.
-- Generated and analyzed Project 1 source/output files.
+- Generated and analyzed Inventory Accuracy & Stockout Risk source/output files.
 
 ## Reproduce the analysis
 
 From the repository root:
 
 ```bash
-python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
-python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
+python projects/01-inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/01-inventory-accuracy-stockout-risk/python/analyze_inventory.py
 ```
 
 ## Import files
@@ -30,7 +30,7 @@ python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
 Import the five CSV output files from:
 
 ```text
-projects/inventory-accuracy-stockout-risk/outputs/
+projects/01-inventory-accuracy-stockout-risk/outputs/
 ```
 
 | File | Grain | Use |

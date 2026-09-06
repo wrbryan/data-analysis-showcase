@@ -24,13 +24,13 @@ Key deliverables:
 
 Project links:
 
-- [Project README](projects/inventory-accuracy-stockout-risk/README.md)
-- [Executive Summary](projects/inventory-accuracy-stockout-risk/docs/executive_summary.md)
-- [Validation Report](projects/inventory-accuracy-stockout-risk/docs/pr_validation_report.md)
-- [SKU Replenishment Priorities](projects/inventory-accuracy-stockout-risk/outputs/sku_replenishment_priorities.csv)
-- [SKU/Location Count Priorities](projects/inventory-accuracy-stockout-risk/outputs/sku_location_count_priorities.csv)
+- [Project README](projects/01-inventory-accuracy-stockout-risk/README.md)
+- [Executive Summary](projects/01-inventory-accuracy-stockout-risk/docs/executive_summary.md)
+- [Validation Report](projects/01-inventory-accuracy-stockout-risk/docs/pr_validation_report.md)
+- [SKU Replenishment Priorities](projects/01-inventory-accuracy-stockout-risk/outputs/sku_replenishment_priorities.csv)
+- [SKU/Location Count Priorities](projects/01-inventory-accuracy-stockout-risk/outputs/sku_location_count_priorities.csv)
 
-All Project 1 data is deterministic synthetic data. It does not contain employer, client, customer, confidential, personal, or proprietary information.
+All Inventory Accuracy & Stockout Risk data is deterministic synthetic data. It does not contain employer, client, customer, confidential, personal, or proprietary information.
 
 ## What I Help Analyze
 
@@ -58,10 +58,10 @@ Each featured project is built as a business case study rather than a generic da
 
 Retain the existing projects as examples of technical breadth. Link to these folders using readable labels:
 
-- [Athlete Events Analysis](projects/athlete_events/)
-- [Car Sales Analysis](projects/car-sales/)
-- [Heart Disease Analysis](projects/heart-disease/)
-- [DuckDB CSV GUI](projects/duckdb-csv-gui/)
+- [Athlete Events Analysis](projects/02-athlete_events/)
+- [Car Sales Analysis](projects/03-car-sales/)
+- [Heart Disease Analysis](projects/05-heart-disease/)
+- [DuckDB CSV GUI](projects/04-duckdb-csv-gui/)
 - [Jetstream](projects/jetstream/)
 
 These projects demonstrate additional skills in exploratory analysis, data tooling, SQL/Python workflows, and structured problem solving. The operations case studies above are the primary focus for analyst, reporting, inventory, systems, and technical-operations opportunities.
@@ -74,7 +74,7 @@ Excel | Power Query | SQL | Python | pandas | DuckDB | Power BI | Tableau | GitH
 
 - [Portfolio Index](docs/portfolio_index.md)
 - [Projects Catalog](docs/projects_catalog.md)
-- [Operations Analyst Portfolio Planning Guide](docs/operations_analyst_portfolio_planning_guide.md)
+- [Data Analyst Portfolio Planning Guide](docs/data_analyst_portfolio_planning_guide.md)
 - [Showcase Planning and Synchronization for Effective Monetization](docs/showcase%20planning%20and%20synchronization%20for%20effective%20monetization.md)
 
 ## Professional Direction

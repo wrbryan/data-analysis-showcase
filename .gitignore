@@ -12,11 +12,11 @@ venv/
 # Data
 data/
 # The inventory project keeps only compact, checked-in source examples.
-!projects/inventory-accuracy-stockout-risk/data/
-!projects/inventory-accuracy-stockout-risk/data/README.md
-!projects/inventory-accuracy-stockout-risk/data/sample/
-!projects/inventory-accuracy-stockout-risk/data/sample/*.csv
-projects/inventory-accuracy-stockout-risk/data/generated/
+!projects/01-inventory-accuracy-stockout-risk/data/
+!projects/01-inventory-accuracy-stockout-risk/data/README.md
+!projects/01-inventory-accuracy-stockout-risk/data/sample/
+!projects/01-inventory-accuracy-stockout-risk/data/sample/*.csv
+projects/01-inventory-accuracy-stockout-risk/data/generated/
 excel/
 
 # macOS
