@@ -17,3 +17,5 @@ minimum_order_volume,PASS,0,162000 orders
 minimum_transaction_volume,PASS,0,555773 transactions
 minimum_cycle_count_volume,PASS,0,46800 counts
 current_tier_partition,PASS,0,Critical + High + Watch + Routine equals latest SKU/location records
+current_output_partition,PASS,0,all latest records retained; action output equals Critical + High
+stockout_output_tier_filter,PASS,0,stockout report contains only Critical + High action rows

@@ -26,10 +26,17 @@ ordered tiers:
 
 | tier | exact rule |
 |---|---|
-| `Critical` | physical quantity `<= safety_stock` OR days of supply `<= 0.5 * lead_time_days` |
+| `Critical` | `physical_qty = 0` OR days of supply `<= 0.25 * lead_time_days` OR (`physical_qty <= safety_stock` AND materiality flag is `Y` AND current stockout-risk condition is true) |
 | `High` | not Critical AND physical quantity `<= reorder_point` AND days of supply `<= lead_time_days` AND materiality flag is `Y` |
-| `Watch` | not Critical/High AND physical quantity `<= reorder_point` OR days of supply `<= lead_time_days` |
+| `Watch` | not Critical/High AND (physical quantity `<= reorder_point` OR days of supply `<= lead_time_days` OR (materiality flag is `Y` AND recurring variance)) |
 | `Routine` | otherwise |
+
+The current stockout-risk condition is exactly `physical_qty <= reorder_point
+OR days_of_supply <= lead_time_days`. It is the current policy trigger used by
+`stockout_risk_flag`, the Critical safety-stock clause, and the historical
+exposure KPI (evaluated at every snapshot). Recurring variance means at least
+two non-zero quantity-variance snapshots for the SKU/location pair during the
+source period.
 
 Materiality is calculated across all latest SKU/location records. Each of
 latest inventory value (`physical_qty * unit_cost`), latest `unit_cost`, and
@@ -59,10 +66,10 @@ The following ordered headers are the analyzer's output contract.
 
 | field | definition |
 |---|---|
-| `stockout_risk_flag` | `Y` when the broad current trigger (physical <= reorder OR days <= lead) is true |
+| `stockout_risk_flag` | `Y` when the current policy trigger (physical <= reorder OR days <= lead) is true |
 | `historical_stockout_observation_count` | Number of historical snapshots for that SKU/location meeting the broad trigger |
 | `materiality_flag` | `Y` when any of the three latest-record measures meets its own P75 threshold |
 | `risk_tier` | Current latest-snapshot tier from the table above |
 | `risk_reason` | Human-readable reason generated from the exact tier rule |
 | `current_action_flag` | `Y` only for Critical or High; these are the action-report rows |
-| `priority_score` | Bounded triage score: 35% cumulative adjustment, 30% current broad trigger, 20% variance recurrence, 15% context |
+| `priority_score` | Bounded triage score: 35% cumulative adjustment, 30% current policy trigger, 20% variance recurrence, 15% context |

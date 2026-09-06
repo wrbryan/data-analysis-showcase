@@ -13,14 +13,24 @@ regenerating the deterministic source population with seed `20260905`.
 | orders | 162,000 |
 | cycle counts | 46,800 |
 | latest SKU/location records retained in `sku_risk_priorities.csv` | 3,600 |
-| Critical+High rows in `stockout_risk_report.csv` | 2,027 |
+| Critical+High rows in `stockout_risk_report.csv` | 1,636 |
 
 ## Risk and KPI results
 
 * Historical stockout-observation rate: **70.29%** (all snapshots).
-* Current Critical+High: **2,027 / 3,600 = 56.31%**.
-* Current tier counts: **Critical 1,984; High 43; Watch 311;
-  Routine 1,262**.
+* Current Critical+High: **1,636 / 3,600 = 45.44%**.
+* Current tier counts: **Critical 1,525; High 111; Watch 1,428;
+  Routine 536**.
+* Current tier logic is exact and mutually exclusive: Critical when
+  `physical_qty = 0` or `days_of_supply <= 0.25 * lead_time`, or when
+  `physical_qty <= safety_stock` with materiality and the current stockout-risk
+  condition; High when both reorder-point and lead-time triggers plus
+  materiality hold; Watch when either broad trigger or material recurring
+  variance holds; Routine otherwise.
+* The current stockout-risk condition is
+  `physical_qty <= reorder_point OR days_of_supply <= lead_time`. Historical
+  exposure uses the same condition on every snapshot. Recurring variance means
+  at least two non-zero variance snapshots per SKU/location.
 * Inventory accuracy: **99.98%**.
 * Cumulative adjustment value: **$1,032,961.10**.
 * Latest inventory value: **$37,957,832.60**.
@@ -34,7 +44,7 @@ regenerating the deterministic source population with seed `20260905`.
 
 ## Quality checks
 
-All 18 rows in `outputs/data_quality_checks.csv` are `PASS` with
+All 20 rows in `outputs/data_quality_checks.csv` are `PASS` with
 `records_affected=0`:
 
 1. required fields and duplicate keys for each of the five sources;
@@ -48,7 +58,9 @@ All 18 rows in `outputs/data_quality_checks.csv` are `PASS` with
 9. partial shipments are present;
 10. delayed shipments are present;
 11. minimum order, transaction, and cycle-count volumes;
-12. current tier partition equals all latest SKU/location records.
+12. current tier partition equals all latest SKU/location records;
+13. published priority and Critical+High action outputs are consistent;
+14. stockout output contains only Critical+High action rows.
 
 Additional validation completed:
 

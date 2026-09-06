@@ -151,11 +151,12 @@ def main() -> None:
         cost = float(row["unit_cost"])
         absolute_variance = abs(system - physical)
         state["snapshot_count"] += 1
-        state["latest_date"] = row["snapshot_date"]
-        state["latest_system"] = system
-        state["latest_physical"] = physical
-        state["latest_cost"] = cost
-        state["signed_variance"] = system - physical
+        if row["snapshot_date"] >= state["latest_date"]:
+            state["latest_date"] = row["snapshot_date"]
+            state["latest_system"] = system
+            state["latest_physical"] = physical
+            state["latest_cost"] = cost
+            state["signed_variance"] = system - physical
         state["abs_variance"] += absolute_variance
         state["adjustment_value"] += absolute_variance * cost
         state["variance_event_count"] += int(absolute_variance > 0)
@@ -217,32 +218,46 @@ def main() -> None:
             or float(state["adjustment_value"])
             >= materiality_thresholds["cumulative_adjustment_value"]
         )
-        physical_safety = physical <= safety
-        days_critical = days_supply <= 0.5 * lead
+        physical_zero = physical == 0
+        days_critical = days_supply <= 0.25 * lead
         physical_reorder = physical <= reorder
         days_lead = days_supply <= lead
         current_trigger = physical_reorder or days_lead
-        if physical_safety or days_critical:
+        recurring_variance = int(state["variance_event_count"]) >= 2
+        materialized_safety_risk = (
+            physical <= safety and materiality and current_trigger
+        )
+        if physical_zero or days_critical or materialized_safety_risk:
             tier = "Critical"
             reasons = []
-            if physical_safety:
-                reasons.append("physical quantity <= safety stock")
+            if physical_zero:
+                reasons.append("physical quantity = 0")
             if days_critical:
-                reasons.append("days of supply <= 0.5 lead time")
+                reasons.append("days of supply <= 0.25 lead time")
+            if materialized_safety_risk:
+                reasons.append(
+                    "physical quantity <= safety stock with materiality and "
+                    "current stockout-risk condition"
+                )
             reason = "Critical: " + " and ".join(reasons)
         elif physical_reorder and days_lead and materiality:
             tier = "High"
             reason = (
                 "High: physical quantity <= reorder point and days of supply "
-                "<= lead time; data-derived materiality threshold met"
+                "<= lead time; materiality flag=Y"
             )
-        elif current_trigger:
+        elif current_trigger or (materiality and recurring_variance):
             tier = "Watch"
             reasons = []
             if physical <= reorder:
                 reasons.append("physical quantity <= reorder point")
             if days_supply <= lead:
                 reasons.append("days of supply <= lead time")
+            if materiality and recurring_variance:
+                reasons.append(
+                    "materiality flag=Y and recurring variance "
+                    "(at least two non-zero variance snapshots)"
+                )
             reason = "Watch: " + " or ".join(reasons)
         else:
             tier = "Routine"
@@ -250,7 +265,9 @@ def main() -> None:
         return {
             "demand": demand, "days_supply": days_supply,
             "inventory_value": inventory_value, "materiality": materiality,
-            "current_trigger": current_trigger, "tier": tier, "reason": reason,
+            "current_trigger": current_trigger,
+            "recurring_variance": recurring_variance,
+            "tier": tier, "reason": reason,
             "action": tier in {"Critical", "High"},
         }
 
@@ -462,6 +479,9 @@ def main() -> None:
     required_transaction_types = {
         "RECEIPT", "PICK", "ADJUSTMENT", "TRANSFER_IN", "TRANSFER_OUT", "RETURN",
     }
+    published_stockout_rows = [
+        row for row in stockout_rows if row["current_action_flag"] == "Y"
+    ]
     checks = [
         ("sku_reference_integrity",
          sum(row["sku"] not in products for row in snapshots + transactions + counts + orders),
@@ -495,6 +515,20 @@ def main() -> None:
         ("current_tier_partition",
          int(sum(tier_counts.values()) != len(pair)),
          "Critical + High + Watch + Routine equals latest SKU/location records"),
+        ("current_output_partition",
+         int(
+             len(priority_rows) != len(pair)
+             or sum(row["current_action_flag"] == "Y" for row in priority_rows)
+             != len(published_stockout_rows)
+         ),
+         "all latest records retained; action output equals Critical + High"),
+        ("stockout_output_tier_filter",
+         sum(
+             row["risk_tier"] not in {"Critical", "High"}
+             or row["current_action_flag"] != "Y"
+             for row in published_stockout_rows
+         ),
+         "stockout report contains only Critical + High action rows"),
     ]
     for check_name, affected, details in checks:
         quality_rows.append({
@@ -507,7 +541,7 @@ def main() -> None:
     write_csv("location_variance_summary.csv", location_rows, LOCATION_FIELDS)
     write_csv(
         "stockout_risk_report.csv",
-        [row for row in stockout_rows if row["current_action_flag"] == "Y"],
+        published_stockout_rows,
         STOCKOUT_FIELDS,
     )
     write_csv("data_quality_checks.csv", quality_rows, QUALITY_FIELDS)

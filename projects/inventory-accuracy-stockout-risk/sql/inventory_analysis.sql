@@ -76,6 +76,10 @@ FROM historical;
 -- ============================================================================
 -- 3. CURRENT LATEST-SNAPSHOT ACTION RISK
 -- ============================================================================
+-- Policy trigger used consistently below and by the historical KPI:
+-- physical_qty <= reorder_point OR days_of_supply <= lead_time_days.
+-- Recurring variance means at least two non-zero quantity-variance snapshots
+-- for the SKU/location pair.
 WITH latest AS (
   SELECT * EXCLUDE (rn)
   FROM (
@@ -87,10 +91,14 @@ WITH latest AS (
   WHERE rn = 1
 ),
 sku_demand AS (
-  SELECT sku, SUM(ordered_qty) /
-    (DATE_DIFF('day', MIN(order_date)::DATE, MAX(order_date)::DATE) + 1)
-    AS daily_demand
-  FROM orders GROUP BY sku
+  SELECT sku, SUM(ordered_qty) / MAX(calendar_days) AS daily_demand
+  FROM orders
+  CROSS JOIN (
+    SELECT DATE_DIFF('day', MIN(snapshot_date)::DATE, MAX(snapshot_date)::DATE) + 1
+      AS calendar_days
+    FROM inventory_snapshot
+  ) calendar
+  GROUP BY sku
 ),
 location_count AS (
   SELECT sku, COUNT(DISTINCT location) AS locations
@@ -99,7 +107,8 @@ location_count AS (
 pair_history AS (
   SELECT
     sku, location,
-    SUM(ABS(system_qty - physical_qty) * unit_cost) AS cumulative_adjustment_value
+    SUM(ABS(system_qty - physical_qty) * unit_cost) AS cumulative_adjustment_value,
+    SUM(ABS(system_qty - physical_qty) > 0) AS variance_event_count
   FROM inventory_snapshot
   GROUP BY sku, location
 ),
@@ -109,6 +118,7 @@ base AS (
     l.physical_qty, l.unit_cost,
     l.physical_qty * l.unit_cost AS inventory_value,
     h.cumulative_adjustment_value,
+    h.variance_event_count,
     s.daily_demand / c.locations AS average_daily_demand,
     l.physical_qty / NULLIF(s.daily_demand / c.locations, 0)
       AS days_of_supply,
@@ -134,18 +144,46 @@ classified AS (
       OR b.unit_cost >= t.unit_cost_p75
       OR b.cumulative_adjustment_value >= t.cumulative_adjustment_value_p75
       THEN 'Y' ELSE 'N' END AS materiality_flag,
-    CASE
-      WHEN b.physical_qty <= b.safety_stock
-        OR b.days_of_supply <= 0.5 * b.lead_time_days THEN 'Critical'
+    (
+      b.physical_qty <= b.reorder_point
+      OR b.days_of_supply <= b.lead_time_days
+    ) AS current_stockout_risk_condition,
+    b.variance_event_count >= 2 AS recurring_variance,
+    CASE WHEN
+      b.physical_qty = 0
+      OR b.days_of_supply <= 0.25 * b.lead_time_days
+      OR (
+        b.physical_qty <= b.safety_stock
+        AND (
+          b.inventory_value >= t.inventory_value_p75
+          OR b.unit_cost >= t.unit_cost_p75
+          OR b.cumulative_adjustment_value >= t.cumulative_adjustment_value_p75
+        )
+        AND (
+          b.physical_qty <= b.reorder_point
+          OR b.days_of_supply <= b.lead_time_days
+        )
+      )
+      THEN 'Critical'
       WHEN b.physical_qty <= b.reorder_point
         AND b.days_of_supply <= b.lead_time_days
         AND (
           b.inventory_value >= t.inventory_value_p75
           OR b.unit_cost >= t.unit_cost_p75
           OR b.cumulative_adjustment_value >= t.cumulative_adjustment_value_p75
-        ) THEN 'High'
+        )
+        THEN 'High'
       WHEN b.physical_qty <= b.reorder_point
-        OR b.days_of_supply <= b.lead_time_days THEN 'Watch'
+        OR b.days_of_supply <= b.lead_time_days
+        OR (
+          (
+            b.inventory_value >= t.inventory_value_p75
+            OR b.unit_cost >= t.unit_cost_p75
+            OR b.cumulative_adjustment_value >= t.cumulative_adjustment_value_p75
+          )
+          AND b.variance_event_count >= 2
+        )
+        THEN 'Watch'
       ELSE 'Routine'
     END AS risk_tier
   FROM base b CROSS JOIN thresholds t
@@ -155,11 +193,11 @@ tiered AS (
     c.*,
     CASE
       WHEN c.risk_tier = 'Critical' THEN
-        'Critical: physical quantity <= safety stock or days of supply <= 0.5 lead time'
+        'Critical: physical quantity = 0, days of supply <= 0.25 lead time, or physical quantity <= safety stock with materiality and current stockout-risk condition'
       WHEN c.risk_tier = 'High' THEN
-        'High: physical quantity <= reorder point and days of supply <= lead time; data-derived materiality threshold met'
+        'High: physical quantity <= reorder point and days of supply <= lead time; materiality flag=Y'
       WHEN c.risk_tier = 'Watch' THEN
-        'Watch: physical quantity <= reorder point or days of supply <= lead time'
+        'Watch: physical quantity <= reorder point, days of supply <= lead time, or materiality flag=Y with recurring variance (at least two non-zero variance snapshots)'
       ELSE 'Routine: neither current quantity trigger is met'
     END AS risk_reason
   FROM classified c

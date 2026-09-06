@@ -16,10 +16,15 @@ All 18 publication checks passed.
    observed historical workload and is intentionally separate from current
    action risk.
 2. **Current action risk is latest-snapshot based.** Of 3,600 latest
-   SKU/location records, **1,984 Critical**, **43 High**, **311 Watch**, and
-   **1,262 Routine**. Therefore **2,027 (56.31%)** are current Critical+High
+   SKU/location records, **1,525 Critical**, **111 High**, **1,428 Watch**, and
+   **536 Routine**. Therefore **1,636 (45.44%)** are current Critical+High
    action records in `stockout_risk_report.csv`; all 3,600 remain in
    `sku_risk_priorities.csv`.
+   Critical is `physical_qty = 0`, days of supply at or below 0.25 lead time,
+   or a material safety-stock exception with the current stockout-risk
+   condition. High requires both reorder-point and lead-time triggers plus
+   materiality. Watch also captures material pairs with at least two non-zero
+   variance snapshots when they are not Critical/High.
 3. **Materiality is relative to this synthetic population.** The exact
    linear-interpolated P75 thresholds are **$12,368.18** latest inventory
    value, **$92.92** unit cost, and **$438.50** cumulative adjustment value.

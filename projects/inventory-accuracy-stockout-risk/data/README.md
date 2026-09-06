@@ -36,3 +36,9 @@ Z1-Z3, 648,000 inventory snapshots, 555,773 movements, 162,000 orders, and
 shipments. The analyzer validates required fields, unique keys, references,
 dates, non-negative inventory, movement coverage, order behavior, and minimum
 volumes before publishing reports.
+
+The shared current stockout-risk policy trigger is
+`physical_qty <= reorder_point OR days_of_supply <= lead_time_days`. Historical
+exposure evaluates that trigger on every snapshot; current tiers evaluate only
+the latest SKU/location snapshot. Recurring variance means at least two
+non-zero quantity-variance snapshots for the pair.

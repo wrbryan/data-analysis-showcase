@@ -49,13 +49,22 @@ snapshots. It is a workload/history KPI, not the current action queue.
 Current risk is evaluated once per SKU/location using its latest snapshot.
 Tiers are mutually exclusive and applied in this order:
 
-1. **Critical:** physical quantity `<= safety_stock` **OR** days of supply
-   `<= 0.5 * lead_time_days`.
+1. **Critical:** current `physical_qty = 0` **OR** days of supply
+   `<= 0.25 * lead_time_days` **OR** (`physical_qty <= safety_stock` **AND**
+   `materiality_flag=Y` **AND** the current stockout-risk condition is true).
 2. **High:** not Critical, physical quantity `<= reorder_point` **AND** days
    of supply `<= lead_time_days` **AND** `materiality_flag=Y`.
 3. **Watch:** not Critical/High, physical quantity `<= reorder_point` **OR**
-   days of supply `<= lead_time_days`.
+   days of supply `<= lead_time_days` **OR** (`materiality_flag=Y` **AND**
+   recurring variance).
 4. **Routine:** otherwise.
+
+The exact current stockout-risk condition is
+`physical_qty <= reorder_point OR days_of_supply <= lead_time_days`. It is
+used for the Critical safety-stock clause and is also the `stockout_risk_flag`
+policy trigger. Historical exposure applies this same condition to every
+snapshot. Recurring variance means at least two non-zero quantity-variance
+snapshots for the SKU/location pair across the source period.
 
 `current_action_flag=Y` only for Critical and High; therefore
 `stockout_risk_report.csv` contains only those tiers. `sku_risk_priorities.csv`
