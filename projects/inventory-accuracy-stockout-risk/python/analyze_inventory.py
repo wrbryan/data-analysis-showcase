@@ -398,6 +398,9 @@ def main() -> None:
     for rank, row in enumerate(count_rows, 1):
         row["priority_rank"] = rank
         del row["_score"], row["_key"]
+    count_frequency_counts = defaultdict(int)
+    for row in count_rows:
+        count_frequency_counts[row["recommended_count_frequency"]] += 1
 
     stockout_rows = []
     for row in replenishment_rows:
@@ -462,6 +465,16 @@ def main() -> None:
         ("recount_rate_pct", pct(recounts, completed_counts), "percent", "recounted completed counts / completed counts"),
         ("on_time_shipment_rate_pct", pct(on_time_shipments, len(shipped_orders)), "percent", "shipped orders on or before promise"),
         ("inventory_value", sum(float(row["inventory_value"]) for row in replenishment_rows), "currency", "latest total physical quantity * unit cost"),
+        ("replenishment_decision_grain", len(replenishment_rows), "records", "Replenishment decision grain: SKU across all warehouse locations."),
+        ("cycle_count_decision_grain", len(count_rows), "records", "Cycle-count decision grain: SKU/location."),
+        ("current_replenishment_queue_statement", replenishment_tier_counts["Critical"] + replenishment_tier_counts["High"], "SKUs", f"Current Critical + High replenishment queue: {replenishment_tier_counts['Critical'] + replenishment_tier_counts['High']} of {len(replenishment_rows)} SKUs."),
+        ("weekly_count_priority_statement", count_frequency_counts["Weekly"], "SKU/location records", f"Weekly: {count_frequency_counts['Weekly']} SKU/location records"),
+        ("biweekly_count_priority_statement", count_frequency_counts["Biweekly"], "SKU/location records", f"Biweekly: {count_frequency_counts['Biweekly']} SKU/location records"),
+        ("monthly_count_priority_statement", count_frequency_counts["Monthly"], "SKU/location records", f"Monthly: {count_frequency_counts['Monthly']} SKU/location records"),
+        ("quarterly_count_priority_statement", count_frequency_counts["Quarterly"], "SKU/location records", f"Quarterly: {count_frequency_counts['Quarterly']:,} SKU/location records"),
+        ("historical_exposure_statement", pct(historical_stockout_observations, len(snapshots)), "percent", f"Historical stockout-policy exposure: {pct(historical_stockout_observations, len(snapshots)):.2f}% of observations. This is a historical monitoring metric, not the current action queue."),
+        ("synthetic_data_disclaimer", 1, "statement", "All data is deterministic synthetic data."),
+        ("data_safety_statement", 1, "statement", "No employer, client, customer, confidential, personal, or proprietary data is included."),
     ]
     kpi_rows = [{
         "metric_name": name, "metric_value": f"{float(value):.2f}",

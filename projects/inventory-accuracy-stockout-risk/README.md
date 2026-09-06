@@ -30,6 +30,25 @@ The generated population covers 180 calendar days, 300 SKUs, 10 categories,
 5 suppliers, and 12 bins across zones Z1-Z3: 648,000 snapshots, about 585,000
 movements, 13,500 SKU-level orders, and 46,800 cycle counts.
 
+**Replenishment decision grain: SKU across all warehouse locations.**
+
+**Cycle-count decision grain: SKU/location.**
+
+**Current Critical + High replenishment queue: 8 of 300 SKUs.**
+
+**Cycle-count priority queue:**
+
+- **Weekly: 6 SKU/location records**
+- **Biweekly: 472 SKU/location records**
+- **Monthly: 122 SKU/location records**
+- **Quarterly: 3,000 SKU/location records**
+
+**Historical stockout-policy exposure: 7.08% of observations.**  
+This is a historical monitoring metric, not the current action queue.
+
+**All data is deterministic synthetic data.**  
+**No employer, client, customer, confidential, personal, or proprietary data is included.**
+
 ## Delivered scope
 
 | Layer | Location |

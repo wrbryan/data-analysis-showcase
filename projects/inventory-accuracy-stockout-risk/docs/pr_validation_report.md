@@ -3,6 +3,25 @@
 Validation was run on branch `feature/inventory-project-data-analysis-qc`
 after regenerating the deterministic source population with seed `20260905`.
 
+**Replenishment decision grain: SKU across all warehouse locations.**
+
+**Cycle-count decision grain: SKU/location.**
+
+**Current Critical + High replenishment queue: 8 of 300 SKUs.**
+
+**Cycle-count priority queue:**
+
+- **Weekly: 6 SKU/location records**
+- **Biweekly: 472 SKU/location records**
+- **Monthly: 122 SKU/location records**
+- **Quarterly: 3,000 SKU/location records**
+
+**Historical stockout-policy exposure: 7.08% of observations.**  
+This is a historical monitoring metric, not the current action queue.
+
+**All data is deterministic synthetic data.**  
+**No employer, client, customer, confidential, personal, or proprietary data is included.**
+
 ## Final population and output counts
 
 | item | count |
