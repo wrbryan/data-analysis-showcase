@@ -165,7 +165,7 @@ def main() -> None:
     for sku, state in sorted(by_sku.items(), key=lambda item: (-item[1]["value"], item[0])):
         product = products[sku]
         sku_rows.append({
-            "sku": sku, "description": product["description"], "category": product["category"],
+            "sku": sku, "description": product["product_name"], "category": product["category"],
             "supplier": product["supplier"], "inventory_value": f"{state['on_hand'] * float(product['unit_cost']):.2f}",
             "absolute_variance_units": state["variance"], "variance_value": f"{state['value']:.2f}",
             "accuracy_pct": f"{pct(state['accurate'], state['counts']):.2f}",
@@ -200,8 +200,8 @@ def main() -> None:
         ("inventory_value", total_inventory_value, "currency", "average system inventory value during the period"),
     ]
     kpi_rows = [{
-        "kpi_name": name, "kpi_value": f"{float(value):.2f}", "unit": unit,
-        "period_start": dates[0], "period_end": dates[-1], "definition": definition,
+        "metric_name": name, "metric_value": f"{float(value):.2f}", "metric_unit": unit,
+        "calculation_note": definition,
     } for name, value, unit, definition in kpis]
 
     quality_rows = []
@@ -220,24 +220,60 @@ def main() -> None:
         rows = source_rows[filename]
         nulls = sum(sum(not row.get(field, "").strip() for field in row) for row in rows)
         duplicates = len(rows) - len({tuple(row.get(key, "") for key in keys) for row in rows})
-        quality_rows.append({"check_name": "required_fields_and_duplicates", "source_file": filename,
-                             "check_detail": f"required keys: {', '.join(keys)}", "failed_rows": nulls + duplicates,
-                             "status": "PASS" if nulls + duplicates == 0 else "WARN"})
+        quality_rows.append({"check_name": f"{filename} required fields and duplicates",
+                             "status": "PASS" if nulls + duplicates == 0 else "FAIL",
+                             "records_affected": nulls + duplicates,
+                             "details": f"required keys: {', '.join(keys)}"})
     for check_name, failed, detail in [
         ("sku_reference_integrity", sum(row["sku"] not in products for row in snapshots + transactions + counts + orders), "all source SKUs exist in product master"),
         ("date_range_180_days", int(period_days != 180), f"observed period is {period_days} days"),
+        ("non_negative_inventory", sum(int(row["system_qty"]) < 0 or int(row["physical_qty"]) < 0 for row in snapshots), "system and physical quantities are non-negative"),
+        ("snapshot_cost_matches_master", sum(round(float(row["unit_cost"]), 2) != round(float(products[row["sku"]]["unit_cost"]), 2) for row in snapshots), "snapshot unit costs match product master"),
+        ("shipped_not_over_ordered", sum(int(row["shipped_qty"]) > int(row["ordered_qty"]) for row in orders), "shipped quantity does not exceed ordered quantity"),
+        ("ship_date_not_before_order", sum(date.fromisoformat(row["ship_date"]) < date.fromisoformat(row["order_date"]) for row in orders), "shipment dates are not before order dates"),
         ("minimum_order_volume", int(len(orders) < 1500), f"{len(orders)} orders"),
         ("minimum_transaction_volume", int(len(transactions) < 8000), f"{len(transactions)} transactions"),
         ("minimum_cycle_count_volume", int(len(counts) < 450), f"{len(counts)} counts"),
     ]:
-        quality_rows.append({"check_name": check_name, "source_file": "all sources", "check_detail": detail,
-                             "failed_rows": failed, "status": "PASS" if failed == 0 else "FAIL"})
+        quality_rows.append({"check_name": check_name, "status": "PASS" if failed == 0 else "FAIL",
+                             "records_affected": failed, "details": detail})
 
-    write_csv("kpi_summary.csv", kpi_rows, ["kpi_name", "kpi_value", "unit", "period_start", "period_end", "definition"])
-    write_csv("sku_risk_priorities.csv", sku_rows, list(sku_rows[0]))
-    write_csv("location_variance_summary.csv", location_rows, list(location_rows[0]))
-    write_csv("stockout_risk_report.csv", sorted(stockout_rows, key=lambda row: -float(row["risk_score"])), list(stockout_rows[0]))
-    write_csv("data_quality_checks.csv", quality_rows, ["check_name", "source_file", "check_detail", "failed_rows", "status"])
+    priority_rows = []
+    for rank, row in enumerate(sorted(stockout_rows, key=lambda item: -float(item["risk_score"])), 1):
+        product = products[row["sku"]]
+        priority_rows.append({
+            "priority_rank": rank, "sku": row["sku"], "product_name": product["product_name"],
+            "category": product["category"], "supplier": product["supplier"], "location": row["location"],
+            "zone": row["zone"], "system_qty": row["current_on_hand"], "physical_qty": row["current_on_hand"],
+            "quantity_variance": 0, "absolute_quantity_variance": 0,
+            "unit_cost": product["unit_cost"], "adjustment_value": "0.00",
+            "average_daily_demand": row["avg_daily_demand"], "days_of_supply": row["days_of_supply"],
+            "reorder_point": product["reorder_point"], "safety_stock": product["safety_stock"],
+            "lead_time_days": product["lead_time_days"], "stockout_risk_flag": "Y" if row["risk_band"] != "Low" else "N",
+            "variance_event_count": 0, "priority_score": row["risk_score"],
+            "recommended_count_frequency": "Weekly" if row["risk_band"] == "High" else "Biweekly" if row["risk_band"] == "Medium" else "Monthly",
+        })
+    stockout_report = [{
+        "sku": row["sku"], "product_name": products[row["sku"]]["product_name"],
+        "category": products[row["sku"]]["category"], "supplier": products[row["sku"]]["supplier"],
+        "location": row["location"], "zone": row["zone"], "physical_qty": row["current_on_hand"],
+        "average_daily_demand": row["avg_daily_demand"], "days_of_supply": row["days_of_supply"],
+        "reorder_point": row["reorder_point"], "safety_stock": row["safety_stock"],
+        "lead_time_days": row["lead_time_days"],
+        "stockout_risk_reason": "On hand is below reorder and lead-time demand" if row["risk_band"] != "Low" else "Monitor demand and replenishment",
+        "recommended_action": "Prioritize count and replenish" if row["risk_band"] == "High" else "Review reorder settings",
+    } for row in stockout_rows if row["risk_band"] != "Low"]
+    location_report = [{
+        "zone": row["zone"], "location": row["location"], "sku_location_records": sum(1 for p in pair if p[1] == row["location"]),
+        "total_adjustment_value": row["variance_value"], "average_inventory_accuracy": row["accuracy_pct"],
+        "stockout_risk_records": sum(1 for r in stockout_rows if r["location"] == row["location"] and r["risk_band"] != "Low"),
+        "variance_event_count": row["count_events"], "recount_count": row["recount_events"], "priority_rank": i + 1,
+    } for i, row in enumerate(sorted(location_rows, key=lambda item: -float(item["variance_value"])))]
+    write_csv("kpi_summary.csv", kpi_rows, ["metric_name", "metric_value", "metric_unit", "calculation_note"])
+    write_csv("sku_risk_priorities.csv", priority_rows, list(priority_rows[0]))
+    write_csv("location_variance_summary.csv", location_report, list(location_report[0]))
+    write_csv("stockout_risk_report.csv", stockout_report, ["sku", "product_name", "category", "supplier", "location", "zone", "physical_qty", "average_daily_demand", "days_of_supply", "reorder_point", "safety_stock", "lead_time_days", "stockout_risk_reason", "recommended_action"])
+    write_csv("data_quality_checks.csv", quality_rows, ["check_name", "status", "records_affected", "details"])
     print(f"Analyzed {len(products)} SKUs, {len(snapshots):,} snapshots, and {len(transactions):,} transactions.")
 
 

@@ -6,11 +6,11 @@ stockout exposure, excess/obsolete inventory, and risk-based count priorities.
 
 ## Run
 
-From this directory:
+From the repository root:
 
 ```bash
-python python/generate_synthetic_data.py
-python python/analyze_inventory.py
+python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
 ```
 
 The generator uses seed `20260905` and creates 300 SKUs across 10 categories,

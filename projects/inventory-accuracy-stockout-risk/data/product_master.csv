@@ -1,301 +1,301 @@
-sku,description,category,supplier,lead_time_days,reorder_point,safety_stock,unit_cost
-SKU0001,Beverages Item 0001,Beverages,Northstar,10,29,13,5.20
-SKU0002,Snacks Item 0002,Snacks,Acme Supply,17,40,18,6.90
-SKU0003,Pantry Item 0003,Pantry,Blue Ridge,9,51,23,8.60
-SKU0004,Household Item 0004,Household,Summit Goods,16,62,28,10.30
-SKU0005,Personal Care Item 0005,Personal Care,Harbor Wholesale,8,73,33,12.00
-SKU0006,Pet Care Item 0006,Pet Care,Northstar,15,19,38,13.70
-SKU0007,Paper Goods Item 0007,Paper Goods,Acme Supply,7,30,8,15.40
-SKU0008,Small Appliances Item 0008,Small Appliances,Blue Ridge,14,41,13,17.10
-SKU0009,Cleaning Item 0009,Cleaning,Summit Goods,6,52,18,18.80
-SKU0010,Seasonal Item 0010,Seasonal,Harbor Wholesale,13,63,23,20.50
-SKU0011,Beverages Item 0011,Beverages,Northstar,5,74,28,22.20
-SKU0012,Snacks Item 0012,Snacks,Acme Supply,12,20,33,23.90
-SKU0013,Pantry Item 0013,Pantry,Blue Ridge,4,31,38,25.60
-SKU0014,Household Item 0014,Household,Summit Goods,11,42,8,27.30
-SKU0015,Personal Care Item 0015,Personal Care,Harbor Wholesale,3,53,13,29.00
-SKU0016,Pet Care Item 0016,Pet Care,Northstar,10,64,18,30.70
-SKU0017,Paper Goods Item 0017,Paper Goods,Acme Supply,17,75,23,32.40
-SKU0018,Small Appliances Item 0018,Small Appliances,Blue Ridge,9,21,28,34.10
-SKU0019,Cleaning Item 0019,Cleaning,Summit Goods,16,32,33,35.80
-SKU0020,Seasonal Item 0020,Seasonal,Harbor Wholesale,8,43,38,37.50
-SKU0021,Beverages Item 0021,Beverages,Northstar,15,54,8,39.20
-SKU0022,Snacks Item 0022,Snacks,Acme Supply,7,65,13,40.90
-SKU0023,Pantry Item 0023,Pantry,Blue Ridge,14,76,18,42.60
-SKU0024,Household Item 0024,Household,Summit Goods,6,22,23,44.30
-SKU0025,Personal Care Item 0025,Personal Care,Harbor Wholesale,13,33,28,46.00
-SKU0026,Pet Care Item 0026,Pet Care,Northstar,5,44,33,47.70
-SKU0027,Paper Goods Item 0027,Paper Goods,Acme Supply,12,55,38,49.40
-SKU0028,Small Appliances Item 0028,Small Appliances,Blue Ridge,4,66,8,51.10
-SKU0029,Cleaning Item 0029,Cleaning,Summit Goods,11,77,13,52.80
-SKU0030,Seasonal Item 0030,Seasonal,Harbor Wholesale,3,23,18,54.50
-SKU0031,Beverages Item 0031,Beverages,Northstar,10,34,23,56.20
-SKU0032,Snacks Item 0032,Snacks,Acme Supply,17,45,28,57.90
-SKU0033,Pantry Item 0033,Pantry,Blue Ridge,9,56,33,59.60
-SKU0034,Household Item 0034,Household,Summit Goods,16,67,38,61.30
-SKU0035,Personal Care Item 0035,Personal Care,Harbor Wholesale,8,78,8,63.00
-SKU0036,Pet Care Item 0036,Pet Care,Northstar,15,24,13,64.70
-SKU0037,Paper Goods Item 0037,Paper Goods,Acme Supply,7,35,18,66.40
-SKU0038,Small Appliances Item 0038,Small Appliances,Blue Ridge,14,46,23,68.10
-SKU0039,Cleaning Item 0039,Cleaning,Summit Goods,6,57,28,69.80
-SKU0040,Seasonal Item 0040,Seasonal,Harbor Wholesale,13,68,33,71.50
-SKU0041,Beverages Item 0041,Beverages,Northstar,5,79,38,73.20
-SKU0042,Snacks Item 0042,Snacks,Acme Supply,12,25,8,74.90
-SKU0043,Pantry Item 0043,Pantry,Blue Ridge,4,36,13,76.60
-SKU0044,Household Item 0044,Household,Summit Goods,11,47,18,78.30
-SKU0045,Personal Care Item 0045,Personal Care,Harbor Wholesale,3,58,23,80.00
-SKU0046,Pet Care Item 0046,Pet Care,Northstar,10,69,28,81.70
-SKU0047,Paper Goods Item 0047,Paper Goods,Acme Supply,17,80,33,83.40
-SKU0048,Small Appliances Item 0048,Small Appliances,Blue Ridge,9,26,38,85.10
-SKU0049,Cleaning Item 0049,Cleaning,Summit Goods,16,37,8,86.80
-SKU0050,Seasonal Item 0050,Seasonal,Harbor Wholesale,8,48,13,88.50
-SKU0051,Beverages Item 0051,Beverages,Northstar,15,59,18,90.20
-SKU0052,Snacks Item 0052,Snacks,Acme Supply,7,70,23,91.90
-SKU0053,Pantry Item 0053,Pantry,Blue Ridge,14,81,28,93.60
-SKU0054,Household Item 0054,Household,Summit Goods,6,27,33,95.30
-SKU0055,Personal Care Item 0055,Personal Care,Harbor Wholesale,13,38,38,97.00
-SKU0056,Pet Care Item 0056,Pet Care,Northstar,5,49,8,3.70
-SKU0057,Paper Goods Item 0057,Paper Goods,Acme Supply,12,60,13,5.40
-SKU0058,Small Appliances Item 0058,Small Appliances,Blue Ridge,4,71,18,7.10
-SKU0059,Cleaning Item 0059,Cleaning,Summit Goods,11,82,23,8.80
-SKU0060,Seasonal Item 0060,Seasonal,Harbor Wholesale,3,28,28,10.50
-SKU0061,Beverages Item 0061,Beverages,Northstar,10,39,33,12.20
-SKU0062,Snacks Item 0062,Snacks,Acme Supply,17,50,38,13.90
-SKU0063,Pantry Item 0063,Pantry,Blue Ridge,9,61,8,15.60
-SKU0064,Household Item 0064,Household,Summit Goods,16,72,13,17.30
-SKU0065,Personal Care Item 0065,Personal Care,Harbor Wholesale,8,18,18,19.00
-SKU0066,Pet Care Item 0066,Pet Care,Northstar,15,29,23,20.70
-SKU0067,Paper Goods Item 0067,Paper Goods,Acme Supply,7,40,28,22.40
-SKU0068,Small Appliances Item 0068,Small Appliances,Blue Ridge,14,51,33,24.10
-SKU0069,Cleaning Item 0069,Cleaning,Summit Goods,6,62,38,25.80
-SKU0070,Seasonal Item 0070,Seasonal,Harbor Wholesale,13,73,8,27.50
-SKU0071,Beverages Item 0071,Beverages,Northstar,5,19,13,29.20
-SKU0072,Snacks Item 0072,Snacks,Acme Supply,12,30,18,30.90
-SKU0073,Pantry Item 0073,Pantry,Blue Ridge,4,41,23,32.60
-SKU0074,Household Item 0074,Household,Summit Goods,11,52,28,34.30
-SKU0075,Personal Care Item 0075,Personal Care,Harbor Wholesale,3,63,33,36.00
-SKU0076,Pet Care Item 0076,Pet Care,Northstar,10,74,38,37.70
-SKU0077,Paper Goods Item 0077,Paper Goods,Acme Supply,17,20,8,39.40
-SKU0078,Small Appliances Item 0078,Small Appliances,Blue Ridge,9,31,13,41.10
-SKU0079,Cleaning Item 0079,Cleaning,Summit Goods,16,42,18,42.80
-SKU0080,Seasonal Item 0080,Seasonal,Harbor Wholesale,8,53,23,44.50
-SKU0081,Beverages Item 0081,Beverages,Northstar,15,64,28,46.20
-SKU0082,Snacks Item 0082,Snacks,Acme Supply,7,75,33,47.90
-SKU0083,Pantry Item 0083,Pantry,Blue Ridge,14,21,38,49.60
-SKU0084,Household Item 0084,Household,Summit Goods,6,32,8,51.30
-SKU0085,Personal Care Item 0085,Personal Care,Harbor Wholesale,13,43,13,53.00
-SKU0086,Pet Care Item 0086,Pet Care,Northstar,5,54,18,54.70
-SKU0087,Paper Goods Item 0087,Paper Goods,Acme Supply,12,65,23,56.40
-SKU0088,Small Appliances Item 0088,Small Appliances,Blue Ridge,4,76,28,58.10
-SKU0089,Cleaning Item 0089,Cleaning,Summit Goods,11,22,33,59.80
-SKU0090,Seasonal Item 0090,Seasonal,Harbor Wholesale,3,33,38,61.50
-SKU0091,Beverages Item 0091,Beverages,Northstar,10,44,8,63.20
-SKU0092,Snacks Item 0092,Snacks,Acme Supply,17,55,13,64.90
-SKU0093,Pantry Item 0093,Pantry,Blue Ridge,9,66,18,66.60
-SKU0094,Household Item 0094,Household,Summit Goods,16,77,23,68.30
-SKU0095,Personal Care Item 0095,Personal Care,Harbor Wholesale,8,23,28,70.00
-SKU0096,Pet Care Item 0096,Pet Care,Northstar,15,34,33,71.70
-SKU0097,Paper Goods Item 0097,Paper Goods,Acme Supply,7,45,38,73.40
-SKU0098,Small Appliances Item 0098,Small Appliances,Blue Ridge,14,56,8,75.10
-SKU0099,Cleaning Item 0099,Cleaning,Summit Goods,6,67,13,76.80
-SKU0100,Seasonal Item 0100,Seasonal,Harbor Wholesale,13,78,18,78.50
-SKU0101,Beverages Item 0101,Beverages,Northstar,5,24,23,80.20
-SKU0102,Snacks Item 0102,Snacks,Acme Supply,12,35,28,81.90
-SKU0103,Pantry Item 0103,Pantry,Blue Ridge,4,46,33,83.60
-SKU0104,Household Item 0104,Household,Summit Goods,11,57,38,85.30
-SKU0105,Personal Care Item 0105,Personal Care,Harbor Wholesale,3,68,8,87.00
-SKU0106,Pet Care Item 0106,Pet Care,Northstar,10,79,13,88.70
-SKU0107,Paper Goods Item 0107,Paper Goods,Acme Supply,17,25,18,90.40
-SKU0108,Small Appliances Item 0108,Small Appliances,Blue Ridge,9,36,23,92.10
-SKU0109,Cleaning Item 0109,Cleaning,Summit Goods,16,47,28,93.80
-SKU0110,Seasonal Item 0110,Seasonal,Harbor Wholesale,8,58,33,95.50
-SKU0111,Beverages Item 0111,Beverages,Northstar,15,69,38,97.20
-SKU0112,Snacks Item 0112,Snacks,Acme Supply,7,80,8,3.90
-SKU0113,Pantry Item 0113,Pantry,Blue Ridge,14,26,13,5.60
-SKU0114,Household Item 0114,Household,Summit Goods,6,37,18,7.30
-SKU0115,Personal Care Item 0115,Personal Care,Harbor Wholesale,13,48,23,9.00
-SKU0116,Pet Care Item 0116,Pet Care,Northstar,5,59,28,10.70
-SKU0117,Paper Goods Item 0117,Paper Goods,Acme Supply,12,70,33,12.40
-SKU0118,Small Appliances Item 0118,Small Appliances,Blue Ridge,4,81,38,14.10
-SKU0119,Cleaning Item 0119,Cleaning,Summit Goods,11,27,8,15.80
-SKU0120,Seasonal Item 0120,Seasonal,Harbor Wholesale,3,38,13,17.50
-SKU0121,Beverages Item 0121,Beverages,Northstar,10,49,18,19.20
-SKU0122,Snacks Item 0122,Snacks,Acme Supply,17,60,23,20.90
-SKU0123,Pantry Item 0123,Pantry,Blue Ridge,9,71,28,22.60
-SKU0124,Household Item 0124,Household,Summit Goods,16,82,33,24.30
-SKU0125,Personal Care Item 0125,Personal Care,Harbor Wholesale,8,28,38,26.00
-SKU0126,Pet Care Item 0126,Pet Care,Northstar,15,39,8,27.70
-SKU0127,Paper Goods Item 0127,Paper Goods,Acme Supply,7,50,13,29.40
-SKU0128,Small Appliances Item 0128,Small Appliances,Blue Ridge,14,61,18,31.10
-SKU0129,Cleaning Item 0129,Cleaning,Summit Goods,6,72,23,32.80
-SKU0130,Seasonal Item 0130,Seasonal,Harbor Wholesale,13,18,28,34.50
-SKU0131,Beverages Item 0131,Beverages,Northstar,5,29,33,36.20
-SKU0132,Snacks Item 0132,Snacks,Acme Supply,12,40,38,37.90
-SKU0133,Pantry Item 0133,Pantry,Blue Ridge,4,51,8,39.60
-SKU0134,Household Item 0134,Household,Summit Goods,11,62,13,41.30
-SKU0135,Personal Care Item 0135,Personal Care,Harbor Wholesale,3,73,18,43.00
-SKU0136,Pet Care Item 0136,Pet Care,Northstar,10,19,23,44.70
-SKU0137,Paper Goods Item 0137,Paper Goods,Acme Supply,17,30,28,46.40
-SKU0138,Small Appliances Item 0138,Small Appliances,Blue Ridge,9,41,33,48.10
-SKU0139,Cleaning Item 0139,Cleaning,Summit Goods,16,52,38,49.80
-SKU0140,Seasonal Item 0140,Seasonal,Harbor Wholesale,8,63,8,51.50
-SKU0141,Beverages Item 0141,Beverages,Northstar,15,74,13,53.20
-SKU0142,Snacks Item 0142,Snacks,Acme Supply,7,20,18,54.90
-SKU0143,Pantry Item 0143,Pantry,Blue Ridge,14,31,23,56.60
-SKU0144,Household Item 0144,Household,Summit Goods,6,42,28,58.30
-SKU0145,Personal Care Item 0145,Personal Care,Harbor Wholesale,13,53,33,60.00
-SKU0146,Pet Care Item 0146,Pet Care,Northstar,5,64,38,61.70
-SKU0147,Paper Goods Item 0147,Paper Goods,Acme Supply,12,75,8,63.40
-SKU0148,Small Appliances Item 0148,Small Appliances,Blue Ridge,4,21,13,65.10
-SKU0149,Cleaning Item 0149,Cleaning,Summit Goods,11,32,18,66.80
-SKU0150,Seasonal Item 0150,Seasonal,Harbor Wholesale,3,43,23,68.50
-SKU0151,Beverages Item 0151,Beverages,Northstar,10,54,28,70.20
-SKU0152,Snacks Item 0152,Snacks,Acme Supply,17,65,33,71.90
-SKU0153,Pantry Item 0153,Pantry,Blue Ridge,9,76,38,73.60
-SKU0154,Household Item 0154,Household,Summit Goods,16,22,8,75.30
-SKU0155,Personal Care Item 0155,Personal Care,Harbor Wholesale,8,33,13,77.00
-SKU0156,Pet Care Item 0156,Pet Care,Northstar,15,44,18,78.70
-SKU0157,Paper Goods Item 0157,Paper Goods,Acme Supply,7,55,23,80.40
-SKU0158,Small Appliances Item 0158,Small Appliances,Blue Ridge,14,66,28,82.10
-SKU0159,Cleaning Item 0159,Cleaning,Summit Goods,6,77,33,83.80
-SKU0160,Seasonal Item 0160,Seasonal,Harbor Wholesale,13,23,38,85.50
-SKU0161,Beverages Item 0161,Beverages,Northstar,5,34,8,87.20
-SKU0162,Snacks Item 0162,Snacks,Acme Supply,12,45,13,88.90
-SKU0163,Pantry Item 0163,Pantry,Blue Ridge,4,56,18,90.60
-SKU0164,Household Item 0164,Household,Summit Goods,11,67,23,92.30
-SKU0165,Personal Care Item 0165,Personal Care,Harbor Wholesale,3,78,28,94.00
-SKU0166,Pet Care Item 0166,Pet Care,Northstar,10,24,33,95.70
-SKU0167,Paper Goods Item 0167,Paper Goods,Acme Supply,17,35,38,97.40
-SKU0168,Small Appliances Item 0168,Small Appliances,Blue Ridge,9,46,8,4.10
-SKU0169,Cleaning Item 0169,Cleaning,Summit Goods,16,57,13,5.80
-SKU0170,Seasonal Item 0170,Seasonal,Harbor Wholesale,8,68,18,7.50
-SKU0171,Beverages Item 0171,Beverages,Northstar,15,79,23,9.20
-SKU0172,Snacks Item 0172,Snacks,Acme Supply,7,25,28,10.90
-SKU0173,Pantry Item 0173,Pantry,Blue Ridge,14,36,33,12.60
-SKU0174,Household Item 0174,Household,Summit Goods,6,47,38,14.30
-SKU0175,Personal Care Item 0175,Personal Care,Harbor Wholesale,13,58,8,16.00
-SKU0176,Pet Care Item 0176,Pet Care,Northstar,5,69,13,17.70
-SKU0177,Paper Goods Item 0177,Paper Goods,Acme Supply,12,80,18,19.40
-SKU0178,Small Appliances Item 0178,Small Appliances,Blue Ridge,4,26,23,21.10
-SKU0179,Cleaning Item 0179,Cleaning,Summit Goods,11,37,28,22.80
-SKU0180,Seasonal Item 0180,Seasonal,Harbor Wholesale,3,48,33,24.50
-SKU0181,Beverages Item 0181,Beverages,Northstar,10,59,38,26.20
-SKU0182,Snacks Item 0182,Snacks,Acme Supply,17,70,8,27.90
-SKU0183,Pantry Item 0183,Pantry,Blue Ridge,9,81,13,29.60
-SKU0184,Household Item 0184,Household,Summit Goods,16,27,18,31.30
-SKU0185,Personal Care Item 0185,Personal Care,Harbor Wholesale,8,38,23,33.00
-SKU0186,Pet Care Item 0186,Pet Care,Northstar,15,49,28,34.70
-SKU0187,Paper Goods Item 0187,Paper Goods,Acme Supply,7,60,33,36.40
-SKU0188,Small Appliances Item 0188,Small Appliances,Blue Ridge,14,71,38,38.10
-SKU0189,Cleaning Item 0189,Cleaning,Summit Goods,6,82,8,39.80
-SKU0190,Seasonal Item 0190,Seasonal,Harbor Wholesale,13,28,13,41.50
-SKU0191,Beverages Item 0191,Beverages,Northstar,5,39,18,43.20
-SKU0192,Snacks Item 0192,Snacks,Acme Supply,12,50,23,44.90
-SKU0193,Pantry Item 0193,Pantry,Blue Ridge,4,61,28,46.60
-SKU0194,Household Item 0194,Household,Summit Goods,11,72,33,48.30
-SKU0195,Personal Care Item 0195,Personal Care,Harbor Wholesale,3,18,38,50.00
-SKU0196,Pet Care Item 0196,Pet Care,Northstar,10,29,8,51.70
-SKU0197,Paper Goods Item 0197,Paper Goods,Acme Supply,17,40,13,53.40
-SKU0198,Small Appliances Item 0198,Small Appliances,Blue Ridge,9,51,18,55.10
-SKU0199,Cleaning Item 0199,Cleaning,Summit Goods,16,62,23,56.80
-SKU0200,Seasonal Item 0200,Seasonal,Harbor Wholesale,8,73,28,58.50
-SKU0201,Beverages Item 0201,Beverages,Northstar,15,19,33,60.20
-SKU0202,Snacks Item 0202,Snacks,Acme Supply,7,30,38,61.90
-SKU0203,Pantry Item 0203,Pantry,Blue Ridge,14,41,8,63.60
-SKU0204,Household Item 0204,Household,Summit Goods,6,52,13,65.30
-SKU0205,Personal Care Item 0205,Personal Care,Harbor Wholesale,13,63,18,67.00
-SKU0206,Pet Care Item 0206,Pet Care,Northstar,5,74,23,68.70
-SKU0207,Paper Goods Item 0207,Paper Goods,Acme Supply,12,20,28,70.40
-SKU0208,Small Appliances Item 0208,Small Appliances,Blue Ridge,4,31,33,72.10
-SKU0209,Cleaning Item 0209,Cleaning,Summit Goods,11,42,38,73.80
-SKU0210,Seasonal Item 0210,Seasonal,Harbor Wholesale,3,53,8,75.50
-SKU0211,Beverages Item 0211,Beverages,Northstar,10,64,13,77.20
-SKU0212,Snacks Item 0212,Snacks,Acme Supply,17,75,18,78.90
-SKU0213,Pantry Item 0213,Pantry,Blue Ridge,9,21,23,80.60
-SKU0214,Household Item 0214,Household,Summit Goods,16,32,28,82.30
-SKU0215,Personal Care Item 0215,Personal Care,Harbor Wholesale,8,43,33,84.00
-SKU0216,Pet Care Item 0216,Pet Care,Northstar,15,54,38,85.70
-SKU0217,Paper Goods Item 0217,Paper Goods,Acme Supply,7,65,8,87.40
-SKU0218,Small Appliances Item 0218,Small Appliances,Blue Ridge,14,76,13,89.10
-SKU0219,Cleaning Item 0219,Cleaning,Summit Goods,6,22,18,90.80
-SKU0220,Seasonal Item 0220,Seasonal,Harbor Wholesale,13,33,23,92.50
-SKU0221,Beverages Item 0221,Beverages,Northstar,5,44,28,94.20
-SKU0222,Snacks Item 0222,Snacks,Acme Supply,12,55,33,95.90
-SKU0223,Pantry Item 0223,Pantry,Blue Ridge,4,66,38,97.60
-SKU0224,Household Item 0224,Household,Summit Goods,11,77,8,4.30
-SKU0225,Personal Care Item 0225,Personal Care,Harbor Wholesale,3,23,13,6.00
-SKU0226,Pet Care Item 0226,Pet Care,Northstar,10,34,18,7.70
-SKU0227,Paper Goods Item 0227,Paper Goods,Acme Supply,17,45,23,9.40
-SKU0228,Small Appliances Item 0228,Small Appliances,Blue Ridge,9,56,28,11.10
-SKU0229,Cleaning Item 0229,Cleaning,Summit Goods,16,67,33,12.80
-SKU0230,Seasonal Item 0230,Seasonal,Harbor Wholesale,8,78,38,14.50
-SKU0231,Beverages Item 0231,Beverages,Northstar,15,24,8,16.20
-SKU0232,Snacks Item 0232,Snacks,Acme Supply,7,35,13,17.90
-SKU0233,Pantry Item 0233,Pantry,Blue Ridge,14,46,18,19.60
-SKU0234,Household Item 0234,Household,Summit Goods,6,57,23,21.30
-SKU0235,Personal Care Item 0235,Personal Care,Harbor Wholesale,13,68,28,23.00
-SKU0236,Pet Care Item 0236,Pet Care,Northstar,5,79,33,24.70
-SKU0237,Paper Goods Item 0237,Paper Goods,Acme Supply,12,25,38,26.40
-SKU0238,Small Appliances Item 0238,Small Appliances,Blue Ridge,4,36,8,28.10
-SKU0239,Cleaning Item 0239,Cleaning,Summit Goods,11,47,13,29.80
-SKU0240,Seasonal Item 0240,Seasonal,Harbor Wholesale,3,58,18,31.50
-SKU0241,Beverages Item 0241,Beverages,Northstar,10,69,23,33.20
-SKU0242,Snacks Item 0242,Snacks,Acme Supply,17,80,28,34.90
-SKU0243,Pantry Item 0243,Pantry,Blue Ridge,9,26,33,36.60
-SKU0244,Household Item 0244,Household,Summit Goods,16,37,38,38.30
-SKU0245,Personal Care Item 0245,Personal Care,Harbor Wholesale,8,48,8,40.00
-SKU0246,Pet Care Item 0246,Pet Care,Northstar,15,59,13,41.70
-SKU0247,Paper Goods Item 0247,Paper Goods,Acme Supply,7,70,18,43.40
-SKU0248,Small Appliances Item 0248,Small Appliances,Blue Ridge,14,81,23,45.10
-SKU0249,Cleaning Item 0249,Cleaning,Summit Goods,6,27,28,46.80
-SKU0250,Seasonal Item 0250,Seasonal,Harbor Wholesale,13,38,33,48.50
-SKU0251,Beverages Item 0251,Beverages,Northstar,5,49,38,50.20
-SKU0252,Snacks Item 0252,Snacks,Acme Supply,12,60,8,51.90
-SKU0253,Pantry Item 0253,Pantry,Blue Ridge,4,71,13,53.60
-SKU0254,Household Item 0254,Household,Summit Goods,11,82,18,55.30
-SKU0255,Personal Care Item 0255,Personal Care,Harbor Wholesale,3,28,23,57.00
-SKU0256,Pet Care Item 0256,Pet Care,Northstar,10,39,28,58.70
-SKU0257,Paper Goods Item 0257,Paper Goods,Acme Supply,17,50,33,60.40
-SKU0258,Small Appliances Item 0258,Small Appliances,Blue Ridge,9,61,38,62.10
-SKU0259,Cleaning Item 0259,Cleaning,Summit Goods,16,72,8,63.80
-SKU0260,Seasonal Item 0260,Seasonal,Harbor Wholesale,8,18,13,65.50
-SKU0261,Beverages Item 0261,Beverages,Northstar,15,29,18,67.20
-SKU0262,Snacks Item 0262,Snacks,Acme Supply,7,40,23,68.90
-SKU0263,Pantry Item 0263,Pantry,Blue Ridge,14,51,28,70.60
-SKU0264,Household Item 0264,Household,Summit Goods,6,62,33,72.30
-SKU0265,Personal Care Item 0265,Personal Care,Harbor Wholesale,13,73,38,74.00
-SKU0266,Pet Care Item 0266,Pet Care,Northstar,5,19,8,75.70
-SKU0267,Paper Goods Item 0267,Paper Goods,Acme Supply,12,30,13,77.40
-SKU0268,Small Appliances Item 0268,Small Appliances,Blue Ridge,4,41,18,79.10
-SKU0269,Cleaning Item 0269,Cleaning,Summit Goods,11,52,23,80.80
-SKU0270,Seasonal Item 0270,Seasonal,Harbor Wholesale,3,63,28,82.50
-SKU0271,Beverages Item 0271,Beverages,Northstar,10,74,33,84.20
-SKU0272,Snacks Item 0272,Snacks,Acme Supply,17,20,38,85.90
-SKU0273,Pantry Item 0273,Pantry,Blue Ridge,9,31,8,87.60
-SKU0274,Household Item 0274,Household,Summit Goods,16,42,13,89.30
-SKU0275,Personal Care Item 0275,Personal Care,Harbor Wholesale,8,53,18,91.00
-SKU0276,Pet Care Item 0276,Pet Care,Northstar,15,64,23,92.70
-SKU0277,Paper Goods Item 0277,Paper Goods,Acme Supply,7,75,28,94.40
-SKU0278,Small Appliances Item 0278,Small Appliances,Blue Ridge,14,21,33,96.10
-SKU0279,Cleaning Item 0279,Cleaning,Summit Goods,6,32,38,97.80
-SKU0280,Seasonal Item 0280,Seasonal,Harbor Wholesale,13,43,8,4.50
-SKU0281,Beverages Item 0281,Beverages,Northstar,5,54,13,6.20
-SKU0282,Snacks Item 0282,Snacks,Acme Supply,12,65,18,7.90
-SKU0283,Pantry Item 0283,Pantry,Blue Ridge,4,76,23,9.60
-SKU0284,Household Item 0284,Household,Summit Goods,11,22,28,11.30
-SKU0285,Personal Care Item 0285,Personal Care,Harbor Wholesale,3,33,33,13.00
-SKU0286,Pet Care Item 0286,Pet Care,Northstar,10,44,38,14.70
-SKU0287,Paper Goods Item 0287,Paper Goods,Acme Supply,17,55,8,16.40
-SKU0288,Small Appliances Item 0288,Small Appliances,Blue Ridge,9,66,13,18.10
-SKU0289,Cleaning Item 0289,Cleaning,Summit Goods,16,77,18,19.80
-SKU0290,Seasonal Item 0290,Seasonal,Harbor Wholesale,8,23,23,21.50
-SKU0291,Beverages Item 0291,Beverages,Northstar,15,34,28,23.20
-SKU0292,Snacks Item 0292,Snacks,Acme Supply,7,45,33,24.90
-SKU0293,Pantry Item 0293,Pantry,Blue Ridge,14,56,38,26.60
-SKU0294,Household Item 0294,Household,Summit Goods,6,67,8,28.30
-SKU0295,Personal Care Item 0295,Personal Care,Harbor Wholesale,13,78,13,30.00
-SKU0296,Pet Care Item 0296,Pet Care,Northstar,5,24,18,31.70
-SKU0297,Paper Goods Item 0297,Paper Goods,Acme Supply,12,35,23,33.40
-SKU0298,Small Appliances Item 0298,Small Appliances,Blue Ridge,4,46,28,35.10
-SKU0299,Cleaning Item 0299,Cleaning,Summit Goods,11,57,33,36.80
-SKU0300,Seasonal Item 0300,Seasonal,Harbor Wholesale,3,68,38,38.50
+sku,product_name,category,supplier,unit_cost,lead_time_days,reorder_point,safety_stock,annual_demand_estimate,active_flag
+SKU0001,Electrical Components 0001,Electrical Components,Blue Ridge Supply,7.70,11,31,15,1283,Y
+SKU0002,Safety Supplies 0002,Safety Supplies,Cedar Components,11.40,18,42,20,1366,Y
+SKU0003,Packaging 0003,Packaging,Harbor Safety,15.10,7,53,25,1449,Y
+SKU0004,Tools 0004,Tools,Summit Packaging,18.80,14,64,30,1532,Y
+SKU0005,Consumables 0005,Consumables,Atlas Industrial,22.50,21,75,35,1615,Y
+SKU0006,Fasteners 0006,Fasteners,Blue Ridge Supply,26.20,10,86,40,1698,Y
+SKU0007,Maintenance Parts 0007,Maintenance Parts,Cedar Components,29.90,17,97,45,1781,Y
+SKU0008,Shipping Supplies 0008,Shipping Supplies,Harbor Safety,33.60,6,28,10,1864,Y
+SKU0009,Material Handling 0009,Material Handling,Summit Packaging,37.30,13,39,15,1947,Y
+SKU0010,Industrial Supplies 0010,Industrial Supplies,Atlas Industrial,41.00,20,50,20,2030,Y
+SKU0011,Electrical Components 0011,Electrical Components,Blue Ridge Supply,44.70,9,61,25,2113,Y
+SKU0012,Safety Supplies 0012,Safety Supplies,Cedar Components,48.40,16,72,30,2196,Y
+SKU0013,Packaging 0013,Packaging,Harbor Safety,52.10,5,83,35,2279,Y
+SKU0014,Tools 0014,Tools,Summit Packaging,55.80,12,94,40,2362,Y
+SKU0015,Consumables 0015,Consumables,Atlas Industrial,59.50,19,25,45,2445,Y
+SKU0016,Fasteners 0016,Fasteners,Blue Ridge Supply,63.20,8,36,10,2528,Y
+SKU0017,Maintenance Parts 0017,Maintenance Parts,Cedar Components,66.90,15,47,15,2611,Y
+SKU0018,Shipping Supplies 0018,Shipping Supplies,Harbor Safety,70.60,4,58,20,2694,Y
+SKU0019,Material Handling 0019,Material Handling,Summit Packaging,74.30,11,69,25,2777,Y
+SKU0020,Industrial Supplies 0020,Industrial Supplies,Atlas Industrial,78.00,18,80,30,2860,Y
+SKU0021,Electrical Components 0021,Electrical Components,Blue Ridge Supply,81.70,7,91,35,2943,Y
+SKU0022,Safety Supplies 0022,Safety Supplies,Cedar Components,85.40,14,22,40,3026,Y
+SKU0023,Packaging 0023,Packaging,Harbor Safety,89.10,21,33,45,3109,Y
+SKU0024,Tools 0024,Tools,Summit Packaging,92.80,10,44,10,3192,Y
+SKU0025,Consumables 0025,Consumables,Atlas Industrial,96.50,17,55,15,3275,Y
+SKU0026,Fasteners 0026,Fasteners,Blue Ridge Supply,100.20,6,66,20,3358,Y
+SKU0027,Maintenance Parts 0027,Maintenance Parts,Cedar Components,103.90,13,77,25,3441,Y
+SKU0028,Shipping Supplies 0028,Shipping Supplies,Harbor Safety,107.60,20,88,30,3524,Y
+SKU0029,Material Handling 0029,Material Handling,Summit Packaging,111.30,9,99,35,3607,Y
+SKU0030,Industrial Supplies 0030,Industrial Supplies,Atlas Industrial,115.00,16,30,40,3690,Y
+SKU0031,Electrical Components 0031,Electrical Components,Blue Ridge Supply,118.70,5,41,45,3773,Y
+SKU0032,Safety Supplies 0032,Safety Supplies,Cedar Components,122.40,12,52,10,3856,Y
+SKU0033,Packaging 0033,Packaging,Harbor Safety,6.10,19,63,15,3939,Y
+SKU0034,Tools 0034,Tools,Summit Packaging,9.80,8,74,20,4022,Y
+SKU0035,Consumables 0035,Consumables,Atlas Industrial,13.50,15,85,25,4105,Y
+SKU0036,Fasteners 0036,Fasteners,Blue Ridge Supply,17.20,4,96,30,4188,Y
+SKU0037,Maintenance Parts 0037,Maintenance Parts,Cedar Components,20.90,11,27,35,4271,Y
+SKU0038,Shipping Supplies 0038,Shipping Supplies,Harbor Safety,24.60,18,38,40,4354,Y
+SKU0039,Material Handling 0039,Material Handling,Summit Packaging,28.30,7,49,45,4437,Y
+SKU0040,Industrial Supplies 0040,Industrial Supplies,Atlas Industrial,32.00,14,60,10,4520,Y
+SKU0041,Electrical Components 0041,Electrical Components,Blue Ridge Supply,35.70,21,71,15,4603,Y
+SKU0042,Safety Supplies 0042,Safety Supplies,Cedar Components,39.40,10,82,20,4686,Y
+SKU0043,Packaging 0043,Packaging,Harbor Safety,43.10,17,93,25,4769,Y
+SKU0044,Tools 0044,Tools,Summit Packaging,46.80,6,24,30,4852,Y
+SKU0045,Consumables 0045,Consumables,Atlas Industrial,50.50,13,35,35,4935,Y
+SKU0046,Fasteners 0046,Fasteners,Blue Ridge Supply,54.20,20,46,40,5018,Y
+SKU0047,Maintenance Parts 0047,Maintenance Parts,Cedar Components,57.90,9,57,45,5101,Y
+SKU0048,Shipping Supplies 0048,Shipping Supplies,Harbor Safety,61.60,16,68,10,5184,Y
+SKU0049,Material Handling 0049,Material Handling,Summit Packaging,65.30,5,79,15,5267,Y
+SKU0050,Industrial Supplies 0050,Industrial Supplies,Atlas Industrial,69.00,12,90,20,5350,Y
+SKU0051,Electrical Components 0051,Electrical Components,Blue Ridge Supply,72.70,19,21,25,5433,Y
+SKU0052,Safety Supplies 0052,Safety Supplies,Cedar Components,76.40,8,32,30,5516,Y
+SKU0053,Packaging 0053,Packaging,Harbor Safety,80.10,15,43,35,5599,Y
+SKU0054,Tools 0054,Tools,Summit Packaging,83.80,4,54,40,5682,Y
+SKU0055,Consumables 0055,Consumables,Atlas Industrial,87.50,11,65,45,5765,Y
+SKU0056,Fasteners 0056,Fasteners,Blue Ridge Supply,91.20,18,76,10,5848,Y
+SKU0057,Maintenance Parts 0057,Maintenance Parts,Cedar Components,94.90,7,87,15,5931,Y
+SKU0058,Shipping Supplies 0058,Shipping Supplies,Harbor Safety,98.60,14,98,20,6014,Y
+SKU0059,Material Handling 0059,Material Handling,Summit Packaging,102.30,21,29,25,6097,Y
+SKU0060,Industrial Supplies 0060,Industrial Supplies,Atlas Industrial,106.00,10,40,30,6180,Y
+SKU0061,Electrical Components 0061,Electrical Components,Blue Ridge Supply,109.70,17,51,35,6263,Y
+SKU0062,Safety Supplies 0062,Safety Supplies,Cedar Components,113.40,6,62,40,6346,Y
+SKU0063,Packaging 0063,Packaging,Harbor Safety,117.10,13,73,45,6429,Y
+SKU0064,Tools 0064,Tools,Summit Packaging,120.80,20,84,10,6512,Y
+SKU0065,Consumables 0065,Consumables,Atlas Industrial,4.50,9,95,15,6595,Y
+SKU0066,Fasteners 0066,Fasteners,Blue Ridge Supply,8.20,16,26,20,6678,Y
+SKU0067,Maintenance Parts 0067,Maintenance Parts,Cedar Components,11.90,5,37,25,6761,Y
+SKU0068,Shipping Supplies 0068,Shipping Supplies,Harbor Safety,15.60,12,48,30,6844,Y
+SKU0069,Material Handling 0069,Material Handling,Summit Packaging,19.30,19,59,35,6927,Y
+SKU0070,Industrial Supplies 0070,Industrial Supplies,Atlas Industrial,23.00,8,70,40,7010,Y
+SKU0071,Electrical Components 0071,Electrical Components,Blue Ridge Supply,26.70,15,81,45,7093,Y
+SKU0072,Safety Supplies 0072,Safety Supplies,Cedar Components,30.40,4,92,10,7176,Y
+SKU0073,Packaging 0073,Packaging,Harbor Safety,34.10,11,23,15,7259,Y
+SKU0074,Tools 0074,Tools,Summit Packaging,37.80,18,34,20,7342,Y
+SKU0075,Consumables 0075,Consumables,Atlas Industrial,41.50,7,45,25,7425,Y
+SKU0076,Fasteners 0076,Fasteners,Blue Ridge Supply,45.20,14,56,30,7508,Y
+SKU0077,Maintenance Parts 0077,Maintenance Parts,Cedar Components,48.90,21,67,35,7591,Y
+SKU0078,Shipping Supplies 0078,Shipping Supplies,Harbor Safety,52.60,10,78,40,7674,Y
+SKU0079,Material Handling 0079,Material Handling,Summit Packaging,56.30,17,89,45,7757,Y
+SKU0080,Industrial Supplies 0080,Industrial Supplies,Atlas Industrial,60.00,6,20,10,7840,Y
+SKU0081,Electrical Components 0081,Electrical Components,Blue Ridge Supply,63.70,13,31,15,7923,Y
+SKU0082,Safety Supplies 0082,Safety Supplies,Cedar Components,67.40,20,42,20,8006,Y
+SKU0083,Packaging 0083,Packaging,Harbor Safety,71.10,9,53,25,8089,Y
+SKU0084,Tools 0084,Tools,Summit Packaging,74.80,16,64,30,8172,Y
+SKU0085,Consumables 0085,Consumables,Atlas Industrial,78.50,5,75,35,8255,Y
+SKU0086,Fasteners 0086,Fasteners,Blue Ridge Supply,82.20,12,86,40,8338,Y
+SKU0087,Maintenance Parts 0087,Maintenance Parts,Cedar Components,85.90,19,97,45,8421,Y
+SKU0088,Shipping Supplies 0088,Shipping Supplies,Harbor Safety,89.60,8,28,10,8504,Y
+SKU0089,Material Handling 0089,Material Handling,Summit Packaging,93.30,15,39,15,8587,Y
+SKU0090,Industrial Supplies 0090,Industrial Supplies,Atlas Industrial,97.00,4,50,20,8670,Y
+SKU0091,Electrical Components 0091,Electrical Components,Blue Ridge Supply,100.70,11,61,25,8753,Y
+SKU0092,Safety Supplies 0092,Safety Supplies,Cedar Components,104.40,18,72,30,8836,Y
+SKU0093,Packaging 0093,Packaging,Harbor Safety,108.10,7,83,35,8919,Y
+SKU0094,Tools 0094,Tools,Summit Packaging,111.80,14,94,40,9002,Y
+SKU0095,Consumables 0095,Consumables,Atlas Industrial,115.50,21,25,45,9085,Y
+SKU0096,Fasteners 0096,Fasteners,Blue Ridge Supply,119.20,10,36,10,9168,Y
+SKU0097,Maintenance Parts 0097,Maintenance Parts,Cedar Components,122.90,17,47,15,9251,Y
+SKU0098,Shipping Supplies 0098,Shipping Supplies,Harbor Safety,6.60,6,58,20,9334,Y
+SKU0099,Material Handling 0099,Material Handling,Summit Packaging,10.30,13,69,25,9417,Y
+SKU0100,Industrial Supplies 0100,Industrial Supplies,Atlas Industrial,14.00,20,80,30,9500,Y
+SKU0101,Electrical Components 0101,Electrical Components,Blue Ridge Supply,17.70,9,91,35,9583,Y
+SKU0102,Safety Supplies 0102,Safety Supplies,Cedar Components,21.40,16,22,40,9666,Y
+SKU0103,Packaging 0103,Packaging,Harbor Safety,25.10,5,33,45,9749,Y
+SKU0104,Tools 0104,Tools,Summit Packaging,28.80,12,44,10,9832,Y
+SKU0105,Consumables 0105,Consumables,Atlas Industrial,32.50,19,55,15,9915,Y
+SKU0106,Fasteners 0106,Fasteners,Blue Ridge Supply,36.20,8,66,20,9998,Y
+SKU0107,Maintenance Parts 0107,Maintenance Parts,Cedar Components,39.90,15,77,25,10081,Y
+SKU0108,Shipping Supplies 0108,Shipping Supplies,Harbor Safety,43.60,4,88,30,10164,Y
+SKU0109,Material Handling 0109,Material Handling,Summit Packaging,47.30,11,99,35,1247,Y
+SKU0110,Industrial Supplies 0110,Industrial Supplies,Atlas Industrial,51.00,18,30,40,1330,Y
+SKU0111,Electrical Components 0111,Electrical Components,Blue Ridge Supply,54.70,7,41,45,1413,Y
+SKU0112,Safety Supplies 0112,Safety Supplies,Cedar Components,58.40,14,52,10,1496,Y
+SKU0113,Packaging 0113,Packaging,Harbor Safety,62.10,21,63,15,1579,Y
+SKU0114,Tools 0114,Tools,Summit Packaging,65.80,10,74,20,1662,Y
+SKU0115,Consumables 0115,Consumables,Atlas Industrial,69.50,17,85,25,1745,Y
+SKU0116,Fasteners 0116,Fasteners,Blue Ridge Supply,73.20,6,96,30,1828,Y
+SKU0117,Maintenance Parts 0117,Maintenance Parts,Cedar Components,76.90,13,27,35,1911,Y
+SKU0118,Shipping Supplies 0118,Shipping Supplies,Harbor Safety,80.60,20,38,40,1994,Y
+SKU0119,Material Handling 0119,Material Handling,Summit Packaging,84.30,9,49,45,2077,Y
+SKU0120,Industrial Supplies 0120,Industrial Supplies,Atlas Industrial,88.00,16,60,10,2160,Y
+SKU0121,Electrical Components 0121,Electrical Components,Blue Ridge Supply,91.70,5,71,15,2243,Y
+SKU0122,Safety Supplies 0122,Safety Supplies,Cedar Components,95.40,12,82,20,2326,Y
+SKU0123,Packaging 0123,Packaging,Harbor Safety,99.10,19,93,25,2409,Y
+SKU0124,Tools 0124,Tools,Summit Packaging,102.80,8,24,30,2492,Y
+SKU0125,Consumables 0125,Consumables,Atlas Industrial,106.50,15,35,35,2575,Y
+SKU0126,Fasteners 0126,Fasteners,Blue Ridge Supply,110.20,4,46,40,2658,Y
+SKU0127,Maintenance Parts 0127,Maintenance Parts,Cedar Components,113.90,11,57,45,2741,Y
+SKU0128,Shipping Supplies 0128,Shipping Supplies,Harbor Safety,117.60,18,68,10,2824,Y
+SKU0129,Material Handling 0129,Material Handling,Summit Packaging,121.30,7,79,15,2907,Y
+SKU0130,Industrial Supplies 0130,Industrial Supplies,Atlas Industrial,5.00,14,90,20,2990,Y
+SKU0131,Electrical Components 0131,Electrical Components,Blue Ridge Supply,8.70,21,21,25,3073,Y
+SKU0132,Safety Supplies 0132,Safety Supplies,Cedar Components,12.40,10,32,30,3156,Y
+SKU0133,Packaging 0133,Packaging,Harbor Safety,16.10,17,43,35,3239,Y
+SKU0134,Tools 0134,Tools,Summit Packaging,19.80,6,54,40,3322,Y
+SKU0135,Consumables 0135,Consumables,Atlas Industrial,23.50,13,65,45,3405,Y
+SKU0136,Fasteners 0136,Fasteners,Blue Ridge Supply,27.20,20,76,10,3488,Y
+SKU0137,Maintenance Parts 0137,Maintenance Parts,Cedar Components,30.90,9,87,15,3571,Y
+SKU0138,Shipping Supplies 0138,Shipping Supplies,Harbor Safety,34.60,16,98,20,3654,Y
+SKU0139,Material Handling 0139,Material Handling,Summit Packaging,38.30,5,29,25,3737,Y
+SKU0140,Industrial Supplies 0140,Industrial Supplies,Atlas Industrial,42.00,12,40,30,3820,Y
+SKU0141,Electrical Components 0141,Electrical Components,Blue Ridge Supply,45.70,19,51,35,3903,Y
+SKU0142,Safety Supplies 0142,Safety Supplies,Cedar Components,49.40,8,62,40,3986,Y
+SKU0143,Packaging 0143,Packaging,Harbor Safety,53.10,15,73,45,4069,Y
+SKU0144,Tools 0144,Tools,Summit Packaging,56.80,4,84,10,4152,Y
+SKU0145,Consumables 0145,Consumables,Atlas Industrial,60.50,11,95,15,4235,Y
+SKU0146,Fasteners 0146,Fasteners,Blue Ridge Supply,64.20,18,26,20,4318,Y
+SKU0147,Maintenance Parts 0147,Maintenance Parts,Cedar Components,67.90,7,37,25,4401,Y
+SKU0148,Shipping Supplies 0148,Shipping Supplies,Harbor Safety,71.60,14,48,30,4484,Y
+SKU0149,Material Handling 0149,Material Handling,Summit Packaging,75.30,21,59,35,4567,Y
+SKU0150,Industrial Supplies 0150,Industrial Supplies,Atlas Industrial,79.00,10,70,40,4650,Y
+SKU0151,Electrical Components 0151,Electrical Components,Blue Ridge Supply,82.70,17,81,45,4733,Y
+SKU0152,Safety Supplies 0152,Safety Supplies,Cedar Components,86.40,6,92,10,4816,Y
+SKU0153,Packaging 0153,Packaging,Harbor Safety,90.10,13,23,15,4899,Y
+SKU0154,Tools 0154,Tools,Summit Packaging,93.80,20,34,20,4982,Y
+SKU0155,Consumables 0155,Consumables,Atlas Industrial,97.50,9,45,25,5065,Y
+SKU0156,Fasteners 0156,Fasteners,Blue Ridge Supply,101.20,16,56,30,5148,Y
+SKU0157,Maintenance Parts 0157,Maintenance Parts,Cedar Components,104.90,5,67,35,5231,Y
+SKU0158,Shipping Supplies 0158,Shipping Supplies,Harbor Safety,108.60,12,78,40,5314,Y
+SKU0159,Material Handling 0159,Material Handling,Summit Packaging,112.30,19,89,45,5397,Y
+SKU0160,Industrial Supplies 0160,Industrial Supplies,Atlas Industrial,116.00,8,20,10,5480,Y
+SKU0161,Electrical Components 0161,Electrical Components,Blue Ridge Supply,119.70,15,31,15,5563,Y
+SKU0162,Safety Supplies 0162,Safety Supplies,Cedar Components,123.40,4,42,20,5646,Y
+SKU0163,Packaging 0163,Packaging,Harbor Safety,7.10,11,53,25,5729,Y
+SKU0164,Tools 0164,Tools,Summit Packaging,10.80,18,64,30,5812,Y
+SKU0165,Consumables 0165,Consumables,Atlas Industrial,14.50,7,75,35,5895,Y
+SKU0166,Fasteners 0166,Fasteners,Blue Ridge Supply,18.20,14,86,40,5978,Y
+SKU0167,Maintenance Parts 0167,Maintenance Parts,Cedar Components,21.90,21,97,45,6061,Y
+SKU0168,Shipping Supplies 0168,Shipping Supplies,Harbor Safety,25.60,10,28,10,6144,Y
+SKU0169,Material Handling 0169,Material Handling,Summit Packaging,29.30,17,39,15,6227,Y
+SKU0170,Industrial Supplies 0170,Industrial Supplies,Atlas Industrial,33.00,6,50,20,6310,Y
+SKU0171,Electrical Components 0171,Electrical Components,Blue Ridge Supply,36.70,13,61,25,6393,Y
+SKU0172,Safety Supplies 0172,Safety Supplies,Cedar Components,40.40,20,72,30,6476,Y
+SKU0173,Packaging 0173,Packaging,Harbor Safety,44.10,9,83,35,6559,Y
+SKU0174,Tools 0174,Tools,Summit Packaging,47.80,16,94,40,6642,Y
+SKU0175,Consumables 0175,Consumables,Atlas Industrial,51.50,5,25,45,6725,Y
+SKU0176,Fasteners 0176,Fasteners,Blue Ridge Supply,55.20,12,36,10,6808,Y
+SKU0177,Maintenance Parts 0177,Maintenance Parts,Cedar Components,58.90,19,47,15,6891,Y
+SKU0178,Shipping Supplies 0178,Shipping Supplies,Harbor Safety,62.60,8,58,20,6974,Y
+SKU0179,Material Handling 0179,Material Handling,Summit Packaging,66.30,15,69,25,7057,Y
+SKU0180,Industrial Supplies 0180,Industrial Supplies,Atlas Industrial,70.00,4,80,30,7140,Y
+SKU0181,Electrical Components 0181,Electrical Components,Blue Ridge Supply,73.70,11,91,35,7223,Y
+SKU0182,Safety Supplies 0182,Safety Supplies,Cedar Components,77.40,18,22,40,7306,Y
+SKU0183,Packaging 0183,Packaging,Harbor Safety,81.10,7,33,45,7389,Y
+SKU0184,Tools 0184,Tools,Summit Packaging,84.80,14,44,10,7472,Y
+SKU0185,Consumables 0185,Consumables,Atlas Industrial,88.50,21,55,15,7555,Y
+SKU0186,Fasteners 0186,Fasteners,Blue Ridge Supply,92.20,10,66,20,7638,Y
+SKU0187,Maintenance Parts 0187,Maintenance Parts,Cedar Components,95.90,17,77,25,7721,Y
+SKU0188,Shipping Supplies 0188,Shipping Supplies,Harbor Safety,99.60,6,88,30,7804,Y
+SKU0189,Material Handling 0189,Material Handling,Summit Packaging,103.30,13,99,35,7887,Y
+SKU0190,Industrial Supplies 0190,Industrial Supplies,Atlas Industrial,107.00,20,30,40,7970,Y
+SKU0191,Electrical Components 0191,Electrical Components,Blue Ridge Supply,110.70,9,41,45,8053,Y
+SKU0192,Safety Supplies 0192,Safety Supplies,Cedar Components,114.40,16,52,10,8136,Y
+SKU0193,Packaging 0193,Packaging,Harbor Safety,118.10,5,63,15,8219,Y
+SKU0194,Tools 0194,Tools,Summit Packaging,121.80,12,74,20,8302,Y
+SKU0195,Consumables 0195,Consumables,Atlas Industrial,5.50,19,85,25,8385,Y
+SKU0196,Fasteners 0196,Fasteners,Blue Ridge Supply,9.20,8,96,30,8468,Y
+SKU0197,Maintenance Parts 0197,Maintenance Parts,Cedar Components,12.90,15,27,35,8551,Y
+SKU0198,Shipping Supplies 0198,Shipping Supplies,Harbor Safety,16.60,4,38,40,8634,Y
+SKU0199,Material Handling 0199,Material Handling,Summit Packaging,20.30,11,49,45,8717,Y
+SKU0200,Industrial Supplies 0200,Industrial Supplies,Atlas Industrial,24.00,18,60,10,8800,Y
+SKU0201,Electrical Components 0201,Electrical Components,Blue Ridge Supply,27.70,7,71,15,8883,Y
+SKU0202,Safety Supplies 0202,Safety Supplies,Cedar Components,31.40,14,82,20,8966,Y
+SKU0203,Packaging 0203,Packaging,Harbor Safety,35.10,21,93,25,9049,Y
+SKU0204,Tools 0204,Tools,Summit Packaging,38.80,10,24,30,9132,Y
+SKU0205,Consumables 0205,Consumables,Atlas Industrial,42.50,17,35,35,9215,Y
+SKU0206,Fasteners 0206,Fasteners,Blue Ridge Supply,46.20,6,46,40,9298,Y
+SKU0207,Maintenance Parts 0207,Maintenance Parts,Cedar Components,49.90,13,57,45,9381,Y
+SKU0208,Shipping Supplies 0208,Shipping Supplies,Harbor Safety,53.60,20,68,10,9464,Y
+SKU0209,Material Handling 0209,Material Handling,Summit Packaging,57.30,9,79,15,9547,Y
+SKU0210,Industrial Supplies 0210,Industrial Supplies,Atlas Industrial,61.00,16,90,20,9630,Y
+SKU0211,Electrical Components 0211,Electrical Components,Blue Ridge Supply,64.70,5,21,25,9713,Y
+SKU0212,Safety Supplies 0212,Safety Supplies,Cedar Components,68.40,12,32,30,9796,Y
+SKU0213,Packaging 0213,Packaging,Harbor Safety,72.10,19,43,35,9879,Y
+SKU0214,Tools 0214,Tools,Summit Packaging,75.80,8,54,40,9962,Y
+SKU0215,Consumables 0215,Consumables,Atlas Industrial,79.50,15,65,45,10045,Y
+SKU0216,Fasteners 0216,Fasteners,Blue Ridge Supply,83.20,4,76,10,10128,Y
+SKU0217,Maintenance Parts 0217,Maintenance Parts,Cedar Components,86.90,11,87,15,1211,Y
+SKU0218,Shipping Supplies 0218,Shipping Supplies,Harbor Safety,90.60,18,98,20,1294,Y
+SKU0219,Material Handling 0219,Material Handling,Summit Packaging,94.30,7,29,25,1377,Y
+SKU0220,Industrial Supplies 0220,Industrial Supplies,Atlas Industrial,98.00,14,40,30,1460,Y
+SKU0221,Electrical Components 0221,Electrical Components,Blue Ridge Supply,101.70,21,51,35,1543,Y
+SKU0222,Safety Supplies 0222,Safety Supplies,Cedar Components,105.40,10,62,40,1626,Y
+SKU0223,Packaging 0223,Packaging,Harbor Safety,109.10,17,73,45,1709,Y
+SKU0224,Tools 0224,Tools,Summit Packaging,112.80,6,84,10,1792,Y
+SKU0225,Consumables 0225,Consumables,Atlas Industrial,116.50,13,95,15,1875,Y
+SKU0226,Fasteners 0226,Fasteners,Blue Ridge Supply,120.20,20,26,20,1958,Y
+SKU0227,Maintenance Parts 0227,Maintenance Parts,Cedar Components,123.90,9,37,25,2041,Y
+SKU0228,Shipping Supplies 0228,Shipping Supplies,Harbor Safety,7.60,16,48,30,2124,Y
+SKU0229,Material Handling 0229,Material Handling,Summit Packaging,11.30,5,59,35,2207,Y
+SKU0230,Industrial Supplies 0230,Industrial Supplies,Atlas Industrial,15.00,12,70,40,2290,Y
+SKU0231,Electrical Components 0231,Electrical Components,Blue Ridge Supply,18.70,19,81,45,2373,Y
+SKU0232,Safety Supplies 0232,Safety Supplies,Cedar Components,22.40,8,92,10,2456,Y
+SKU0233,Packaging 0233,Packaging,Harbor Safety,26.10,15,23,15,2539,Y
+SKU0234,Tools 0234,Tools,Summit Packaging,29.80,4,34,20,2622,Y
+SKU0235,Consumables 0235,Consumables,Atlas Industrial,33.50,11,45,25,2705,Y
+SKU0236,Fasteners 0236,Fasteners,Blue Ridge Supply,37.20,18,56,30,2788,Y
+SKU0237,Maintenance Parts 0237,Maintenance Parts,Cedar Components,40.90,7,67,35,2871,Y
+SKU0238,Shipping Supplies 0238,Shipping Supplies,Harbor Safety,44.60,14,78,40,2954,Y
+SKU0239,Material Handling 0239,Material Handling,Summit Packaging,48.30,21,89,45,3037,Y
+SKU0240,Industrial Supplies 0240,Industrial Supplies,Atlas Industrial,52.00,10,20,10,3120,Y
+SKU0241,Electrical Components 0241,Electrical Components,Blue Ridge Supply,55.70,17,31,15,3203,Y
+SKU0242,Safety Supplies 0242,Safety Supplies,Cedar Components,59.40,6,42,20,3286,Y
+SKU0243,Packaging 0243,Packaging,Harbor Safety,63.10,13,53,25,3369,Y
+SKU0244,Tools 0244,Tools,Summit Packaging,66.80,20,64,30,3452,Y
+SKU0245,Consumables 0245,Consumables,Atlas Industrial,70.50,9,75,35,3535,Y
+SKU0246,Fasteners 0246,Fasteners,Blue Ridge Supply,74.20,16,86,40,3618,Y
+SKU0247,Maintenance Parts 0247,Maintenance Parts,Cedar Components,77.90,5,97,45,3701,Y
+SKU0248,Shipping Supplies 0248,Shipping Supplies,Harbor Safety,81.60,12,28,10,3784,Y
+SKU0249,Material Handling 0249,Material Handling,Summit Packaging,85.30,19,39,15,3867,Y
+SKU0250,Industrial Supplies 0250,Industrial Supplies,Atlas Industrial,89.00,8,50,20,3950,Y
+SKU0251,Electrical Components 0251,Electrical Components,Blue Ridge Supply,92.70,15,61,25,4033,Y
+SKU0252,Safety Supplies 0252,Safety Supplies,Cedar Components,96.40,4,72,30,4116,Y
+SKU0253,Packaging 0253,Packaging,Harbor Safety,100.10,11,83,35,4199,Y
+SKU0254,Tools 0254,Tools,Summit Packaging,103.80,18,94,40,4282,Y
+SKU0255,Consumables 0255,Consumables,Atlas Industrial,107.50,7,25,45,4365,Y
+SKU0256,Fasteners 0256,Fasteners,Blue Ridge Supply,111.20,14,36,10,4448,Y
+SKU0257,Maintenance Parts 0257,Maintenance Parts,Cedar Components,114.90,21,47,15,4531,Y
+SKU0258,Shipping Supplies 0258,Shipping Supplies,Harbor Safety,118.60,10,58,20,4614,Y
+SKU0259,Material Handling 0259,Material Handling,Summit Packaging,122.30,17,69,25,4697,Y
+SKU0260,Industrial Supplies 0260,Industrial Supplies,Atlas Industrial,6.00,6,80,30,4780,Y
+SKU0261,Electrical Components 0261,Electrical Components,Blue Ridge Supply,9.70,13,91,35,4863,Y
+SKU0262,Safety Supplies 0262,Safety Supplies,Cedar Components,13.40,20,22,40,4946,Y
+SKU0263,Packaging 0263,Packaging,Harbor Safety,17.10,9,33,45,5029,Y
+SKU0264,Tools 0264,Tools,Summit Packaging,20.80,16,44,10,5112,Y
+SKU0265,Consumables 0265,Consumables,Atlas Industrial,24.50,5,55,15,5195,Y
+SKU0266,Fasteners 0266,Fasteners,Blue Ridge Supply,28.20,12,66,20,5278,Y
+SKU0267,Maintenance Parts 0267,Maintenance Parts,Cedar Components,31.90,19,77,25,5361,Y
+SKU0268,Shipping Supplies 0268,Shipping Supplies,Harbor Safety,35.60,8,88,30,5444,Y
+SKU0269,Material Handling 0269,Material Handling,Summit Packaging,39.30,15,99,35,5527,Y
+SKU0270,Industrial Supplies 0270,Industrial Supplies,Atlas Industrial,43.00,4,30,40,5610,Y
+SKU0271,Electrical Components 0271,Electrical Components,Blue Ridge Supply,46.70,11,41,45,5693,Y
+SKU0272,Safety Supplies 0272,Safety Supplies,Cedar Components,50.40,18,52,10,5776,Y
+SKU0273,Packaging 0273,Packaging,Harbor Safety,54.10,7,63,15,5859,Y
+SKU0274,Tools 0274,Tools,Summit Packaging,57.80,14,74,20,5942,Y
+SKU0275,Consumables 0275,Consumables,Atlas Industrial,61.50,21,85,25,6025,Y
+SKU0276,Fasteners 0276,Fasteners,Blue Ridge Supply,65.20,10,96,30,6108,Y
+SKU0277,Maintenance Parts 0277,Maintenance Parts,Cedar Components,68.90,17,27,35,6191,Y
+SKU0278,Shipping Supplies 0278,Shipping Supplies,Harbor Safety,72.60,6,38,40,6274,Y
+SKU0279,Material Handling 0279,Material Handling,Summit Packaging,76.30,13,49,45,6357,Y
+SKU0280,Industrial Supplies 0280,Industrial Supplies,Atlas Industrial,80.00,20,60,10,6440,Y
+SKU0281,Electrical Components 0281,Electrical Components,Blue Ridge Supply,83.70,9,71,15,6523,Y
+SKU0282,Safety Supplies 0282,Safety Supplies,Cedar Components,87.40,16,82,20,6606,Y
+SKU0283,Packaging 0283,Packaging,Harbor Safety,91.10,5,93,25,6689,Y
+SKU0284,Tools 0284,Tools,Summit Packaging,94.80,12,24,30,6772,Y
+SKU0285,Consumables 0285,Consumables,Atlas Industrial,98.50,19,35,35,6855,Y
+SKU0286,Fasteners 0286,Fasteners,Blue Ridge Supply,102.20,8,46,40,6938,Y
+SKU0287,Maintenance Parts 0287,Maintenance Parts,Cedar Components,105.90,15,57,45,7021,Y
+SKU0288,Shipping Supplies 0288,Shipping Supplies,Harbor Safety,109.60,4,68,10,7104,Y
+SKU0289,Material Handling 0289,Material Handling,Summit Packaging,113.30,11,79,15,7187,Y
+SKU0290,Industrial Supplies 0290,Industrial Supplies,Atlas Industrial,117.00,18,90,20,7270,Y
+SKU0291,Electrical Components 0291,Electrical Components,Blue Ridge Supply,120.70,7,21,25,7353,Y
+SKU0292,Safety Supplies 0292,Safety Supplies,Cedar Components,4.40,14,32,30,7436,Y
+SKU0293,Packaging 0293,Packaging,Harbor Safety,8.10,21,43,35,7519,Y
+SKU0294,Tools 0294,Tools,Summit Packaging,11.80,10,54,40,7602,Y
+SKU0295,Consumables 0295,Consumables,Atlas Industrial,15.50,17,65,45,7685,Y
+SKU0296,Fasteners 0296,Fasteners,Blue Ridge Supply,19.20,6,76,10,7768,Y
+SKU0297,Maintenance Parts 0297,Maintenance Parts,Cedar Components,22.90,13,87,15,7851,Y
+SKU0298,Shipping Supplies 0298,Shipping Supplies,Harbor Safety,26.60,20,98,20,7934,Y
+SKU0299,Material Handling 0299,Material Handling,Summit Packaging,30.30,9,29,25,8017,Y
+SKU0300,Industrial Supplies 0300,Industrial Supplies,Atlas Industrial,34.00,16,40,30,8100,Y
