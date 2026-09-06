@@ -14,7 +14,7 @@ The dashboard presents two intentionally separate decisions:
 
 - Microsoft Excel with Power Query support.
 - A local copy of this repository.
-- Generated and analyzed Project 1 source/output files.
+- Generated and analyzed Inventory Accuracy & Stockout Risk source/output files.
 
 ## Reproduce the analysis
 
