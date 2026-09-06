@@ -13,20 +13,29 @@ A reproducible synthetic operations-analysis case study that separates two decis
 1. SKU-level replenishment and stockout risk across all warehouse locations.
 2. SKU/location-level cycle-count and inventory-control priorities.
 
-Key deliverables:
+![Executive Control Tower](projects/01-inventory-accuracy-stockout-risk/reporting/01-executive-control-tower.png)
+
+**Key results**
 
 - Synthetic 180-day warehouse/distribution dataset.
 - SKU-level replenishment queue: 8 of 300 SKUs identified as Critical or High priority.
 - SKU/location cycle-count queue: 6 Weekly, 472 Biweekly, 122 Monthly, and 3,000 Quarterly assignments.
 - Inventory accuracy, adjustment-exposure, count-completion, recount-rate, and shipment-service KPIs.
 - Data-quality validation: 26 checks passed.
-- Python data generation and analysis, DuckDB reference SQL, data dictionary, executive summary, dashboard wireframe, and validation report.
+- Reproducible Python reporting workflow, DuckDB reference SQL, data dictionary, executive brief, reporting methodology, dashboard package, and validation report.
 
-Project links:
+**Decision supported:** Where should an inventory operation prioritize replenishment attention and cycle-count effort to reduce stockout exposure and inventory-control risk?
 
-- [Project README](projects/01-inventory-accuracy-stockout-risk/README.md)
-- [Executive Summary](projects/01-inventory-accuracy-stockout-risk/docs/executive_summary.md)
-- [Validation Report](projects/01-inventory-accuracy-stockout-risk/docs/pr_validation_report.md)
+**Project links**
+
+- [View the full case study](projects/01-inventory-accuracy-stockout-risk/README.md)
+- [Two-page executive report](projects/01-inventory-accuracy-stockout-risk/reporting/inventory-accuracy-stockout-risk-report.pdf)
+- [Executive brief](projects/01-inventory-accuracy-stockout-risk/docs/executive-brief.pdf)
+- [Executive summary](projects/01-inventory-accuracy-stockout-risk/docs/executive_summary.md)
+- [Reporting methodology](projects/01-inventory-accuracy-stockout-risk/docs/reporting_package_methodology.md)
+- [Data dictionary](projects/01-inventory-accuracy-stockout-risk/docs/data_dictionary.md)
+- [Validation report](projects/01-inventory-accuracy-stockout-risk/docs/pr_validation_report.md)
+- [Action Queues & Evidence view](projects/01-inventory-accuracy-stockout-risk/reporting/02-action-queues-and-evidence.png)
 - [SKU Replenishment Priorities](projects/01-inventory-accuracy-stockout-risk/outputs/sku_replenishment_priorities.csv)
 - [SKU/Location Count Priorities](projects/01-inventory-accuracy-stockout-risk/outputs/sku_location_count_priorities.csv)
 
@@ -38,44 +47,43 @@ All Inventory Accuracy & Stockout Risk data is deterministic synthetic data. It 
 - Inventory accuracy, reconciliation, cycle-count prioritization, and stockout risk
 - Data cleanup, validation, exception management, and reporting controls
 - Warehouse, distribution, throughput, backlog, and labor-utilization analysis
-- Spreadsheet and recurring-report automation
 - CMMS, work-order, preventive-maintenance, downtime, and asset-reliability reporting
-- SQL, Python, DuckDB, Excel, Power Query, Power BI, and Tableau workflows
+- Spreadsheet and recurring-report automation
+- SQL, Python, DuckDB, Excel, Power Query, and business-intelligence workflows
 
 ## Portfolio Approach
 
-Each featured project is built as a business case study rather than a generic dashboard. Projects include:
+This featured case study is built as a business decision-support package rather than a generic dashboard. It includes:
 
 - A defined business problem and decision to support
 - Documented data, assumptions, and limitations
 - Reproducible analysis
 - Clear KPI definitions and data-quality checks
-- Stakeholder-ready reporting or dashboard design
+- Stakeholder-ready reporting and dashboard design
 - Evidence-based findings
 - A specific operational recommendation, accountable owner, and success measures
 
 ## Additional Technical Projects
 
-Retain the existing projects as examples of technical breadth. Link to these folders using readable labels:
+These projects demonstrate technical breadth in exploratory analysis, data tooling, SQL/Python workflows, and structured problem solving.
 
 - [Athlete Events Analysis](projects/02-athlete_events/)
 - [Car Sales Analysis](projects/03-car-sales/)
 - [Heart Disease Analysis](projects/05-heart-disease/)
 - [DuckDB CSV GUI](projects/04-duckdb-csv-gui/)
-- [Jetstream](projects/jetstream/)
 
-These projects demonstrate additional skills in exploratory analysis, data tooling, SQL/Python workflows, and structured problem solving. The operations case studies above are the primary focus for analyst, reporting, inventory, systems, and technical-operations opportunities.
+The featured inventory operations case study is the primary public work sample for analyst, reporting, inventory, systems, and technical-operations opportunities.
 
 ## Tools
 
-Excel | Power Query | SQL | Python | pandas | DuckDB | Power BI | Tableau | GitHub
+Excel | Power Query | SQL | Python | pandas | DuckDB | Business Intelligence | GitHub
 
 ## Documentation
 
 - [Portfolio Index](docs/portfolio_index.md)
 - [Projects Catalog](docs/projects_catalog.md)
 - [Data Analyst Portfolio Planning Guide](docs/data_analyst_portfolio_planning_guide.md)
-- [Showcase Planning and Synchronization for Effective Monetization](docs/showcase%20planning%20and%20synchronization%20for%20effective%20monetization.md)
+- [Showcase Planning and Synchronization](docs/showcase%20planning%20and%20synchronization%20for%20effective%20monetization.md)
 
 ## Professional Direction
 
@@ -83,10 +91,6 @@ I am building toward Operations Analyst, Reporting Analyst, Data Quality Analyst
 
 ## Contact and Professional Links
 
-- LinkedIn: [Add LinkedIn URL]
-- Contra: [Add Contra URL]
-- Upwork: [Add Upwork URL]
-- Freelancer: [Add Freelancer URL]
-- DataSprint / website: [Add website URL]
+- LinkedIn: [William Bryan](https://www.linkedin.com/in/william-bryan-omaha)
 
 > This repository contains public portfolio work and synthetic demonstrations. It is not affiliated with or based on confidential information from any employer or client.
