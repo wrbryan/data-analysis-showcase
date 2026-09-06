@@ -138,7 +138,7 @@ Prioritize weekly cycle counts for the 20 percent of SKUs responsible for most a
 
 ---
 
-# Project 2: Warehouse Throughput & Labor Utilization
+# Warehouse Throughput & Labor Utilization — Operations Reporting Case Study
 
 ## Business scenario
 
@@ -251,7 +251,7 @@ Move two cross-trained associates to replenishment from 1:00 PM to 4:00 PM durin
 
 ---
 
-# Project 3: CMMS Maintenance & Work-Order Analytics
+# CMMS Maintenance & Work-Order Analytics — Operations Reporting Case Study
 
 ## Business scenario
 
