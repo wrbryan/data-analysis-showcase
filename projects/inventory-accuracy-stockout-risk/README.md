@@ -1,37 +1,47 @@
 # Inventory Accuracy & Stockout Risk
 
-## Overview
-Reproducible synthetic inventory operations analysis. The workflow measures
-cycle-count accuracy and prioritizes SKU/location pairs at risk of stockout.
-All data is generated with seed `20260905`.
+Deterministic, reproducible inventory-control case study for a 180-day
+distribution-center operation. It identifies inventory record variance,
+stockout exposure, excess/obsolete inventory, and risk-based count priorities.
 
-## Run from repository root
+## Run
+
+From this directory:
+
 ```bash
-python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
-python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
+python python/generate_synthetic_data.py
+python python/analyze_inventory.py
 ```
 
-## Required source data
-`data/inventory_snapshot.csv`, `data/product_master.csv`, `data/transactions.csv`,
-`data/orders.csv`, and `data/cycle_counts.csv`.
+The generator uses seed `20260905` and creates 300 SKUs across 10 categories,
+5 suppliers, 3 zones, and 12 zone/bin locations. It produces 180 daily
+snapshots, more than 1,500 replenishment orders, more than 8,000 transactions,
+and more than 450 scheduled cycle counts.
 
-## Required outputs
-The analyzer creates `outputs/inventory_accuracy_summary.csv`,
-`outputs/stockout_risk_scores.csv`, `outputs/sku_location_action_queue.csv`,
-`outputs/inventory_variance_summary.csv`, `outputs/monthly_inventory_kpis.csv`,
-and `outputs/data_quality_checks.csv`.
+## Source data
 
-## Analysis methodology
-Accuracy is `100 * (1 - absolute cycle-count variance / system units)`.
-Safety stock is `1.65 * demand standard deviation * sqrt(lead time)`.
-Risk combines stockout observations (55%) and the current-stock gap to
-reorder point plus safety stock (45%). High is >=55, Medium >=25, otherwise Low.
+See `data/README.md` and `docs/data_dictionary.md`. The five source tables are
+inventory snapshots, product master, transactions, orders, and cycle counts.
 
-## SQL sections
-`sql/analysis.sql` contains the documented DuckDB sections:
-**1. Source registration**, **2. Inventory accuracy**, **3. Stockout risk**,
-**4. Action queue**, and **5. Data quality checks**.
+## Outputs
 
-## Documentation
-See `docs/analysis.md` for business interpretation and `docs/data_dictionary.md`
-for field definitions.
+The analyzer writes exactly these reports to `outputs/`:
+
+- `kpi_summary.csv`
+- `sku_risk_priorities.csv`
+- `location_variance_summary.csv`
+- `stockout_risk_report.csv`
+- `data_quality_checks.csv`
+
+## SQL
+
+`sql/inventory_analysis.sql` contains DuckDB queries that register the five
+source tables and reproduce the KPI, variance, stockout, and quality checks.
+
+## Interpretation
+
+Inventory accuracy is calculated as `1 - ABS(system_qty - physical_qty) /
+physical_qty`. Adjustment value is absolute quantity variance multiplied by
+unit cost. Stockout risk is a prioritization score using stockout observations,
+on-hand gap to reorder point plus safety stock, demand, and supplier lead time.
+High-risk SKUs should receive weekly counts and a replenishment/location review.

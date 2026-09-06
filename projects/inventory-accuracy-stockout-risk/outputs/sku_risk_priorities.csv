@@ -1,0 +1,301 @@
+sku,description,category,supplier,inventory_value,absolute_variance_units,variance_value,accuracy_pct,stockout_days,avg_daily_demand,days_of_supply,risk_score,risk_band,count_priority,recommended_action
+SKU0223,Pantry Item 0223,Pantry,Blue Ridge,216476.80,65,6344.00,10.26,217,3.28,56.32,64.25,High,Priority,Weekly count and replenishment review
+SKU0278,Small Appliances Item 0278,Small Appliances,Blue Ridge,516249.20,66,6342.60,10.90,12,3.81,117.41,38.81,Medium,Priority,Weekly count and replenishment review
+SKU0108,Small Appliances Item 0108,Small Appliances,Blue Ridge,582900.90,67,6170.70,10.90,32,3.35,157.52,40.74,Medium,Priority,Weekly count and replenishment review
+SKU0167,Paper Goods Item 0167,Paper Goods,Acme Supply,458072.20,62,6038.80,10.90,30,3.85,101.82,44.03,Medium,Priority,Weekly count and replenishment review
+SKU0279,Cleaning Item 0279,Cleaning,Summit Goods,307287.60,61,5965.80,10.90,273,3.23,81.14,74.33,High,Priority,Weekly count and replenishment review
+SKU0218,Small Appliances Item 0218,Small Appliances,Blue Ridge,623789.10,66,5880.60,11.54,7,3.10,188.03,21.86,Low,Priority,Weekly count and replenishment review
+SKU0273,Pantry Item 0273,Pantry,Blue Ridge,228198.00,66,5781.60,11.54,182,3.04,71.34,54.78,Medium,Priority,Weekly count and replenishment review
+SKU0219,Cleaning Item 0219,Cleaning,Summit Goods,404060.00,63,5720.40,11.54,224,2.66,139.52,77.08,High,Priority,Weekly count and replenishment review
+SKU0163,Pantry Item 0163,Pantry,Blue Ridge,299523.60,63,5707.80,11.54,198,2.66,103.40,64.25,High,Priority,Weekly count and replenishment review
+SKU0109,Cleaning Item 0109,Cleaning,Summit Goods,347341.40,60,5628.00,11.54,303,2.87,107.47,74.98,High,Priority,Weekly count and replenishment review
+SKU0048,Small Appliances Item 0048,Small Appliances,Blue Ridge,466688.40,66,5616.60,11.54,28,3.84,118.86,32.19,Medium,Priority,Weekly count and replenishment review
+SKU0158,Small Appliances Item 0158,Small Appliances,Blue Ridge,481434.40,68,5582.80,10.90,23,3.50,139.56,33.57,Medium,Priority,Weekly count and replenishment review
+SKU0222,Snacks Item 0222,Snacks,Acme Supply,189977.90,58,5562.20,10.90,322,2.93,56.38,69.44,High,Priority,Weekly count and replenishment review
+SKU0054,Household Item 0054,Household,Summit Goods,290283.80,58,5527.40,10.90,200,3.24,78.35,63.33,High,Priority,Weekly count and replenishment review
+SKU0053,Pantry Item 0053,Pantry,Blue Ridge,274528.80,59,5522.40,10.90,245,2.89,84.55,56.85,High,Priority,Weekly count and replenishment review
+SKU0162,Snacks Item 0162,Snacks,Acme Supply,216471.50,62,5511.80,10.90,171,2.65,76.59,67.31,High,Priority,Weekly count and replenishment review
+SKU0107,Paper Goods Item 0107,Paper Goods,Acme Supply,523144.80,60,5424.00,10.90,36,3.20,150.77,49.28,Medium,Priority,Weekly count and replenishment review
+SKU0052,Snacks Item 0052,Snacks,Acme Supply,255941.50,59,5422.10,10.26,295,2.61,88.88,69.75,High,Priority,Weekly count and replenishment review
+SKU0104,Household Item 0104,Household,Summit Goods,219221.00,63,5373.90,10.90,148,3.56,60.17,54.08,Medium,Priority,Weekly count and replenishment review
+SKU0164,Household Item 0164,Household,Summit Goods,333941.40,57,5261.10,11.54,186,2.88,104.65,64.17,High,Priority,Weekly count and replenishment review
+SKU0217,Paper Goods Item 0217,Paper Goods,Acme Supply,509542.00,60,5244.00,11.54,15,3.44,141.33,5.20,Low,Priority,Weekly count and replenishment review
+SKU0272,Snacks Item 0272,Snacks,Acme Supply,142164.50,61,5239.90,11.54,304,3.06,45.01,67.00,High,Priority,Weekly count and replenishment review
+SKU0268,Small Appliances Item 0268,Small Appliances,Blue Ridge,541123.10,66,5220.60,10.26,20,3.28,173.60,51.11,Medium,Priority,Weekly count and replenishment review
+SKU0214,Household Item 0214,Household,Summit Goods,251838.00,63,5184.90,10.26,144,3.25,78.48,58.14,High,Priority,Weekly count and replenishment review
+SKU0274,Household Item 0274,Household,Summit Goods,345144.50,58,5179.40,11.54,85,2.89,111.35,25.31,Medium,Priority,Weekly count and replenishment review
+SKU0212,Snacks Item 0212,Snacks,Acme Supply,221866.80,65,5128.50,10.90,224,2.62,89.36,61.02,High,Priority,Weekly count and replenishment review
+SKU0103,Pantry Item 0103,Pantry,Blue Ridge,209334.40,61,5099.60,11.54,241,3.10,67.38,65.78,High,Priority,Weekly count and replenishment review
+SKU0047,Paper Goods Item 0047,Paper Goods,Acme Supply,412663.20,60,5004.00,11.54,37,3.69,111.72,31.02,Medium,Priority,Weekly count and replenishment review
+SKU0111,Beverages Item 0111,Beverages,Northstar,114696.00,51,4957.20,11.54,360,2.95,33.33,68.83,High,Priority,Weekly count and replenishment review
+SKU0098,Small Appliances Item 0098,Small Appliances,Blue Ridge,484019.50,66,4956.60,10.90,2,3.51,153.21,0.61,Low,Priority,Weekly count and replenishment review
+SKU0049,Cleaning Item 0049,Cleaning,Summit Goods,286179.60,57,4947.60,11.54,198,3.12,88.19,67.92,High,Priority,Weekly count and replenishment review
+SKU0213,Pantry Item 0213,Pantry,Blue Ridge,258887.20,61,4916.60,10.90,209,2.81,95.39,63.03,High,Priority,Weekly count and replenishment review
+SKU0275,Personal Care Item 0275,Personal Care,Harbor Wholesale,415961.00,54,4914.00,10.90,83,3.08,123.74,41.42,Medium,Priority,Weekly count and replenishment review
+SKU0157,Paper Goods Item 0157,Paper Goods,Acme Supply,416874.00,61,4904.40,11.54,53,3.39,127.57,50.91,Medium,Priority,Weekly count and replenishment review
+SKU0043,Pantry Item 0043,Pantry,Blue Ridge,220071.80,64,4902.40,10.26,114,2.83,84.57,64.25,High,Priority,Weekly count and replenishment review
+SKU0267,Paper Goods Item 0267,Paper Goods,Acme Supply,466876.80,63,4876.20,10.90,19,3.13,160.81,5.81,Low,Priority,Weekly count and replenishment review
+SKU0051,Beverages Item 0051,Beverages,Northstar,189871.00,54,4870.80,10.90,292,2.45,71.57,73.72,High,Priority,Weekly count and replenishment review
+SKU0055,Personal Care Item 0055,Personal Care,Harbor Wholesale,270242.00,50,4850.00,11.54,103,3.60,64.48,54.78,Medium,Priority,Weekly count and replenishment review
+SKU0269,Cleaning Item 0269,Cleaning,Summit Goods,339360.00,60,4848.00,10.90,271,2.77,126.55,78.61,High,Priority,Weekly count and replenishment review
+SKU0276,Pet Care Item 0276,Pet Care,Northstar,443569.50,52,4820.40,10.90,68,3.23,123.50,48.71,Medium,Priority,Weekly count and replenishment review
+SKU0166,Pet Care Item 0166,Pet Care,Northstar,416295.00,50,4785.00,11.54,70,3.59,101.01,20.07,Low,Priority,Weekly count and replenishment review
+SKU0153,Pantry Item 0153,Pantry,Blue Ridge,154265.60,65,4784.00,10.90,233,3.28,53.25,66.69,High,Priority,Weekly count and replenishment review
+SKU0097,Paper Goods Item 0097,Paper Goods,Acme Supply,327364.00,65,4771.00,10.26,37,3.78,98.27,53.25,Medium,Priority,Weekly count and replenishment review
+SKU0277,Paper Goods Item 0277,Paper Goods,Acme Supply,37382.40,50,4720.00,10.26,616,5.66,5.83,71.89,High,Priority,Weekly count and replenishment review
+SKU0165,Personal Care Item 0165,Personal Care,Harbor Wholesale,371770.00,50,4700.00,11.54,118,3.26,101.08,59.36,High,Priority,Weekly count and replenishment review
+SKU0154,Household Item 0154,Household,Summit Goods,239152.80,62,4668.60,11.54,103,3.28,80.58,45.31,Medium,Priority,Weekly count and replenishment review
+SKU0042,Snacks Item 0042,Snacks,Acme Supply,156840.60,62,4643.80,10.90,242,2.88,60.65,49.20,Medium,Priority,Weekly count and replenishment review
+SKU0106,Pet Care Item 0106,Pet Care,Northstar,470997.00,52,4612.40,10.26,57,2.95,150.19,51.84,Medium,Priority,Weekly count and replenishment review
+SKU0102,Snacks Item 0102,Snacks,Acme Supply,188206.20,56,4586.40,11.54,337,2.73,70.24,71.58,High,Priority,Weekly count and replenishment review
+SKU0264,Household Item 0264,Household,Summit Goods,211839.00,63,4554.90,11.54,147,3.35,72.96,58.14,High,Priority,Weekly count and replenishment review
+SKU0208,Small Appliances Item 0208,Small Appliances,Blue Ridge,36843.10,63,4542.30,11.54,566,5.96,7.15,67.61,High,Priority,Weekly count and replenishment review
+SKU0215,Personal Care Item 0215,Personal Care,Harbor Wholesale,285180.00,54,4536.00,10.90,119,3.46,81.71,58.44,High,Priority,Weekly count and replenishment review
+SKU0220,Seasonal Item 0220,Seasonal,Harbor Wholesale,126910.00,49,4532.50,11.54,473,2.22,51.45,78.00,High,Priority,Weekly count and replenishment review
+SKU0093,Pantry Item 0093,Pantry,Blue Ridge,223975.80,68,4528.80,11.54,182,2.77,101.24,51.78,Medium,Priority,Weekly count and replenishment review
+SKU0159,Cleaning Item 0159,Cleaning,Summit Goods,276121.00,54,4525.20,10.90,305,3.07,89.40,66.87,High,Priority,Weekly count and replenishment review
+SKU0221,Beverages Item 0221,Beverages,Northstar,181994.40,48,4521.60,10.90,413,2.50,64.34,75.56,High,Priority,Weekly count and replenishment review
+SKU0263,Pantry Item 0263,Pantry,Blue Ridge,207846.40,64,4518.40,11.54,245,2.95,83.10,56.51,High,Priority,Weekly count and replenishment review
+SKU0038,Small Appliances Item 0038,Small Appliances,Blue Ridge,417248.70,66,4494.60,11.54,18,3.39,150.52,35.09,Medium,Priority,Weekly count and replenishment review
+SKU0110,Seasonal Item 0110,Seasonal,Harbor Wholesale,133413.50,47,4488.50,11.54,525,2.42,48.06,70.67,High,Priority,Weekly count and replenishment review
+SKU0216,Pet Care Item 0216,Pet Care,Northstar,321974.90,52,4456.40,10.90,80,3.75,83.53,56.31,High,Priority,Weekly count and replenishment review
+SKU0161,Beverages Item 0161,Beverages,Northstar,155128.80,51,4447.20,10.90,305,2.70,54.89,61.19,High,Priority,Weekly count and replenishment review
+SKU0207,Paper Goods Item 0207,Paper Goods,Acme Supply,377766.40,63,4435.20,10.90,33,3.48,128.37,37.70,Medium,Priority,Weekly count and replenishment review
+SKU0099,Cleaning Item 0099,Cleaning,Summit Goods,364492.80,57,4377.60,10.90,216,2.58,153.12,78.61,High,Priority,Weekly count and replenishment review
+SKU0148,Small Appliances Item 0148,Small Appliances,Blue Ridge,454398.00,67,4361.70,11.54,7,3.09,188.17,2.14,Low,Priority,Weekly count and replenishment review
+SKU0156,Pet Care Item 0156,Pet Care,Northstar,414591.60,55,4328.50,11.54,52,3.13,140.09,27.16,Medium,Priority,Weekly count and replenishment review
+SKU0045,Personal Care Item 0045,Personal Care,Harbor Wholesale,346160.00,54,4320.00,10.90,119,3.06,117.85,62.42,High,Priority,Weekly count and replenishment review
+SKU0152,Snacks Item 0152,Snacks,Acme Supply,130858.00,60,4314.00,10.90,292,2.95,51.49,67.31,High,Priority,Weekly count and replenishment review
+SKU0105,Personal Care Item 0105,Personal Care,Harbor Wholesale,332427.00,49,4263.00,10.90,73,3.33,95.64,44.75,Medium,Priority,Weekly count and replenishment review
+SKU0039,Cleaning Item 0039,Cleaning,Summit Goods,266496.40,61,4257.80,11.54,346,2.77,115.04,72.19,High,Priority,Weekly count and replenishment review
+SKU0050,Seasonal Item 0050,Seasonal,Harbor Wholesale,146556.00,48,4248.00,10.90,352,2.27,60.72,76.17,High,Priority,Weekly count and replenishment review
+SKU0271,Beverages Item 0271,Beverages,Northstar,121837.40,50,4210.00,11.54,396,2.75,43.86,70.06,High,Priority,Weekly count and replenishment review
+SKU0262,Snacks Item 0262,Snacks,Acme Supply,194780.30,61,4202.90,11.54,294,2.65,89.01,71.28,High,Priority,Weekly count and replenishment review
+SKU0037,Paper Goods Item 0037,Paper Goods,Acme Supply,400923.20,63,4183.20,11.54,47,3.14,160.25,20.48,Low,Priority,Weekly count and replenishment review
+SKU0204,Household Item 0204,Household,Summit Goods,238214.40,64,4179.20,10.90,86,2.85,106.61,58.75,High,Priority,Weekly count and replenishment review
+SKU0211,Beverages Item 0211,Beverages,Northstar,162737.60,54,4168.80,11.54,252,2.50,70.25,49.85,Medium,Priority,Weekly count and replenishment review
+SKU0046,Pet Care Item 0046,Pet Care,Northstar,373532.40,51,4166.70,11.54,68,3.45,110.55,55.39,High,Priority,Weekly count and replenishment review
+SKU0094,Household Item 0094,Household,Summit Goods,256603.10,61,4166.30,11.54,183,2.94,106.56,59.57,High,Priority,Weekly count and replenishment review
+SKU0160,Seasonal Item 0160,Seasonal,Harbor Wholesale,82764.00,48,4104.00,10.26,539,2.58,31.28,71.58,High,Priority,Weekly count and replenishment review
+SKU0258,Small Appliances Item 0258,Small Appliances,Blue Ridge,320498.10,66,4098.60,10.90,24,3.87,111.18,39.71,Medium,Priority,Weekly count and replenishment review
+SKU0100,Seasonal Item 0100,Seasonal,Harbor Wholesale,107309.50,52,4082.00,11.54,410,2.23,51.07,74.94,High,Priority,Weekly count and replenishment review
+SKU0155,Personal Care Item 0155,Personal Care,Harbor Wholesale,373373.00,53,4081.00,11.54,59,2.96,136.57,16.99,Low,Priority,Weekly count and replenishment review
+SKU0203,Pantry Item 0203,Pantry,Blue Ridge,163006.80,64,4070.40,10.90,164,3.06,69.76,65.78,High,Priority,Weekly count and replenishment review
+SKU0092,Snacks Item 0092,Snacks,Acme Supply,185419.30,62,4023.80,11.54,191,2.59,91.80,44.71,Medium,Priority,Weekly count and replenishment review
+SKU0266,Pet Care Item 0266,Pet Care,Northstar,327705.30,53,4012.10,10.90,50,3.40,106.13,55.69,High,Priority,Weekly count and replenishment review
+SKU0147,Paper Goods Item 0147,Paper Goods,Acme Supply,327778.00,63,3994.20,11.54,33,3.42,126.15,52.64,Medium,Priority,Weekly count and replenishment review
+SKU0209,Cleaning Item 0209,Cleaning,Summit Goods,241621.20,54,3985.20,11.54,296,3.13,87.23,62.06,High,Priority,Weekly count and replenishment review
+SKU0149,Cleaning Item 0149,Cleaning,Summit Goods,295122.40,59,3941.20,10.90,231,2.66,138.52,78.00,High,Priority,Weekly count and replenishment review
+SKU0101,Beverages Item 0101,Beverages,Northstar,156951.40,49,3929.80,11.54,381,2.43,67.17,72.19,High,Priority,Weekly count and replenishment review
+SKU0033,Pantry Item 0033,Pantry,Blue Ridge,130404.80,65,3874.00,10.90,237,3.15,57.91,66.39,High,Priority,Weekly count and replenishment review
+SKU0257,Paper Goods Item 0257,Paper Goods,Acme Supply,304476.40,64,3865.60,10.90,23,3.67,114.60,22.20,Low,Priority,Weekly count and replenishment review
+SKU0034,Household Item 0034,Household,Summit Goods,150981.90,62,3800.60,10.26,155,3.44,59.68,62.42,High,Priority,Weekly count and replenishment review
+SKU0096,Pet Care Item 0096,Pet Care,Northstar,285652.80,53,3800.10,10.90,76,3.55,93.53,55.69,High,Priority,Weekly count and replenishment review
+SKU0270,Seasonal Item 0270,Seasonal,Harbor Wholesale,122017.50,46,3795.00,10.90,527,2.24,55.08,75.37,High,Priority,Weekly count and replenishment review
+SKU0095,Personal Care Item 0095,Personal Care,Harbor Wholesale,256900.00,54,3780.00,10.90,128,3.27,93.49,57.83,High,Priority,Weekly count and replenishment review
+SKU0265,Personal Care Item 0265,Personal Care,Harbor Wholesale,216080.00,51,3774.00,11.54,125,3.56,68.35,58.06,High,Priority,Weekly count and replenishment review
+SKU0088,Small Appliances Item 0088,Small Appliances,Blue Ridge,329833.70,64,3718.40,10.26,29,3.57,132.59,36.12,Medium,Priority,Weekly count and replenishment review
+SKU0206,Pet Care Item 0206,Pet Care,Northstar,360812.40,54,3709.80,10.90,83,3.19,137.05,49.58,Medium,Priority,Weekly count and replenishment review
+SKU0089,Cleaning Item 0089,Cleaning,Summit Goods,209778.40,61,3647.80,10.90,317,2.99,97.78,73.11,High,Priority,Weekly count and replenishment review
+SKU0198,Small Appliances Item 0198,Small Appliances,Blue Ridge,345532.10,66,3636.60,10.90,22,3.26,160.50,47.14,Medium,Priority,Weekly count and replenishment review
+SKU0259,Cleaning Item 0259,Cleaning,Summit Goods,215261.20,57,3636.60,10.26,192,3.06,91.87,70.67,High,Priority,Weekly count and replenishment review
+SKU0143,Pantry Item 0143,Pantry,Blue Ridge,176365.60,64,3622.40,10.90,245,2.76,94.09,68.22,High,Priority,Weekly count and replenishment review
+SKU0144,Household Item 0144,Household,Summit Goods,198861.30,62,3614.60,10.90,189,3.13,90.69,48.22,Medium,Priority,Weekly count and replenishment review
+SKU0087,Paper Goods Item 0087,Paper Goods,Acme Supply,336820.80,64,3609.60,10.90,35,3.35,148.64,30.17,Medium,Priority,Weekly count and replenishment review
+SKU0044,Household Item 0044,Household,Summit Goods,9474.30,46,3601.80,10.90,868,4.51,2.24,78.31,High,Priority,Weekly count and replenishment review
+SKU0202,Snacks Item 0202,Snacks,Acme Supply,91673.90,58,3590.20,11.54,309,3.10,39.85,65.47,High,Priority,Weekly count and replenishment review
+SKU0041,Beverages Item 0041,Beverages,Northstar,92232.00,49,3586.80,10.90,376,2.89,36.36,67.38,High,Priority,Weekly count and replenishment review
+SKU0151,Beverages Item 0151,Beverages,Northstar,138574.80,51,3580.20,10.26,397,2.52,65.26,68.83,High,Priority,Weekly count and replenishment review
+SKU0261,Beverages Item 0261,Beverages,Northstar,141724.80,53,3561.60,10.90,321,2.40,73.10,75.86,High,Priority,Weekly count and replenishment review
+SKU0036,Pet Care Item 0036,Pet Care,Northstar,362708.20,55,3558.50,10.90,45,3.05,153.40,8.86,Low,Priority,Weekly count and replenishment review
+SKU0205,Personal Care Item 0205,Personal Care,Harbor Wholesale,311885.00,53,3551.00,10.26,98,2.99,129.53,60.58,High,Priority,Weekly count and replenishment review
+SKU0040,Seasonal Item 0040,Seasonal,Harbor Wholesale,89947.00,49,3503.50,11.54,532,2.44,42.94,74.03,High,Priority,Weekly count and replenishment review
+SKU0150,Seasonal Item 0150,Seasonal,Harbor Wholesale,108367.00,51,3493.50,10.90,448,2.24,58.80,74.33,High,Priority,Weekly count and replenishment review
+SKU0197,Paper Goods Item 0197,Paper Goods,Acme Supply,315914.40,65,3471.00,10.90,26,3.05,161.76,39.77,Medium,Priority,Weekly count and replenishment review
+SKU0028,Small Appliances Item 0028,Small Appliances,Blue Ridge,293262.90,66,3372.60,11.54,11,3.54,135.28,42.89,Medium,Priority,Weekly count and replenishment review
+SKU0032,Snacks Item 0032,Snacks,Acme Supply,137744.10,58,3358.20,10.90,320,2.73,72.63,65.17,High,Priority,Weekly count and replenishment review
+SKU0199,Cleaning Item 0199,Cleaning,Summit Goods,219418.40,59,3351.20,11.54,280,2.73,117.83,68.84,High,Priority,Weekly count and replenishment review
+SKU0035,Personal Care Item 0035,Personal Care,Harbor Wholesale,234675.00,53,3339.00,10.90,61,3.31,93.78,45.31,Medium,Priority,Weekly count and replenishment review
+SKU0210,Seasonal Item 0210,Seasonal,Harbor Wholesale,84635.50,44,3322.00,11.54,413,2.51,37.28,72.50,High,Priority,Weekly count and replenishment review
+SKU0145,Personal Care Item 0145,Personal Care,Harbor Wholesale,200520.00,55,3300.00,11.54,118,3.49,79.76,55.39,High,Priority,Weekly count and replenishment review
+SKU0146,Pet Care Item 0146,Pet Care,Northstar,220330.70,53,3270.10,11.54,52,3.77,78.89,48.29,Medium,Priority,Weekly count and replenishment review
+SKU0252,Snacks Item 0252,Snacks,Acme Supply,101101.20,63,3269.70,10.90,242,2.94,55.23,57.83,High,Priority,Weekly count and replenishment review
+SKU0138,Small Appliances Item 0138,Small Appliances,Blue Ridge,267099.30,67,3222.70,11.54,16,3.75,123.31,4.89,Low,Priority,Weekly count and replenishment review
+SKU0253,Pantry Item 0253,Pantry,Blue Ridge,154153.60,60,3216.00,11.54,121,2.85,84.23,64.25,High,Priority,Weekly count and replenishment review
+SKU0254,Household Item 0254,Household,Summit Goods,204222.90,58,3207.40,11.54,162,2.83,108.76,62.11,High,Priority,Weekly count and replenishment review
+SKU0142,Snacks Item 0142,Snacks,Acme Supply,143398.80,58,3184.20,10.26,247,2.60,83.64,71.89,High,Priority,Weekly count and replenishment review
+SKU0083,Pantry Item 0083,Pantry,Blue Ridge,101531.20,64,3174.40,11.54,223,3.28,52.07,63.64,High,Priority,Weekly count and replenishment review
+SKU0256,Pet Care Item 0256,Pet Care,Northstar,262389.00,54,3169.80,11.54,55,3.45,107.97,56.00,High,Priority,Weekly count and replenishment review
+SKU0260,Seasonal Item 0260,Seasonal,Harbor Wholesale,106437.50,48,3144.00,10.90,347,2.30,58.82,74.94,High,Priority,Weekly count and replenishment review
+SKU0029,Cleaning Item 0029,Cleaning,Summit Goods,215107.20,59,3115.20,11.54,202,2.62,129.70,62.58,High,Priority,Weekly count and replenishment review
+SKU0027,Paper Goods Item 0027,Paper Goods,Acme Supply,215285.20,63,3112.20,10.90,41,3.77,96.30,41.03,Medium,Priority,Weekly count and replenishment review
+SKU0091,Beverages Item 0091,Beverages,Northstar,97012.00,49,3096.80,11.54,321,2.69,47.52,70.67,High,Priority,Weekly count and replenishment review
+SKU0255,Personal Care Item 0255,Personal Care,Harbor Wholesale,235923.00,54,3078.00,11.54,125,3.11,110.82,61.23,High,Priority,Weekly count and replenishment review
+SKU0201,Beverages Item 0201,Beverages,Northstar,104928.60,51,3070.20,11.54,425,2.60,55.80,68.22,High,Priority,Weekly count and replenishment review
+SKU0086,Pet Care Item 0086,Pet Care,Northstar,289691.20,55,3008.50,10.90,71,3.05,144.77,58.75,High,Priority,Weekly count and replenishment review
+SKU0200,Seasonal Item 0200,Seasonal,Harbor Wholesale,95472.00,51,2983.50,11.54,474,2.34,58.00,73.42,High,Priority,Weekly count and replenishment review
+SKU0193,Pantry Item 0193,Pantry,Blue Ridge,130619.80,64,2982.40,11.54,277,2.88,81.19,66.08,High,Priority,Weekly count and replenishment review
+SKU0085,Personal Care Item 0085,Personal Care,Harbor Wholesale,235002.00,55,2915.00,11.54,67,2.95,125.23,56.31,High,Priority,Weekly count and replenishment review
+SKU0249,Cleaning Item 0249,Cleaning,Summit Goods,169603.20,62,2901.60,10.90,349,2.79,108.32,68.22,High,Priority,Weekly count and replenishment review
+SKU0194,Household Item 0194,Household,Summit Goods,148522.50,60,2898.00,10.90,177,3.29,77.97,58.75,High,Priority,Weekly count and replenishment review
+SKU0090,Seasonal Item 0090,Seasonal,Harbor Wholesale,51229.50,47,2890.50,10.90,515,2.59,26.81,73.42,High,Priority,Weekly count and replenishment review
+SKU0248,Small Appliances Item 0248,Small Appliances,Blue Ridge,269652.90,64,2886.40,10.90,25,3.39,147.15,40.83,Medium,Priority,Weekly count and replenishment review
+SKU0084,Household Item 0084,Household,Summit Goods,159491.70,56,2872.80,11.54,114,3.19,81.29,61.19,High,Priority,Weekly count and replenishment review
+SKU0139,Cleaning Item 0139,Cleaning,Summit Goods,161700.60,57,2838.60,11.54,327,3.16,85.53,76.47,High,Priority,Weekly count and replenishment review
+SKU0082,Snacks Item 0082,Snacks,Acme Supply,99105.10,59,2826.10,11.54,343,2.86,60.31,66.08,High,Priority,Weekly count and replenishment review
+SKU0141,Beverages Item 0141,Beverages,Northstar,109645.20,53,2819.60,10.90,256,2.44,70.37,73.11,High,Priority,Weekly count and replenishment review
+SKU0031,Beverages Item 0031,Beverages,Northstar,120605.20,50,2810.00,11.54,370,2.48,72.07,67.92,High,Priority,Weekly count and replenishment review
+SKU0196,Pet Care Item 0196,Pet Care,Northstar,225929.00,54,2791.80,10.26,28,3.43,106.18,38.31,Medium,Priority,Weekly count and replenishment review
+SKU0137,Paper Goods Item 0137,Paper Goods,Acme Supply,237568.00,60,2784.00,11.54,38,3.50,121.99,52.64,Medium,Priority,Weekly count and replenishment review
+SKU0078,Small Appliances Item 0078,Small Appliances,Blue Ridge,277753.80,65,2671.50,10.90,16,3.09,182.43,18.81,Low,Priority,Weekly count and replenishment review
+SKU0022,Snacks Item 0022,Snacks,Acme Supply,97464.70,64,2617.60,11.54,190,2.64,75.20,69.14,High,Priority,Weekly count and replenishment review
+SKU0079,Cleaning Item 0079,Cleaning,Summit Goods,169830.40,61,2610.80,10.26,221,2.70,122.55,74.64,High,Priority,Weekly count and replenishment review
+SKU0140,Seasonal Item 0140,Seasonal,Harbor Wholesale,50521.50,50,2575.00,10.90,415,2.52,32.50,76.17,High,Priority,Weekly count and replenishment review
+SKU0030,Seasonal Item 0030,Seasonal,Harbor Wholesale,91015.00,47,2561.50,11.54,353,2.30,60.46,76.78,High,Priority,Weekly count and replenishment review
+SKU0023,Pantry Item 0023,Pantry,Blue Ridge,137598.00,60,2556.00,10.90,188,2.76,97.39,68.83,High,Priority,Weekly count and replenishment review
+SKU0133,Pantry Item 0133,Pantry,Blue Ridge,103474.80,64,2534.40,10.26,178,3.09,70.42,49.91,Medium,Priority,Weekly count and replenishment review
+SKU0024,Household Item 0024,Household,Summit Goods,171573.90,57,2525.10,10.90,162,3.00,107.55,66.39,High,Priority,Weekly count and replenishment review
+SKU0247,Paper Goods Item 0247,Paper Goods,Acme Supply,253542.80,58,2517.20,11.54,47,3.18,153.31,41.90,Medium,Priority,Weekly count and replenishment review
+SKU0188,Small Appliances Item 0188,Small Appliances,Blue Ridge,201549.00,66,2514.60,10.90,10,3.85,114.58,24.77,Low,Priority,Weekly count and replenishment review
+SKU0192,Snacks Item 0192,Snacks,Acme Supply,119164.60,55,2469.50,11.54,287,2.62,84.39,66.39,High,Priority,Weekly count and replenishment review
+SKU0077,Paper Goods Item 0077,Paper Goods,Acme Supply,212050.80,62,2442.80,10.90,15,3.44,130.56,4.58,Low,Priority,Weekly count and replenishment review
+SKU0134,Household Item 0134,Household,Summit Goods,150373.30,59,2436.70,10.90,67,2.94,103.37,55.76,High,Priority,Weekly count and replenishment review
+SKU0244,Household Item 0244,Household,Summit Goods,94294.60,63,2412.90,11.54,141,3.54,57.90,61.19,High,Priority,Weekly count and replenishment review
+SKU0251,Beverages Item 0251,Beverages,Northstar,64155.60,48,2409.60,10.90,363,2.94,36.18,69.14,High,Priority,Weekly count and replenishment review
+SKU0195,Personal Care Item 0195,Personal Care,Harbor Wholesale,172400.00,48,2400.00,10.90,115,3.57,80.59,44.06,Medium,Priority,Weekly count and replenishment review
+SKU0298,Small Appliances Item 0298,Small Appliances,Blue Ridge,207335.70,68,2386.80,11.54,26,3.53,139.55,32.26,Medium,Priority,Weekly count and replenishment review
+SKU0026,Pet Care Item 0026,Pet Care,Northstar,204823.80,50,2385.00,10.90,68,3.53,101.42,52.03,Medium,Priority,Weekly count and replenishment review
+SKU0243,Pantry Item 0243,Pantry,Blue Ridge,86925.00,64,2342.40,10.90,242,3.09,63.96,66.39,High,Priority,Weekly count and replenishment review
+SKU0191,Beverages Item 0191,Beverages,Northstar,83203.20,54,2332.80,11.54,325,2.41,66.58,71.28,High,Priority,Weekly count and replenishment review
+SKU0250,Seasonal Item 0250,Seasonal,Harbor Wholesale,58442.50,48,2328.00,10.26,527,2.45,41.06,76.78,High,Priority,Weekly count and replenishment review
+SKU0136,Pet Care Item 0136,Pet Care,Northstar,212503.80,52,2324.40,11.54,77,3.24,122.37,47.58,Medium,Priority,Weekly count and replenishment review
+SKU0135,Personal Care Item 0135,Personal Care,Harbor Wholesale,186706.00,54,2322.00,10.90,115,2.94,122.87,59.36,High,Priority,Weekly count and replenishment review
+SKU0080,Seasonal Item 0080,Seasonal,Harbor Wholesale,77875.00,52,2314.00,10.90,414,2.30,63.44,75.56,High,Priority,Weekly count and replenishment review
+SKU0025,Personal Care Item 0025,Personal Care,Harbor Wholesale,177284.00,50,2300.00,10.26,104,3.30,97.30,32.95,Medium,Priority,Weekly count and replenishment review
+SKU0189,Cleaning Item 0189,Cleaning,Summit Goods,144991.40,57,2268.60,10.90,164,3.14,96.82,69.75,High,Priority,Weekly count and replenishment review
+SKU0081,Beverages Item 0081,Beverages,Northstar,102748.80,49,2263.80,10.90,416,2.46,75.23,72.50,High,Priority,Weekly count and replenishment review
+SKU0246,Pet Care Item 0246,Pet Care,Northstar,232435.80,54,2251.80,11.54,23,3.06,151.63,20.15,Low,Priority,Weekly count and replenishment review
+SKU0018,Small Appliances Item 0018,Small Appliances,Blue Ridge,202554.00,66,2250.60,10.90,25,3.59,137.69,48.67,Medium,Priority,Weekly count and replenishment review
+SKU0132,Snacks Item 0132,Snacks,Acme Supply,68182.10,59,2236.10,10.90,338,3.06,49.03,62.79,High,Priority,Weekly count and replenishment review
+SKU0187,Paper Goods Item 0187,Paper Goods,Acme Supply,168495.60,60,2184.00,10.26,60,3.61,106.88,49.81,Medium,Priority,Weekly count and replenishment review
+SKU0297,Paper Goods Item 0297,Paper Goods,Acme Supply,197928.40,65,2171.00,10.90,56,3.28,150.77,16.41,Low,Priority,Weekly count and replenishment review
+SKU0128,Small Appliances Item 0128,Small Appliances,Blue Ridge,208432.20,68,2114.80,11.54,32,3.18,175.47,31.09,Medium,Priority,Weekly count and replenishment review
+SKU0074,Household Item 0074,Household,Summit Goods,114219.00,61,2092.30,11.54,187,3.06,90.75,63.33,High,Priority,Weekly count and replenishment review
+SKU0190,Seasonal Item 0190,Seasonal,Harbor Wholesale,65155.00,49,2033.50,11.54,359,2.27,57.57,74.33,High,Priority,Weekly count and replenishment review
+SKU0017,Paper Goods Item 0017,Paper Goods,Acme Supply,173469.60,62,2008.80,10.90,50,3.29,135.47,47.13,Medium,Priority,Weekly count and replenishment review
+SKU0021,Beverages Item 0021,Beverages,Northstar,53664.80,51,1999.20,11.54,296,2.77,41.17,69.44,High,Priority,Weekly count and replenishment review
+SKU0242,Snacks Item 0242,Snacks,Acme Supply,76780.00,57,1989.30,10.90,323,2.72,67.38,67.70,High,Priority,Weekly count and replenishment review
+SKU0073,Pantry Item 0073,Pantry,Blue Ridge,106471.60,61,1988.60,11.54,239,2.78,97.87,65.17,High,Priority,Weekly count and replenishment review
+SKU0075,Personal Care Item 0075,Personal Care,Harbor Wholesale,134496.00,55,1980.00,11.54,105,3.47,89.63,50.19,Medium,Priority,Weekly count and replenishment review
+SKU0019,Cleaning Item 0019,Cleaning,Summit Goods,130670.00,55,1969.00,11.54,256,3.15,96.55,74.03,High,Priority,Weekly count and replenishment review
+SKU0129,Cleaning Item 0129,Cleaning,Summit Goods,132282.40,60,1968.00,11.54,267,2.73,123.06,78.31,High,Priority,Weekly count and replenishment review
+SKU0076,Pet Care Item 0076,Pet Care,Northstar,155550.20,52,1960.40,11.54,68,3.69,93.11,45.04,Medium,Priority,Weekly count and replenishment review
+SKU0245,Personal Care Item 0245,Personal Care,Harbor Wholesale,158240.00,49,1960.00,11.54,74,3.36,98.25,12.53,Low,Priority,Weekly count and replenishment review
+SKU0183,Pantry Item 0183,Pantry,Blue Ridge,97739.20,66,1953.60,11.54,114,2.83,97.28,44.49,Medium,Priority,Weekly count and replenishment review
+SKU0072,Snacks Item 0072,Snacks,Acme Supply,81112.50,63,1946.70,10.90,254,2.57,85.15,66.39,High,Priority,Weekly count and replenishment review
+SKU0186,Pet Care Item 0186,Pet Care,Northstar,147579.10,56,1943.20,10.90,68,3.46,102.29,52.03,Medium,Priority,Weekly count and replenishment review
+SKU0299,Cleaning Item 0299,Cleaning,Summit Goods,131302.40,52,1913.60,11.54,318,2.99,99.33,78.00,High,Priority,Weekly count and replenishment review
+SKU0238,Small Appliances Item 0238,Small Appliances,Blue Ridge,166267.70,66,1854.60,11.54,15,3.45,142.79,48.97,Medium,Priority,Weekly count and replenishment review
+SKU0127,Paper Goods Item 0127,Paper Goods,Acme Supply,188424.60,62,1822.80,11.54,13,3.11,171.93,7.54,Low,Priority,Weekly count and replenishment review
+SKU0294,Household Item 0294,Household,Summit Goods,87758.30,63,1782.90,10.90,105,3.19,81.04,59.67,High,Priority,Weekly count and replenishment review
+SKU0300,Seasonal Item 0300,Seasonal,Harbor Wholesale,34534.50,46,1771.00,11.54,526,2.61,28.68,74.94,High,Priority,Weekly count and replenishment review
+SKU0184,Household Item 0184,Household,Summit Goods,125857.30,56,1752.80,11.54,129,2.86,117.08,36.06,Medium,Priority,Weekly count and replenishment review
+SKU0185,Personal Care Item 0185,Personal Care,Harbor Wholesale,139029.00,53,1749.00,10.90,144,3.06,114.92,57.53,High,Priority,Weekly count and replenishment review
+SKU0014,Household Item 0014,Household,Summit Goods,88998.00,64,1747.20,10.90,117,3.21,84.52,46.97,Medium,Priority,Weekly count and replenishment review
+SKU0131,Beverages Item 0131,Beverages,Northstar,65920.20,48,1737.60,10.90,387,2.75,55.11,72.81,High,Priority,Weekly count and replenishment review
+SKU0293,Pantry Item 0293,Pantry,Blue Ridge,48066.20,65,1729.00,10.90,250,3.22,46.72,65.47,High,Priority,Weekly count and replenishment review
+SKU0239,Cleaning Item 0239,Cleaning,Summit Goods,123461.40,58,1728.40,10.90,182,2.67,129.54,57.39,High,Priority,Weekly count and replenishment review
+SKU0020,Seasonal Item 0020,Seasonal,Harbor Wholesale,35700.00,46,1725.00,11.54,543,2.56,30.98,74.33,High,Priority,Weekly count and replenishment review
+SKU0182,Snacks Item 0182,Snacks,Acme Supply,58087.80,61,1701.90,11.54,236,2.89,59.94,63.33,High,Priority,Weekly count and replenishment review
+SKU0237,Paper Goods Item 0237,Paper Goods,Acme Supply,110985.60,64,1689.60,11.54,41,3.82,91.66,32.44,Medium,Priority,Weekly count and replenishment review
+SKU0296,Pet Care Item 0296,Pet Care,Northstar,167788.10,53,1680.10,10.90,77,3.04,144.93,60.28,High,Priority,Weekly count and replenishment review
+SKU0016,Pet Care Item 0016,Pet Care,Northstar,151136.10,54,1657.80,10.26,69,3.06,134.14,52.33,Medium,Priority,Weekly count and replenishment review
+SKU0068,Small Appliances Item 0068,Small Appliances,Blue Ridge,134502.10,68,1638.80,10.90,15,3.75,124.11,45.76,Medium,Priority,Weekly count and replenishment review
+SKU0130,Seasonal Item 0130,Seasonal,Harbor Wholesale,50991.00,47,1621.50,11.54,519,2.24,54.94,78.61,High,Priority,Weekly count and replenishment review
+SKU0013,Pantry Item 0013,Pantry,Blue Ridge,51302.40,63,1612.80,11.54,233,3.28,50.89,52.37,Medium,Priority,Weekly count and replenishment review
+SKU0015,Personal Care Item 0015,Personal Care,Harbor Wholesale,132530.00,55,1595.00,10.90,44,2.99,127.48,49.28,Medium,Priority,Weekly count and replenishment review
+SKU0241,Beverages Item 0241,Beverages,Northstar,64374.80,48,1593.60,10.26,363,2.48,65.16,71.28,High,Priority,Weekly count and replenishment review
+SKU0295,Personal Care Item 0295,Personal Care,Harbor Wholesale,135030.00,53,1590.00,10.26,61,2.97,126.24,48.97,Medium,Priority,Weekly count and replenishment review
+SKU0126,Pet Care Item 0126,Pet Care,Northstar,131187.20,56,1551.20,10.90,46,3.36,117.41,10.69,Low,Priority,Weekly count and replenishment review
+SKU0071,Beverages Item 0071,Beverages,Northstar,52034.40,53,1547.60,10.90,241,2.55,58.20,69.75,High,Priority,Weekly count and replenishment review
+SKU0240,Seasonal Item 0240,Seasonal,Harbor Wholesale,55062.00,49,1543.50,10.90,399,2.23,65.20,75.25,High,Priority,Weekly count and replenishment review
+SKU0124,Household Item 0124,Household,Summit Goods,69838.20,61,1482.30,10.26,149,3.32,72.10,60.28,High,Priority,Weekly count and replenishment review
+SKU0292,Snacks Item 0292,Snacks,Acme Supply,50970.30,59,1469.10,11.54,343,2.85,59.86,67.00,High,Priority,Weekly count and replenishment review
+SKU0069,Cleaning Item 0069,Cleaning,Summit Goods,81450.60,56,1444.80,10.90,263,3.28,80.27,73.72,High,Priority,Weekly count and replenishment review
+SKU0179,Cleaning Item 0179,Cleaning,Summit Goods,89877.60,63,1436.40,10.90,330,2.79,117.83,77.39,High,Priority,Weekly count and replenishment review
+SKU0012,Snacks Item 0012,Snacks,Acme Supply,48134.60,60,1434.00,11.54,324,2.87,58.41,70.36,High,Priority,Weekly count and replenishment review
+SKU0178,Small Appliances Item 0178,Small Appliances,Blue Ridge,134259.30,67,1413.70,10.26,23,3.33,159.01,3.36,Low,Priority,Weekly count and replenishment review
+SKU0067,Paper Goods Item 0067,Paper Goods,Acme Supply,112380.80,63,1411.20,11.54,34,3.48,120.22,47.14,Medium,Priority,Weekly count and replenishment review
+SKU0123,Pantry Item 0123,Pantry,Blue Ridge,61630.20,62,1401.20,10.90,217,2.97,76.41,60.28,High,Priority,Weekly count and replenishment review
+SKU0236,Pet Care Item 0236,Pet Care,Northstar,93267.20,55,1358.50,11.54,72,3.57,88.14,53.86,Medium,Priority,Weekly count and replenishment review
+SKU0125,Personal Care Item 0125,Personal Care,Harbor Wholesale,83018.00,52,1352.00,10.90,105,3.60,73.98,60.58,High,Priority,Weekly count and replenishment review
+SKU0233,Pantry Item 0233,Pantry,Blue Ridge,65777.60,67,1313.20,10.90,195,2.76,101.44,67.00,High,Priority,Weekly count and replenishment review
+SKU0234,Household Item 0234,Household,Summit Goods,82494.90,61,1299.30,10.90,179,2.92,110.43,64.25,High,Priority,Weekly count and replenishment review
+SKU0122,Snacks Item 0122,Snacks,Acme Supply,47589.30,60,1254.00,10.90,289,2.66,71.45,66.69,High,Priority,Weekly count and replenishment review
+SKU0070,Seasonal Item 0070,Seasonal,Harbor Wholesale,36575.00,45,1237.50,10.26,427,2.42,45.75,70.67,High,Priority,Weekly count and replenishment review
+SKU0181,Beverages Item 0181,Beverages,Northstar,32592.80,47,1231.40,11.54,406,2.85,36.36,71.28,High,Priority,Weekly count and replenishment review
+SKU0235,Personal Care Item 0235,Personal Care,Harbor Wholesale,93587.00,53,1219.00,11.54,123,3.22,105.25,47.24,Medium,Priority,Weekly count and replenishment review
+SKU0289,Cleaning Item 0289,Cleaning,Summit Goods,78843.60,61,1207.80,11.54,231,2.64,125.53,74.64,High,Priority,Weekly count and replenishment review
+SKU0177,Paper Goods Item 0177,Paper Goods,Acme Supply,119116.00,61,1183.40,10.90,46,3.14,163.01,55.69,High,Priority,Weekly count and replenishment review
+SKU0290,Seasonal Item 0290,Seasonal,Harbor Wholesale,38270.00,55,1182.50,11.54,447,2.23,66.63,79.53,High,Priority,Weekly count and replenishment review
+SKU0011,Beverages Item 0011,Beverages,Northstar,44799.60,53,1176.60,11.54,395,2.51,66.92,71.28,High,Priority,Weekly count and replenishment review
+SKU0288,Small Appliances Item 0288,Small Appliances,Blue Ridge,122301.70,65,1176.50,10.90,21,3.11,181.29,43.44,Medium,Priority,Weekly count and replenishment review
+SKU0291,Beverages Item 0291,Beverages,Northstar,49996.00,50,1160.00,11.54,356,2.62,68.47,66.04,High,Priority,Weekly count and replenishment review
+SKU0008,Small Appliances Item 0008,Small Appliances,Blue Ridge,121187.70,67,1145.70,10.90,3,3.12,189.30,0.92,Low,Priority,Weekly count and replenishment review
+SKU0009,Cleaning Item 0009,Cleaning,Summit Goods,84844.40,60,1128.00,10.90,216,2.72,138.20,77.39,High,Priority,Weekly count and replenishment review
+SKU0232,Snacks Item 0232,Snacks,Acme Supply,46719.00,62,1109.80,10.26,190,2.64,82.45,65.47,High,Priority,Weekly count and replenishment review
+SKU0180,Seasonal Item 0180,Seasonal,Harbor Wholesale,27881.00,45,1102.50,10.90,512,2.42,39.23,75.86,High,Priority,Weekly count and replenishment review
+SKU0066,Pet Care Item 0066,Pet Care,Northstar,99442.80,53,1097.10,11.54,104,3.15,127.02,44.29,Medium,Priority,Weekly count and replenishment review
+SKU0064,Household Item 0064,Household,Summit Goods,69269.20,63,1089.90,11.54,67,2.95,113.14,36.82,Medium,Priority,Weekly count and replenishment review
+SKU0287,Paper Goods Item 0287,Paper Goods,Acme Supply,85821.20,65,1066.00,10.90,14,3.49,125.03,29.28,Medium,Priority,Weekly count and replenishment review
+SKU0010,Seasonal Item 0010,Seasonal,Harbor Wholesale,31508.50,51,1045.50,11.54,465,2.25,57.04,76.17,High,Priority,Weekly count and replenishment review
+SKU0063,Pantry Item 0063,Pantry,Blue Ridge,40731.60,66,1029.60,10.90,172,3.05,71.41,59.36,High,Priority,Weekly count and replenishment review
+SKU0065,Personal Care Item 0065,Personal Care,Harbor Wholesale,86070.00,53,1007.00,11.54,93,3.00,125.66,28.56,Medium,Priority,Weekly count and replenishment review
+SKU0176,Pet Care Item 0176,Pet Care,Northstar,96942.90,55,973.50,10.90,50,2.97,153.78,50.81,Medium,Priority,Weekly count and replenishment review
+SKU0118,Small Appliances Item 0118,Small Appliances,Blue Ridge,71895.90,68,958.80,11.54,37,3.82,111.22,40.46,Medium,Priority,Weekly count and replenishment review
+SKU0174,Household Item 0174,Household,Summit Goods,35592.70,62,886.60,11.54,162,3.44,60.21,60.28,High,Priority,Weekly count and replenishment review
+SKU0119,Cleaning Item 0119,Cleaning,Summit Goods,49627.80,56,884.80,11.54,194,3.09,84.60,47.22,Medium,Priority,Weekly count and replenishment review
+SKU0007,Paper Goods Item 0007,Paper Goods,Acme Supply,9301.60,57,877.80,10.26,600,5.73,8.79,64.86,High,Priority,Weekly count and replenishment review
+SKU0120,Seasonal Item 0120,Seasonal,Harbor Wholesale,28402.50,50,875.00,11.54,337,2.28,59.23,55.69,High,Priority,Weekly count and replenishment review
+SKU0175,Personal Care Item 0175,Personal Care,Harbor Wholesale,56976.00,54,864.00,11.54,90,3.27,90.70,58.75,High,Priority,Weekly count and replenishment review
+SKU0173,Pantry Item 0173,Pantry,Blue Ridge,32142.60,67,844.20,11.54,274,3.03,70.16,64.25,High,Priority,Weekly count and replenishment review
+SKU0062,Snacks Item 0062,Snacks,Acme Supply,22462.40,60,834.00,10.90,290,3.13,42.97,67.00,High,Priority,Weekly count and replenishment review
+SKU0231,Beverages Item 0231,Beverages,Northstar,24138.00,51,826.20,10.90,299,2.73,45.51,70.97,High,Priority,Weekly count and replenishment review
+SKU0121,Beverages Item 0121,Beverages,Northstar,3225.60,43,825.60,11.54,1138,3.49,4.01,83.81,High,Priority,Weekly count and replenishment review
+SKU0286,Pet Care Item 0286,Pet Care,Northstar,59373.30,54,793.80,10.26,57,3.77,89.38,42.82,Medium,Priority,Weekly count and replenishment review
+SKU0229,Cleaning Item 0229,Cleaning,Summit Goods,46924.80,61,780.80,11.54,283,3.10,98.40,74.03,High,Priority,Weekly count and replenishment review
+SKU0117,Paper Goods Item 0117,Paper Goods,Acme Supply,58193.20,61,756.40,10.90,35,3.67,106.44,48.10,Medium,Priority,Weekly count and replenishment review
+SKU0006,Pet Care Item 0006,Pet Care,Northstar,50100.90,54,739.80,10.90,60,3.68,82.83,53.56,Medium,Priority,Weekly count and replenishment review
+SKU0228,Small Appliances Item 0228,Small Appliances,Blue Ridge,68076.30,65,721.50,11.54,27,3.58,142.61,52.94,Medium,Priority,Weekly count and replenishment review
+SKU0285,Personal Care Item 0285,Personal Care,Harbor Wholesale,48672.00,54,702.00,10.90,116,3.41,91.39,46.15,Medium,Priority,Weekly count and replenishment review
+SKU0230,Seasonal Item 0230,Seasonal,Harbor Wholesale,14688.50,48,696.00,10.90,542,2.57,32.80,71.26,High,Priority,Weekly count and replenishment review
+SKU0284,Household Item 0284,Household,Summit Goods,38747.70,61,689.30,10.90,185,3.09,92.43,62.42,High,Priority,Weekly count and replenishment review
+SKU0004,Household Item 0004,Household,Summit Goods,33330.80,64,659.20,11.54,169,3.14,85.89,58.44,High,Priority,Weekly count and replenishment review
+SKU0005,Personal Care Item 0005,Personal Care,Harbor Wholesale,39876.00,53,636.00,10.90,130,3.37,82.28,53.54,Medium,Priority,Weekly count and replenishment review
+SKU0172,Snacks Item 0172,Snacks,Acme Supply,28394.50,58,632.20,11.54,299,2.82,77.02,59.67,High,Priority,Weekly count and replenishment review
+SKU0283,Pantry Item 0283,Pantry,Blue Ridge,28454.40,64,614.40,11.54,246,2.76,89.44,68.53,High,Priority,Weekly count and replenishment review
+SKU0227,Paper Goods Item 0227,Paper Goods,Acme Supply,51634.20,63,592.20,11.54,55,3.26,140.41,51.52,Medium,Priority,Weekly count and replenishment review
+SKU0061,Beverages Item 0061,Beverages,Northstar,17873.00,46,561.20,10.26,406,2.72,44.94,69.44,High,Priority,Weekly count and replenishment review
+SKU0116,Pet Care Item 0116,Pet Care,Northstar,52601.20,52,556.40,10.90,97,3.35,122.37,45.14,Medium,Priority,Weekly count and replenishment review
+SKU0003,Pantry Item 0003,Pantry,Blue Ridge,27674.80,64,550.40,11.54,210,2.84,94.28,60.59,High,Priority,Weekly count and replenishment review
+SKU0059,Cleaning Item 0059,Cleaning,Summit Goods,36572.80,60,528.00,10.90,259,2.78,124.47,74.03,High,Priority,Weekly count and replenishment review
+SKU0060,Seasonal Item 0060,Seasonal,Harbor Wholesale,16096.50,50,525.00,10.90,525,2.23,57.21,74.03,High,Priority,Weekly count and replenishment review
+SKU0115,Personal Care Item 0115,Personal Care,Harbor Wholesale,41706.00,56,504.00,10.26,118,3.09,125.02,60.28,High,Priority,Weekly count and replenishment review
+SKU0282,Snacks Item 0282,Snacks,Acme Supply,20690.10,61,481.90,11.54,238,2.59,84.23,67.92,High,Priority,Weekly count and replenishment review
+SKU0171,Beverages Item 0171,Beverages,Northstar,20598.80,51,469.20,10.90,402,2.39,78.00,75.56,High,Priority,Weekly count and replenishment review
+SKU0058,Small Appliances Item 0058,Small Appliances,Blue Ridge,48287.10,66,468.60,11.54,14,3.25,174.19,49.28,Medium,Priority,Weekly count and replenishment review
+SKU0114,Household Item 0114,Household,Summit Goods,28294.80,60,438.00,10.90,127,2.88,112.29,60.89,High,Priority,Weekly count and replenishment review
+SKU0226,Pet Care Item 0226,Pet Care,Northstar,37837.80,56,431.20,11.54,55,3.08,132.87,54.47,Medium,Priority,Weekly count and replenishment review
+SKU0002,Snacks Item 0002,Snacks,Acme Supply,17181.00,56,386.40,11.54,254,2.62,79.19,70.67,High,Priority,Weekly count and replenishment review
+SKU0170,Seasonal Item 0170,Seasonal,Harbor Wholesale,12120.00,48,360.00,10.90,397,2.22,60.68,79.22,High,Priority,Weekly count and replenishment review
+SKU0057,Paper Goods Item 0057,Paper Goods,Acme Supply,31525.20,65,351.00,11.54,15,3.11,156.21,29.59,Medium,Priority,Weekly count and replenishment review
+SKU0113,Pantry Item 0113,Pantry,Blue Ridge,17365.60,62,347.20,10.90,132,2.76,93.61,64.25,High,Priority,Weekly count and replenishment review
+SKU0169,Cleaning Item 0169,Cleaning,Summit Goods,26355.20,58,336.40,10.26,175,2.63,143.72,75.86,High,Priority,Weekly count and replenishment review
+SKU0281,Beverages Item 0281,Beverages,Northstar,12071.40,53,328.60,11.54,253,2.47,65.67,69.75,High,Priority,Weekly count and replenishment review
+SKU0225,Personal Care Item 0225,Personal Care,Harbor Wholesale,27900.00,54,324.00,10.90,75,2.89,133.96,50.94,Medium,Priority,Weekly count and replenishment review
+SKU0001,Beverages Item 0001,Beverages,Northstar,10665.20,54,280.80,11.54,222,2.54,67.34,47.14,Medium,Priority,Weekly count and replenishment review
+SKU0168,Small Appliances Item 0168,Small Appliances,Blue Ridge,24329.40,68,278.80,10.90,8,3.51,140.69,14.94,Low,Priority,Weekly count and replenishment review
+SKU0224,Household Item 0224,Household,Summit Goods,14121.20,58,249.40,10.90,104,3.17,86.40,51.19,Medium,Priority,Weekly count and replenishment review
+SKU0112,Snacks Item 0112,Snacks,Acme Supply,7597.20,63,245.70,11.54,247,2.88,56.28,67.31,High,Priority,Weekly count and replenishment review
+SKU0280,Seasonal Item 0280,Seasonal,Harbor Wholesale,5544.00,48,216.00,11.54,407,2.54,40.36,68.53,High,Priority,Weekly count and replenishment review
+SKU0056,Pet Care Item 0056,Pet Care,Northstar,16794.30,54,199.80,11.54,30,3.42,110.59,53.56,Medium,Priority,Weekly count and replenishment review

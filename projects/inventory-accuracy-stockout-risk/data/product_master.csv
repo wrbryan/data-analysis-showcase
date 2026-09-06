@@ -1,25 +1,301 @@
-sku,product_name,category,unit_cost,reorder_point,lead_time_days
-SKU001,Item 01,Snacks,29.02,16,4
-SKU002,Item 02,Household,34.99,24,8
-SKU003,Item 03,Pantry,43.28,11,6
-SKU004,Item 04,Beverage,3.89,14,5
-SKU005,Item 05,Snacks,4.62,15,3
-SKU006,Item 06,Household,33.32,35,6
-SKU007,Item 07,Pantry,29.16,26,5
-SKU008,Item 08,Beverage,38.33,14,8
-SKU009,Item 09,Snacks,40.89,33,12
-SKU010,Item 10,Household,3.96,32,9
-SKU011,Item 11,Pantry,39.68,9,7
-SKU012,Item 12,Beverage,7.68,26,3
-SKU013,Item 13,Snacks,28.02,9,11
-SKU014,Item 14,Household,19.89,31,3
-SKU015,Item 15,Pantry,10.35,14,12
-SKU016,Item 16,Beverage,27.55,16,9
-SKU017,Item 17,Snacks,27.46,24,4
-SKU018,Item 18,Household,3.80,20,11
-SKU019,Item 19,Pantry,37.57,35,8
-SKU020,Item 20,Beverage,36.17,31,11
-SKU021,Item 21,Snacks,20.26,9,5
-SKU022,Item 22,Household,6.36,28,11
-SKU023,Item 23,Pantry,11.42,34,11
-SKU024,Item 24,Beverage,47.17,16,10
+sku,description,category,supplier,lead_time_days,reorder_point,safety_stock,unit_cost
+SKU0001,Beverages Item 0001,Beverages,Northstar,10,29,13,5.20
+SKU0002,Snacks Item 0002,Snacks,Acme Supply,17,40,18,6.90
+SKU0003,Pantry Item 0003,Pantry,Blue Ridge,9,51,23,8.60
+SKU0004,Household Item 0004,Household,Summit Goods,16,62,28,10.30
+SKU0005,Personal Care Item 0005,Personal Care,Harbor Wholesale,8,73,33,12.00
+SKU0006,Pet Care Item 0006,Pet Care,Northstar,15,19,38,13.70
+SKU0007,Paper Goods Item 0007,Paper Goods,Acme Supply,7,30,8,15.40
+SKU0008,Small Appliances Item 0008,Small Appliances,Blue Ridge,14,41,13,17.10
+SKU0009,Cleaning Item 0009,Cleaning,Summit Goods,6,52,18,18.80
+SKU0010,Seasonal Item 0010,Seasonal,Harbor Wholesale,13,63,23,20.50
+SKU0011,Beverages Item 0011,Beverages,Northstar,5,74,28,22.20
+SKU0012,Snacks Item 0012,Snacks,Acme Supply,12,20,33,23.90
+SKU0013,Pantry Item 0013,Pantry,Blue Ridge,4,31,38,25.60
+SKU0014,Household Item 0014,Household,Summit Goods,11,42,8,27.30
+SKU0015,Personal Care Item 0015,Personal Care,Harbor Wholesale,3,53,13,29.00
+SKU0016,Pet Care Item 0016,Pet Care,Northstar,10,64,18,30.70
+SKU0017,Paper Goods Item 0017,Paper Goods,Acme Supply,17,75,23,32.40
+SKU0018,Small Appliances Item 0018,Small Appliances,Blue Ridge,9,21,28,34.10
+SKU0019,Cleaning Item 0019,Cleaning,Summit Goods,16,32,33,35.80
+SKU0020,Seasonal Item 0020,Seasonal,Harbor Wholesale,8,43,38,37.50
+SKU0021,Beverages Item 0021,Beverages,Northstar,15,54,8,39.20
+SKU0022,Snacks Item 0022,Snacks,Acme Supply,7,65,13,40.90
+SKU0023,Pantry Item 0023,Pantry,Blue Ridge,14,76,18,42.60
+SKU0024,Household Item 0024,Household,Summit Goods,6,22,23,44.30
+SKU0025,Personal Care Item 0025,Personal Care,Harbor Wholesale,13,33,28,46.00
+SKU0026,Pet Care Item 0026,Pet Care,Northstar,5,44,33,47.70
+SKU0027,Paper Goods Item 0027,Paper Goods,Acme Supply,12,55,38,49.40
+SKU0028,Small Appliances Item 0028,Small Appliances,Blue Ridge,4,66,8,51.10
+SKU0029,Cleaning Item 0029,Cleaning,Summit Goods,11,77,13,52.80
+SKU0030,Seasonal Item 0030,Seasonal,Harbor Wholesale,3,23,18,54.50
+SKU0031,Beverages Item 0031,Beverages,Northstar,10,34,23,56.20
+SKU0032,Snacks Item 0032,Snacks,Acme Supply,17,45,28,57.90
+SKU0033,Pantry Item 0033,Pantry,Blue Ridge,9,56,33,59.60
+SKU0034,Household Item 0034,Household,Summit Goods,16,67,38,61.30
+SKU0035,Personal Care Item 0035,Personal Care,Harbor Wholesale,8,78,8,63.00
+SKU0036,Pet Care Item 0036,Pet Care,Northstar,15,24,13,64.70
+SKU0037,Paper Goods Item 0037,Paper Goods,Acme Supply,7,35,18,66.40
+SKU0038,Small Appliances Item 0038,Small Appliances,Blue Ridge,14,46,23,68.10
+SKU0039,Cleaning Item 0039,Cleaning,Summit Goods,6,57,28,69.80
+SKU0040,Seasonal Item 0040,Seasonal,Harbor Wholesale,13,68,33,71.50
+SKU0041,Beverages Item 0041,Beverages,Northstar,5,79,38,73.20
+SKU0042,Snacks Item 0042,Snacks,Acme Supply,12,25,8,74.90
+SKU0043,Pantry Item 0043,Pantry,Blue Ridge,4,36,13,76.60
+SKU0044,Household Item 0044,Household,Summit Goods,11,47,18,78.30
+SKU0045,Personal Care Item 0045,Personal Care,Harbor Wholesale,3,58,23,80.00
+SKU0046,Pet Care Item 0046,Pet Care,Northstar,10,69,28,81.70
+SKU0047,Paper Goods Item 0047,Paper Goods,Acme Supply,17,80,33,83.40
+SKU0048,Small Appliances Item 0048,Small Appliances,Blue Ridge,9,26,38,85.10
+SKU0049,Cleaning Item 0049,Cleaning,Summit Goods,16,37,8,86.80
+SKU0050,Seasonal Item 0050,Seasonal,Harbor Wholesale,8,48,13,88.50
+SKU0051,Beverages Item 0051,Beverages,Northstar,15,59,18,90.20
+SKU0052,Snacks Item 0052,Snacks,Acme Supply,7,70,23,91.90
+SKU0053,Pantry Item 0053,Pantry,Blue Ridge,14,81,28,93.60
+SKU0054,Household Item 0054,Household,Summit Goods,6,27,33,95.30
+SKU0055,Personal Care Item 0055,Personal Care,Harbor Wholesale,13,38,38,97.00
+SKU0056,Pet Care Item 0056,Pet Care,Northstar,5,49,8,3.70
+SKU0057,Paper Goods Item 0057,Paper Goods,Acme Supply,12,60,13,5.40
+SKU0058,Small Appliances Item 0058,Small Appliances,Blue Ridge,4,71,18,7.10
+SKU0059,Cleaning Item 0059,Cleaning,Summit Goods,11,82,23,8.80
+SKU0060,Seasonal Item 0060,Seasonal,Harbor Wholesale,3,28,28,10.50
+SKU0061,Beverages Item 0061,Beverages,Northstar,10,39,33,12.20
+SKU0062,Snacks Item 0062,Snacks,Acme Supply,17,50,38,13.90
+SKU0063,Pantry Item 0063,Pantry,Blue Ridge,9,61,8,15.60
+SKU0064,Household Item 0064,Household,Summit Goods,16,72,13,17.30
+SKU0065,Personal Care Item 0065,Personal Care,Harbor Wholesale,8,18,18,19.00
+SKU0066,Pet Care Item 0066,Pet Care,Northstar,15,29,23,20.70
+SKU0067,Paper Goods Item 0067,Paper Goods,Acme Supply,7,40,28,22.40
+SKU0068,Small Appliances Item 0068,Small Appliances,Blue Ridge,14,51,33,24.10
+SKU0069,Cleaning Item 0069,Cleaning,Summit Goods,6,62,38,25.80
+SKU0070,Seasonal Item 0070,Seasonal,Harbor Wholesale,13,73,8,27.50
+SKU0071,Beverages Item 0071,Beverages,Northstar,5,19,13,29.20
+SKU0072,Snacks Item 0072,Snacks,Acme Supply,12,30,18,30.90
+SKU0073,Pantry Item 0073,Pantry,Blue Ridge,4,41,23,32.60
+SKU0074,Household Item 0074,Household,Summit Goods,11,52,28,34.30
+SKU0075,Personal Care Item 0075,Personal Care,Harbor Wholesale,3,63,33,36.00
+SKU0076,Pet Care Item 0076,Pet Care,Northstar,10,74,38,37.70
+SKU0077,Paper Goods Item 0077,Paper Goods,Acme Supply,17,20,8,39.40
+SKU0078,Small Appliances Item 0078,Small Appliances,Blue Ridge,9,31,13,41.10
+SKU0079,Cleaning Item 0079,Cleaning,Summit Goods,16,42,18,42.80
+SKU0080,Seasonal Item 0080,Seasonal,Harbor Wholesale,8,53,23,44.50
+SKU0081,Beverages Item 0081,Beverages,Northstar,15,64,28,46.20
+SKU0082,Snacks Item 0082,Snacks,Acme Supply,7,75,33,47.90
+SKU0083,Pantry Item 0083,Pantry,Blue Ridge,14,21,38,49.60
+SKU0084,Household Item 0084,Household,Summit Goods,6,32,8,51.30
+SKU0085,Personal Care Item 0085,Personal Care,Harbor Wholesale,13,43,13,53.00
+SKU0086,Pet Care Item 0086,Pet Care,Northstar,5,54,18,54.70
+SKU0087,Paper Goods Item 0087,Paper Goods,Acme Supply,12,65,23,56.40
+SKU0088,Small Appliances Item 0088,Small Appliances,Blue Ridge,4,76,28,58.10
+SKU0089,Cleaning Item 0089,Cleaning,Summit Goods,11,22,33,59.80
+SKU0090,Seasonal Item 0090,Seasonal,Harbor Wholesale,3,33,38,61.50
+SKU0091,Beverages Item 0091,Beverages,Northstar,10,44,8,63.20
+SKU0092,Snacks Item 0092,Snacks,Acme Supply,17,55,13,64.90
+SKU0093,Pantry Item 0093,Pantry,Blue Ridge,9,66,18,66.60
+SKU0094,Household Item 0094,Household,Summit Goods,16,77,23,68.30
+SKU0095,Personal Care Item 0095,Personal Care,Harbor Wholesale,8,23,28,70.00
+SKU0096,Pet Care Item 0096,Pet Care,Northstar,15,34,33,71.70
+SKU0097,Paper Goods Item 0097,Paper Goods,Acme Supply,7,45,38,73.40
+SKU0098,Small Appliances Item 0098,Small Appliances,Blue Ridge,14,56,8,75.10
+SKU0099,Cleaning Item 0099,Cleaning,Summit Goods,6,67,13,76.80
+SKU0100,Seasonal Item 0100,Seasonal,Harbor Wholesale,13,78,18,78.50
+SKU0101,Beverages Item 0101,Beverages,Northstar,5,24,23,80.20
+SKU0102,Snacks Item 0102,Snacks,Acme Supply,12,35,28,81.90
+SKU0103,Pantry Item 0103,Pantry,Blue Ridge,4,46,33,83.60
+SKU0104,Household Item 0104,Household,Summit Goods,11,57,38,85.30
+SKU0105,Personal Care Item 0105,Personal Care,Harbor Wholesale,3,68,8,87.00
+SKU0106,Pet Care Item 0106,Pet Care,Northstar,10,79,13,88.70
+SKU0107,Paper Goods Item 0107,Paper Goods,Acme Supply,17,25,18,90.40
+SKU0108,Small Appliances Item 0108,Small Appliances,Blue Ridge,9,36,23,92.10
+SKU0109,Cleaning Item 0109,Cleaning,Summit Goods,16,47,28,93.80
+SKU0110,Seasonal Item 0110,Seasonal,Harbor Wholesale,8,58,33,95.50
+SKU0111,Beverages Item 0111,Beverages,Northstar,15,69,38,97.20
+SKU0112,Snacks Item 0112,Snacks,Acme Supply,7,80,8,3.90
+SKU0113,Pantry Item 0113,Pantry,Blue Ridge,14,26,13,5.60
+SKU0114,Household Item 0114,Household,Summit Goods,6,37,18,7.30
+SKU0115,Personal Care Item 0115,Personal Care,Harbor Wholesale,13,48,23,9.00
+SKU0116,Pet Care Item 0116,Pet Care,Northstar,5,59,28,10.70
+SKU0117,Paper Goods Item 0117,Paper Goods,Acme Supply,12,70,33,12.40
+SKU0118,Small Appliances Item 0118,Small Appliances,Blue Ridge,4,81,38,14.10
+SKU0119,Cleaning Item 0119,Cleaning,Summit Goods,11,27,8,15.80
+SKU0120,Seasonal Item 0120,Seasonal,Harbor Wholesale,3,38,13,17.50
+SKU0121,Beverages Item 0121,Beverages,Northstar,10,49,18,19.20
+SKU0122,Snacks Item 0122,Snacks,Acme Supply,17,60,23,20.90
+SKU0123,Pantry Item 0123,Pantry,Blue Ridge,9,71,28,22.60
+SKU0124,Household Item 0124,Household,Summit Goods,16,82,33,24.30
+SKU0125,Personal Care Item 0125,Personal Care,Harbor Wholesale,8,28,38,26.00
+SKU0126,Pet Care Item 0126,Pet Care,Northstar,15,39,8,27.70
+SKU0127,Paper Goods Item 0127,Paper Goods,Acme Supply,7,50,13,29.40
+SKU0128,Small Appliances Item 0128,Small Appliances,Blue Ridge,14,61,18,31.10
+SKU0129,Cleaning Item 0129,Cleaning,Summit Goods,6,72,23,32.80
+SKU0130,Seasonal Item 0130,Seasonal,Harbor Wholesale,13,18,28,34.50
+SKU0131,Beverages Item 0131,Beverages,Northstar,5,29,33,36.20
+SKU0132,Snacks Item 0132,Snacks,Acme Supply,12,40,38,37.90
+SKU0133,Pantry Item 0133,Pantry,Blue Ridge,4,51,8,39.60
+SKU0134,Household Item 0134,Household,Summit Goods,11,62,13,41.30
+SKU0135,Personal Care Item 0135,Personal Care,Harbor Wholesale,3,73,18,43.00
+SKU0136,Pet Care Item 0136,Pet Care,Northstar,10,19,23,44.70
+SKU0137,Paper Goods Item 0137,Paper Goods,Acme Supply,17,30,28,46.40
+SKU0138,Small Appliances Item 0138,Small Appliances,Blue Ridge,9,41,33,48.10
+SKU0139,Cleaning Item 0139,Cleaning,Summit Goods,16,52,38,49.80
+SKU0140,Seasonal Item 0140,Seasonal,Harbor Wholesale,8,63,8,51.50
+SKU0141,Beverages Item 0141,Beverages,Northstar,15,74,13,53.20
+SKU0142,Snacks Item 0142,Snacks,Acme Supply,7,20,18,54.90
+SKU0143,Pantry Item 0143,Pantry,Blue Ridge,14,31,23,56.60
+SKU0144,Household Item 0144,Household,Summit Goods,6,42,28,58.30
+SKU0145,Personal Care Item 0145,Personal Care,Harbor Wholesale,13,53,33,60.00
+SKU0146,Pet Care Item 0146,Pet Care,Northstar,5,64,38,61.70
+SKU0147,Paper Goods Item 0147,Paper Goods,Acme Supply,12,75,8,63.40
+SKU0148,Small Appliances Item 0148,Small Appliances,Blue Ridge,4,21,13,65.10
+SKU0149,Cleaning Item 0149,Cleaning,Summit Goods,11,32,18,66.80
+SKU0150,Seasonal Item 0150,Seasonal,Harbor Wholesale,3,43,23,68.50
+SKU0151,Beverages Item 0151,Beverages,Northstar,10,54,28,70.20
+SKU0152,Snacks Item 0152,Snacks,Acme Supply,17,65,33,71.90
+SKU0153,Pantry Item 0153,Pantry,Blue Ridge,9,76,38,73.60
+SKU0154,Household Item 0154,Household,Summit Goods,16,22,8,75.30
+SKU0155,Personal Care Item 0155,Personal Care,Harbor Wholesale,8,33,13,77.00
+SKU0156,Pet Care Item 0156,Pet Care,Northstar,15,44,18,78.70
+SKU0157,Paper Goods Item 0157,Paper Goods,Acme Supply,7,55,23,80.40
+SKU0158,Small Appliances Item 0158,Small Appliances,Blue Ridge,14,66,28,82.10
+SKU0159,Cleaning Item 0159,Cleaning,Summit Goods,6,77,33,83.80
+SKU0160,Seasonal Item 0160,Seasonal,Harbor Wholesale,13,23,38,85.50
+SKU0161,Beverages Item 0161,Beverages,Northstar,5,34,8,87.20
+SKU0162,Snacks Item 0162,Snacks,Acme Supply,12,45,13,88.90
+SKU0163,Pantry Item 0163,Pantry,Blue Ridge,4,56,18,90.60
+SKU0164,Household Item 0164,Household,Summit Goods,11,67,23,92.30
+SKU0165,Personal Care Item 0165,Personal Care,Harbor Wholesale,3,78,28,94.00
+SKU0166,Pet Care Item 0166,Pet Care,Northstar,10,24,33,95.70
+SKU0167,Paper Goods Item 0167,Paper Goods,Acme Supply,17,35,38,97.40
+SKU0168,Small Appliances Item 0168,Small Appliances,Blue Ridge,9,46,8,4.10
+SKU0169,Cleaning Item 0169,Cleaning,Summit Goods,16,57,13,5.80
+SKU0170,Seasonal Item 0170,Seasonal,Harbor Wholesale,8,68,18,7.50
+SKU0171,Beverages Item 0171,Beverages,Northstar,15,79,23,9.20
+SKU0172,Snacks Item 0172,Snacks,Acme Supply,7,25,28,10.90
+SKU0173,Pantry Item 0173,Pantry,Blue Ridge,14,36,33,12.60
+SKU0174,Household Item 0174,Household,Summit Goods,6,47,38,14.30
+SKU0175,Personal Care Item 0175,Personal Care,Harbor Wholesale,13,58,8,16.00
+SKU0176,Pet Care Item 0176,Pet Care,Northstar,5,69,13,17.70
+SKU0177,Paper Goods Item 0177,Paper Goods,Acme Supply,12,80,18,19.40
+SKU0178,Small Appliances Item 0178,Small Appliances,Blue Ridge,4,26,23,21.10
+SKU0179,Cleaning Item 0179,Cleaning,Summit Goods,11,37,28,22.80
+SKU0180,Seasonal Item 0180,Seasonal,Harbor Wholesale,3,48,33,24.50
+SKU0181,Beverages Item 0181,Beverages,Northstar,10,59,38,26.20
+SKU0182,Snacks Item 0182,Snacks,Acme Supply,17,70,8,27.90
+SKU0183,Pantry Item 0183,Pantry,Blue Ridge,9,81,13,29.60
+SKU0184,Household Item 0184,Household,Summit Goods,16,27,18,31.30
+SKU0185,Personal Care Item 0185,Personal Care,Harbor Wholesale,8,38,23,33.00
+SKU0186,Pet Care Item 0186,Pet Care,Northstar,15,49,28,34.70
+SKU0187,Paper Goods Item 0187,Paper Goods,Acme Supply,7,60,33,36.40
+SKU0188,Small Appliances Item 0188,Small Appliances,Blue Ridge,14,71,38,38.10
+SKU0189,Cleaning Item 0189,Cleaning,Summit Goods,6,82,8,39.80
+SKU0190,Seasonal Item 0190,Seasonal,Harbor Wholesale,13,28,13,41.50
+SKU0191,Beverages Item 0191,Beverages,Northstar,5,39,18,43.20
+SKU0192,Snacks Item 0192,Snacks,Acme Supply,12,50,23,44.90
+SKU0193,Pantry Item 0193,Pantry,Blue Ridge,4,61,28,46.60
+SKU0194,Household Item 0194,Household,Summit Goods,11,72,33,48.30
+SKU0195,Personal Care Item 0195,Personal Care,Harbor Wholesale,3,18,38,50.00
+SKU0196,Pet Care Item 0196,Pet Care,Northstar,10,29,8,51.70
+SKU0197,Paper Goods Item 0197,Paper Goods,Acme Supply,17,40,13,53.40
+SKU0198,Small Appliances Item 0198,Small Appliances,Blue Ridge,9,51,18,55.10
+SKU0199,Cleaning Item 0199,Cleaning,Summit Goods,16,62,23,56.80
+SKU0200,Seasonal Item 0200,Seasonal,Harbor Wholesale,8,73,28,58.50
+SKU0201,Beverages Item 0201,Beverages,Northstar,15,19,33,60.20
+SKU0202,Snacks Item 0202,Snacks,Acme Supply,7,30,38,61.90
+SKU0203,Pantry Item 0203,Pantry,Blue Ridge,14,41,8,63.60
+SKU0204,Household Item 0204,Household,Summit Goods,6,52,13,65.30
+SKU0205,Personal Care Item 0205,Personal Care,Harbor Wholesale,13,63,18,67.00
+SKU0206,Pet Care Item 0206,Pet Care,Northstar,5,74,23,68.70
+SKU0207,Paper Goods Item 0207,Paper Goods,Acme Supply,12,20,28,70.40
+SKU0208,Small Appliances Item 0208,Small Appliances,Blue Ridge,4,31,33,72.10
+SKU0209,Cleaning Item 0209,Cleaning,Summit Goods,11,42,38,73.80
+SKU0210,Seasonal Item 0210,Seasonal,Harbor Wholesale,3,53,8,75.50
+SKU0211,Beverages Item 0211,Beverages,Northstar,10,64,13,77.20
+SKU0212,Snacks Item 0212,Snacks,Acme Supply,17,75,18,78.90
+SKU0213,Pantry Item 0213,Pantry,Blue Ridge,9,21,23,80.60
+SKU0214,Household Item 0214,Household,Summit Goods,16,32,28,82.30
+SKU0215,Personal Care Item 0215,Personal Care,Harbor Wholesale,8,43,33,84.00
+SKU0216,Pet Care Item 0216,Pet Care,Northstar,15,54,38,85.70
+SKU0217,Paper Goods Item 0217,Paper Goods,Acme Supply,7,65,8,87.40
+SKU0218,Small Appliances Item 0218,Small Appliances,Blue Ridge,14,76,13,89.10
+SKU0219,Cleaning Item 0219,Cleaning,Summit Goods,6,22,18,90.80
+SKU0220,Seasonal Item 0220,Seasonal,Harbor Wholesale,13,33,23,92.50
+SKU0221,Beverages Item 0221,Beverages,Northstar,5,44,28,94.20
+SKU0222,Snacks Item 0222,Snacks,Acme Supply,12,55,33,95.90
+SKU0223,Pantry Item 0223,Pantry,Blue Ridge,4,66,38,97.60
+SKU0224,Household Item 0224,Household,Summit Goods,11,77,8,4.30
+SKU0225,Personal Care Item 0225,Personal Care,Harbor Wholesale,3,23,13,6.00
+SKU0226,Pet Care Item 0226,Pet Care,Northstar,10,34,18,7.70
+SKU0227,Paper Goods Item 0227,Paper Goods,Acme Supply,17,45,23,9.40
+SKU0228,Small Appliances Item 0228,Small Appliances,Blue Ridge,9,56,28,11.10
+SKU0229,Cleaning Item 0229,Cleaning,Summit Goods,16,67,33,12.80
+SKU0230,Seasonal Item 0230,Seasonal,Harbor Wholesale,8,78,38,14.50
+SKU0231,Beverages Item 0231,Beverages,Northstar,15,24,8,16.20
+SKU0232,Snacks Item 0232,Snacks,Acme Supply,7,35,13,17.90
+SKU0233,Pantry Item 0233,Pantry,Blue Ridge,14,46,18,19.60
+SKU0234,Household Item 0234,Household,Summit Goods,6,57,23,21.30
+SKU0235,Personal Care Item 0235,Personal Care,Harbor Wholesale,13,68,28,23.00
+SKU0236,Pet Care Item 0236,Pet Care,Northstar,5,79,33,24.70
+SKU0237,Paper Goods Item 0237,Paper Goods,Acme Supply,12,25,38,26.40
+SKU0238,Small Appliances Item 0238,Small Appliances,Blue Ridge,4,36,8,28.10
+SKU0239,Cleaning Item 0239,Cleaning,Summit Goods,11,47,13,29.80
+SKU0240,Seasonal Item 0240,Seasonal,Harbor Wholesale,3,58,18,31.50
+SKU0241,Beverages Item 0241,Beverages,Northstar,10,69,23,33.20
+SKU0242,Snacks Item 0242,Snacks,Acme Supply,17,80,28,34.90
+SKU0243,Pantry Item 0243,Pantry,Blue Ridge,9,26,33,36.60
+SKU0244,Household Item 0244,Household,Summit Goods,16,37,38,38.30
+SKU0245,Personal Care Item 0245,Personal Care,Harbor Wholesale,8,48,8,40.00
+SKU0246,Pet Care Item 0246,Pet Care,Northstar,15,59,13,41.70
+SKU0247,Paper Goods Item 0247,Paper Goods,Acme Supply,7,70,18,43.40
+SKU0248,Small Appliances Item 0248,Small Appliances,Blue Ridge,14,81,23,45.10
+SKU0249,Cleaning Item 0249,Cleaning,Summit Goods,6,27,28,46.80
+SKU0250,Seasonal Item 0250,Seasonal,Harbor Wholesale,13,38,33,48.50
+SKU0251,Beverages Item 0251,Beverages,Northstar,5,49,38,50.20
+SKU0252,Snacks Item 0252,Snacks,Acme Supply,12,60,8,51.90
+SKU0253,Pantry Item 0253,Pantry,Blue Ridge,4,71,13,53.60
+SKU0254,Household Item 0254,Household,Summit Goods,11,82,18,55.30
+SKU0255,Personal Care Item 0255,Personal Care,Harbor Wholesale,3,28,23,57.00
+SKU0256,Pet Care Item 0256,Pet Care,Northstar,10,39,28,58.70
+SKU0257,Paper Goods Item 0257,Paper Goods,Acme Supply,17,50,33,60.40
+SKU0258,Small Appliances Item 0258,Small Appliances,Blue Ridge,9,61,38,62.10
+SKU0259,Cleaning Item 0259,Cleaning,Summit Goods,16,72,8,63.80
+SKU0260,Seasonal Item 0260,Seasonal,Harbor Wholesale,8,18,13,65.50
+SKU0261,Beverages Item 0261,Beverages,Northstar,15,29,18,67.20
+SKU0262,Snacks Item 0262,Snacks,Acme Supply,7,40,23,68.90
+SKU0263,Pantry Item 0263,Pantry,Blue Ridge,14,51,28,70.60
+SKU0264,Household Item 0264,Household,Summit Goods,6,62,33,72.30
+SKU0265,Personal Care Item 0265,Personal Care,Harbor Wholesale,13,73,38,74.00
+SKU0266,Pet Care Item 0266,Pet Care,Northstar,5,19,8,75.70
+SKU0267,Paper Goods Item 0267,Paper Goods,Acme Supply,12,30,13,77.40
+SKU0268,Small Appliances Item 0268,Small Appliances,Blue Ridge,4,41,18,79.10
+SKU0269,Cleaning Item 0269,Cleaning,Summit Goods,11,52,23,80.80
+SKU0270,Seasonal Item 0270,Seasonal,Harbor Wholesale,3,63,28,82.50
+SKU0271,Beverages Item 0271,Beverages,Northstar,10,74,33,84.20
+SKU0272,Snacks Item 0272,Snacks,Acme Supply,17,20,38,85.90
+SKU0273,Pantry Item 0273,Pantry,Blue Ridge,9,31,8,87.60
+SKU0274,Household Item 0274,Household,Summit Goods,16,42,13,89.30
+SKU0275,Personal Care Item 0275,Personal Care,Harbor Wholesale,8,53,18,91.00
+SKU0276,Pet Care Item 0276,Pet Care,Northstar,15,64,23,92.70
+SKU0277,Paper Goods Item 0277,Paper Goods,Acme Supply,7,75,28,94.40
+SKU0278,Small Appliances Item 0278,Small Appliances,Blue Ridge,14,21,33,96.10
+SKU0279,Cleaning Item 0279,Cleaning,Summit Goods,6,32,38,97.80
+SKU0280,Seasonal Item 0280,Seasonal,Harbor Wholesale,13,43,8,4.50
+SKU0281,Beverages Item 0281,Beverages,Northstar,5,54,13,6.20
+SKU0282,Snacks Item 0282,Snacks,Acme Supply,12,65,18,7.90
+SKU0283,Pantry Item 0283,Pantry,Blue Ridge,4,76,23,9.60
+SKU0284,Household Item 0284,Household,Summit Goods,11,22,28,11.30
+SKU0285,Personal Care Item 0285,Personal Care,Harbor Wholesale,3,33,33,13.00
+SKU0286,Pet Care Item 0286,Pet Care,Northstar,10,44,38,14.70
+SKU0287,Paper Goods Item 0287,Paper Goods,Acme Supply,17,55,8,16.40
+SKU0288,Small Appliances Item 0288,Small Appliances,Blue Ridge,9,66,13,18.10
+SKU0289,Cleaning Item 0289,Cleaning,Summit Goods,16,77,18,19.80
+SKU0290,Seasonal Item 0290,Seasonal,Harbor Wholesale,8,23,23,21.50
+SKU0291,Beverages Item 0291,Beverages,Northstar,15,34,28,23.20
+SKU0292,Snacks Item 0292,Snacks,Acme Supply,7,45,33,24.90
+SKU0293,Pantry Item 0293,Pantry,Blue Ridge,14,56,38,26.60
+SKU0294,Household Item 0294,Household,Summit Goods,6,67,8,28.30
+SKU0295,Personal Care Item 0295,Personal Care,Harbor Wholesale,13,78,13,30.00
+SKU0296,Pet Care Item 0296,Pet Care,Northstar,5,24,18,31.70
+SKU0297,Paper Goods Item 0297,Paper Goods,Acme Supply,12,35,23,33.40
+SKU0298,Small Appliances Item 0298,Small Appliances,Blue Ridge,4,46,28,35.10
+SKU0299,Cleaning Item 0299,Cleaning,Summit Goods,11,57,33,36.80
+SKU0300,Seasonal Item 0300,Seasonal,Harbor Wholesale,3,68,38,38.50

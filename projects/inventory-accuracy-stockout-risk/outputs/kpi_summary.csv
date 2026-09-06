@@ -1,0 +1,9 @@
+kpi_name,kpi_value,unit,period_start,period_end,definition
+inventory_accuracy_pct,99.99,percent,2026-01-01,2026-06-29,1 - absolute system/physical variance divided by physical quantity
+adjustment_value,839247.00,currency,2026-01-01,2026-06-29,absolute snapshot variance multiplied by unit cost
+stockout_rate_pct,9.28,percent,2026-01-01,2026-06-29,stockout observations divided by inventory snapshots
+inventory_turnover,4.96,turns,2026-01-01,2026-06-29,cost of sales divided by average inventory value
+days_of_supply,438.26,days,2026-01-01,2026-06-29,inventory value divided by average daily demand value
+cycle_count_completion_pct,100.00,percent,2026-01-01,2026-06-29,completed counts divided by scheduled counts
+late_order_rate_pct,9.09,percent,2026-01-01,2026-06-29,orders shipped after promised date
+inventory_value,19558755.70,currency,2026-01-01,2026-06-29,average system inventory value during the period

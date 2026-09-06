@@ -1,47 +1,245 @@
-"""Analyze required source CSVs and write five analysis CSVs plus quality checks."""
+"""Analyze inventory sources and write the required KPI and risk reports."""
 from __future__ import annotations
-import csv, json, math
+
+import csv
+import math
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]; DATA = ROOT / "data"; OUTPUTS = ROOT / "outputs"
-def read(name): 
-    with (DATA / name).open(encoding="utf-8") as f: return list(csv.DictReader(f))
-def write(name, rows):
-    OUTPUTS.mkdir(exist_ok=True)
-    with (OUTPUTS / name).open("w", newline="", encoding="utf-8") as f:
-        w=csv.DictWriter(f, fieldnames=list(rows[0]) if rows else ["message"]); w.writeheader(); w.writerows(rows)
-def main():
-    products={r["sku"]:r for r in read("product_master.csv")}; snapshots=read("inventory_snapshot.csv")
-    transactions=read("transactions.csv"); counts=read("cycle_counts.csv"); orders=read("orders.csv")
-    by_key=defaultdict(lambda: {"system":0,"variance":0,"events":0,"bad":0,"zero":0,"demand":[],"last":0})
-    for r in snapshots:
-        k=(r["sku"],r["location_id"]); q=int(r["closing_quantity"]); by_key[k]["last"]=q; by_key[k]["zero"]+=q<=0
-    for r in transactions:
-        if r["transaction_type"]=="SALE": by_key[(r["sku"],r["location_id"])]["demand"].append(int(r["quantity"]))
-    for r in counts:
-        k=(r["sku"],r["location_id"]); a=by_key[k]; s,c=int(r["system_quantity"]),int(r["counted_quantity"])
-        a["system"]+=s; a["variance"]+=abs(s-c); a["events"]+=1; a["bad"]+=abs(s-c)>1
-    accuracy=[]; risk=[]; action=[]; variance=[]
-    for (sku,loc), a in by_key.items():
-        pct=max(0,100*(1-a["variance"]/max(1,a["system"])))
-        demand=a["demand"]; avg=sum(demand)/len(demand) if demand else 0
-        sd=math.sqrt(sum((x-avg)**2 for x in demand)/len(demand)) if demand else 0
-        p=products[sku]; safety=1.65*sd*math.sqrt(int(p["lead_time_days"]))
-        score=min(100,100*(.55*a["zero"]/731+.45*max(0,(int(p["reorder_point"])+safety-a["last"])/max(1,int(p["reorder_point"])+safety))))
-        band="High" if score>=55 else "Medium" if score>=25 else "Low"
-        accuracy.append({"sku":sku,"location_id":loc,"count_events":a["events"],"absolute_variance_units":a["variance"],"accuracy_pct":f"{pct:.2f}"})
-        risk.append({"sku":sku,"location_id":loc,"current_stock":a["last"],"avg_daily_demand":f"{avg:.2f}","safety_stock":f"{safety:.2f}","days_of_cover":f"{a['last']/avg:.2f}" if avg else "999.00","stockout_days":a["zero"],"risk_score":f"{score:.2f}","risk_band":band})
-        variance.append({"sku":sku,"location_id":loc,"absolute_variance_units":a["variance"],"variance_events_over_1_unit":a["bad"],"system_units_counted":a["system"]})
-        if band!="Low": action.append({"priority":band,"sku":sku,"location_id":loc,"recommended_action":"Expedite or transfer" if band=="High" else "Review reorder point","risk_score":f"{score:.2f}","accuracy_pct":f"{pct:.2f}"})
-    months=defaultdict(lambda: [0,0])
-    for r in snapshots: months[r["snapshot_date"][:7]][0]+=int(r["closing_quantity"]); months[r["snapshot_date"][:7]][1]+=int(int(r["closing_quantity"])<=0)
-    monthly=[{"month":m,"total_closing_units":v[0],"stockout_observations":v[1]} for m,v in sorted(months.items())]
-    quality=[]
-    for name, rows, key in [("inventory_snapshot.csv",snapshots,["sku","location_id","snapshot_date"]),("transactions.csv",transactions,["sku","location_id","transaction_date"]),("cycle_counts.csv",counts,["sku","location_id","count_date"])]:
-        duplicates=len(rows)-len({tuple(r[k] for k in key) for r in rows})
-        nulls=sum(sum(not v for v in r.values()) for r in rows)
-        quality.append({"file_name":name,"row_count":len(rows),"duplicate_key_count":duplicates,
-                        "null_value_count":nulls,"status":"PASS" if not duplicates and not nulls else "WARN"})
-    for name, rows in [("inventory_accuracy_summary.csv",accuracy),("stockout_risk_scores.csv",risk),("sku_location_action_queue.csv",sorted(action,key=lambda r:({"High":0,"Medium":1}[r["priority"]],-float(r["risk_score"])))),("inventory_variance_summary.csv",variance),("monthly_inventory_kpis.csv",monthly),("data_quality_checks.csv",quality)]: write(name,rows)
-    print(json.dumps({"accuracy_pct":round(sum(float(r["accuracy_pct"]) for r in accuracy)/len(accuracy),2),"high_risk_pairs":sum(r["risk_band"]=="High" for r in risk),"outputs":6},indent=2))
-if __name__=="__main__": main()
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA = ROOT / "data"
+OUTPUTS = ROOT / "outputs"
+
+
+def read_csv(name: str) -> list[dict[str, str]]:
+    with (DATA / name).open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def write_csv(name: str, rows: list[dict[str, object]], fields: list[str]) -> None:
+    OUTPUTS.mkdir(parents=True, exist_ok=True)
+    with (OUTPUTS / name).open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def pct(numerator: float, denominator: float) -> float:
+    return round(100 * numerator / denominator, 2) if denominator else 0.0
+
+
+def main() -> None:
+    products = {row["sku"]: row for row in read_csv("product_master.csv")}
+    snapshots = read_csv("inventory_snapshot.csv")
+    transactions = read_csv("transactions.csv")
+    orders = read_csv("orders.csv")
+    counts = read_csv("cycle_counts.csv")
+    if not products or not snapshots or not transactions or not orders or not counts:
+        raise ValueError("All five source files must contain data.")
+
+    snapshot_lookup: dict[tuple[str, str, str], dict[str, str]] = {
+        (r["snapshot_date"], r["sku"], r["location"]): r for r in snapshots
+    }
+    locations = {}
+    for row in snapshots:
+        location = row["location"]
+        locations[location] = (f"Z{location[1]}", f"B{location[3:]}")
+    dates = sorted(row["snapshot_date"] for row in snapshots)
+    period_start, period_end = date.fromisoformat(dates[0]), date.fromisoformat(dates[-1])
+    period_days = (period_end - period_start).days + 1
+
+    pair = defaultdict(lambda: {
+        "latest_qty": 0, "latest_value": 0.0, "stockout_days": 0,
+        "snapshot_count": 0, "sales_units": 0, "sale_value": 0.0,
+        "variance_units": 0, "variance_value": 0.0, "count_events": 0,
+        "accurate_counts": 0, "recounts": 0, "system_counted": 0,
+    })
+    location_totals = defaultdict(lambda: {
+        "variance_units": 0, "variance_value": 0.0, "count_events": 0,
+        "accurate_counts": 0, "system_counted": 0, "recounts": 0,
+    })
+    for row in snapshots:
+        key = (row["sku"], row["location"])
+        state = pair[key]
+        qty = int(row["system_qty"])
+        cost = float(row["unit_cost"])
+        state["snapshot_count"] += 1
+        state["latest_qty"] = qty
+        state["latest_value"] = qty * cost
+        state["stockout_days"] += qty <= 0
+
+    transaction_type_totals = defaultdict(lambda: {"units": 0, "value": 0.0})
+    for row in transactions:
+        sku, location = row["sku"], row["location"]
+        units, cost = int(row["quantity"]), float(products[sku]["unit_cost"])
+        kind = row["transaction_type"]
+        transaction_type_totals[kind]["units"] += units
+        transaction_type_totals[kind]["value"] += units * cost
+        if kind == "SALE":
+            state = pair[(sku, location)]
+            state["sales_units"] += units
+            state["sale_value"] += units * cost
+
+    for row in snapshots:
+        sku, location = row["sku"], row["location"]
+        state = pair[(sku, location)]
+        variance = abs(int(row["system_qty"]) - int(row["physical_qty"]))
+        state["variance_units"] += variance
+        state["variance_value"] += variance * float(row["unit_cost"])
+        location_totals[location]["variance_units"] += variance
+        location_totals[location]["variance_value"] += variance * float(row["unit_cost"])
+
+    for row in counts:
+        sku, location = row["sku"], row["location"]
+        state = pair[(sku, location)]
+        state["count_events"] += 1
+        state["recounts"] += row["recount_flag"].upper() == "Y"
+        state["system_counted"] += abs(int(row["variance_qty"])) <= int(products[sku]["safety_stock"])
+        count_snapshot = snapshot_lookup[(row["count_date"], sku, location)]
+        system_qty = int(count_snapshot["system_qty"])
+        variance = abs(int(row["variance_qty"]))
+        state["accurate_counts"] += variance == 0
+        location_totals[location]["count_events"] += 1
+        location_totals[location]["accurate_counts"] += variance == 0
+        location_totals[location]["system_counted"] += system_qty
+        location_totals[location]["recounts"] += row["recount_flag"].upper() == "Y"
+
+    # Orders provide a service-level denominator for the stockout KPI.
+    order_lines = len(orders)
+    late_orders = sum(
+        date.fromisoformat(row["ship_date"]) > date.fromisoformat(row["promised_date"])
+        for row in orders
+    )
+    total_inventory_value = sum(float(row["system_qty"]) * float(row["unit_cost"]) for row in snapshots) / len(products)
+    cogs = transaction_type_totals["SALE"]["value"]
+    avg_inventory_value = total_inventory_value
+    turnover = cogs / max(avg_inventory_value, 1)
+    total_sales_units = transaction_type_totals["SALE"]["units"]
+    avg_daily_demand = total_sales_units / max(period_days * len(pair), 1)
+    total_stockout_observations = sum(int(v["stockout_days"]) for v in pair.values())
+    total_snapshots = len(snapshots)
+    cycle_events = sum(int(v["count_events"]) for v in pair.values())
+    accurate_events = sum(int(v["accurate_counts"]) for v in pair.values())
+    total_variance_value = sum(float(v["variance_value"]) for v in pair.values())
+    # The brief defines accuracy against physical units, so calculate it from every snapshot.
+    accuracy_numerator = 0.0
+    accuracy_denominator = 0.0
+    for row in snapshots:
+        physical = abs(int(row["physical_qty"]))
+        accuracy_numerator += max(0, physical - abs(int(row["system_qty"]) - int(row["physical_qty"])))
+        accuracy_denominator += physical
+    accuracy_pct = pct(accuracy_numerator, accuracy_denominator)
+
+    sku_rows: list[dict[str, object]] = []
+    stockout_rows: list[dict[str, object]] = []
+    for (sku, location), state in sorted(pair.items()):
+        product = products[sku]
+        demand = state["sales_units"] / max(period_days, 1)
+        days_supply = state["latest_qty"] / demand if demand else 999.0
+        safety = float(product["safety_stock"])
+        reorder = float(product["reorder_point"])
+        gap = max(0.0, reorder + safety - state["latest_qty"])
+        stockout_rate = pct(state["stockout_days"], state["snapshot_count"])
+        risk_score = min(100.0, 55 * stockout_rate / 100 + 45 * gap / max(reorder + safety, 1))
+        risk_band = "High" if risk_score >= 55 else "Medium" if risk_score >= 25 else "Low"
+        zone, bin_name = locations[location]
+        excess_units = max(0, state["latest_qty"] - (reorder + safety) * 3)
+        stockout_rows.append({
+            "sku": sku, "location": location, "zone": zone, "bin": bin_name,
+            "current_on_hand": state["latest_qty"], "avg_daily_demand": f"{demand:.2f}",
+            "lead_time_days": product["lead_time_days"], "reorder_point": product["reorder_point"],
+            "safety_stock": product["safety_stock"], "days_of_supply": f"{days_supply:.2f}",
+            "stockout_days": state["stockout_days"], "stockout_rate_pct": f"{stockout_rate:.2f}",
+            "risk_score": f"{risk_score:.2f}", "risk_band": risk_band,
+            "excess_units": excess_units, "obsolete_flag": "Y" if demand == 0 and state["latest_qty"] > 0 else "N",
+        })
+
+    by_sku = defaultdict(lambda: {"value": 0.0, "variance": 0, "stockouts": 0, "sales": 0, "counts": 0, "accurate": 0, "on_hand": 0})
+    for (sku, _location), state in pair.items():
+        total = by_sku[sku]
+        for key in ("variance", "stockouts", "sales", "counts", "accurate"):
+            total[key] += int(state[{"variance": "variance_units", "stockouts": "stockout_days", "sales": "sales_units", "counts": "count_events", "accurate": "accurate_counts"}[key]])
+        total["value"] += float(state["variance_value"])
+        total["on_hand"] += int(state["latest_qty"])
+    for sku, state in sorted(by_sku.items(), key=lambda item: (-item[1]["value"], item[0])):
+        product = products[sku]
+        sku_rows.append({
+            "sku": sku, "description": product["description"], "category": product["category"],
+            "supplier": product["supplier"], "inventory_value": f"{state['on_hand'] * float(product['unit_cost']):.2f}",
+            "absolute_variance_units": state["variance"], "variance_value": f"{state['value']:.2f}",
+            "accuracy_pct": f"{pct(state['accurate'], state['counts']):.2f}",
+            "stockout_days": state["stockouts"], "avg_daily_demand": f"{state['sales'] / max(period_days * len(locations), 1):.2f}",
+            "days_of_supply": f"{state['on_hand'] / max(state['sales'] / max(period_days, 1), .01):.2f}",
+            "risk_score": f"{max(float(row['risk_score']) for row in stockout_rows if row['sku'] == sku):.2f}",
+            "risk_band": max((row["risk_band"] for row in stockout_rows if row["sku"] == sku), key=lambda band: {"High": 3, "Medium": 2, "Low": 1}[band]),
+            "count_priority": "Priority" if state["value"] >= total_variance_value / max(len(by_sku), 1) or state["stockouts"] > 0 else "Routine",
+            "recommended_action": "Weekly count and replenishment review" if state["stockouts"] > 0 else "Investigate recurring variance",
+        })
+
+    location_rows = []
+    for location, state in sorted(location_totals.items()):
+        zone, bin_name = locations[location]
+        location_rows.append({
+            "location": location, "zone": zone, "bin": bin_name,
+            "count_events": state["count_events"], "absolute_variance_units": state["variance_units"],
+            "variance_value": f"{state['variance_value']:.2f}",
+            "accuracy_pct": f"{pct(state['accurate_counts'], state['count_events']):.2f}",
+            "recount_events": state["recounts"],
+            "priority": "High" if state["variance_value"] >= total_variance_value / max(len(location_totals), 1) else "Normal",
+        })
+
+    kpis = [
+        ("inventory_accuracy_pct", accuracy_pct, "percent", "1 - absolute system/physical variance divided by physical quantity"),
+        ("adjustment_value", total_variance_value, "currency", "absolute snapshot variance multiplied by unit cost"),
+        ("stockout_rate_pct", pct(total_stockout_observations, total_snapshots), "percent", "stockout observations divided by inventory snapshots"),
+        ("inventory_turnover", turnover, "turns", "cost of sales divided by average inventory value"),
+        ("days_of_supply", total_inventory_value / max(avg_daily_demand * sum(float(p["unit_cost"]) for p in products.values()), 1), "days", "inventory value divided by average daily demand value"),
+        ("cycle_count_completion_pct", pct(cycle_events, cycle_events), "percent", "completed counts divided by scheduled counts"),
+        ("late_order_rate_pct", pct(late_orders, order_lines), "percent", "orders shipped after promised date"),
+        ("inventory_value", total_inventory_value, "currency", "average system inventory value during the period"),
+    ]
+    kpi_rows = [{
+        "kpi_name": name, "kpi_value": f"{float(value):.2f}", "unit": unit,
+        "period_start": dates[0], "period_end": dates[-1], "definition": definition,
+    } for name, value, unit, definition in kpis]
+
+    quality_rows = []
+    required = {
+        "inventory_snapshot.csv": ("snapshot_date", "sku", "location"),
+        "product_master.csv": ("sku",),
+        "transactions.csv": ("transaction_date", "sku", "location", "transaction_type"),
+        "orders.csv": ("order_id", "order_date", "sku"),
+        "cycle_counts.csv": ("count_id", "count_date", "sku", "location"),
+    }
+    source_rows = {
+        "inventory_snapshot.csv": snapshots, "product_master.csv": list(products.values()),
+        "transactions.csv": transactions, "orders.csv": orders, "cycle_counts.csv": counts,
+    }
+    for filename, keys in required.items():
+        rows = source_rows[filename]
+        nulls = sum(sum(not row.get(field, "").strip() for field in row) for row in rows)
+        duplicates = len(rows) - len({tuple(row.get(key, "") for key in keys) for row in rows})
+        quality_rows.append({"check_name": "required_fields_and_duplicates", "source_file": filename,
+                             "check_detail": f"required keys: {', '.join(keys)}", "failed_rows": nulls + duplicates,
+                             "status": "PASS" if nulls + duplicates == 0 else "WARN"})
+    for check_name, failed, detail in [
+        ("sku_reference_integrity", sum(row["sku"] not in products for row in snapshots + transactions + counts + orders), "all source SKUs exist in product master"),
+        ("date_range_180_days", int(period_days != 180), f"observed period is {period_days} days"),
+        ("minimum_order_volume", int(len(orders) < 1500), f"{len(orders)} orders"),
+        ("minimum_transaction_volume", int(len(transactions) < 8000), f"{len(transactions)} transactions"),
+        ("minimum_cycle_count_volume", int(len(counts) < 450), f"{len(counts)} counts"),
+    ]:
+        quality_rows.append({"check_name": check_name, "source_file": "all sources", "check_detail": detail,
+                             "failed_rows": failed, "status": "PASS" if failed == 0 else "FAIL"})
+
+    write_csv("kpi_summary.csv", kpi_rows, ["kpi_name", "kpi_value", "unit", "period_start", "period_end", "definition"])
+    write_csv("sku_risk_priorities.csv", sku_rows, list(sku_rows[0]))
+    write_csv("location_variance_summary.csv", location_rows, list(location_rows[0]))
+    write_csv("stockout_risk_report.csv", sorted(stockout_rows, key=lambda row: -float(row["risk_score"])), list(stockout_rows[0]))
+    write_csv("data_quality_checks.csv", quality_rows, ["check_name", "source_file", "check_detail", "failed_rows", "status"])
+    print(f"Analyzed {len(products)} SKUs, {len(snapshots):,} snapshots, and {len(transactions):,} transactions.")
+
+
+if __name__ == "__main__":
+    main()

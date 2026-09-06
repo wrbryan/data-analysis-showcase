@@ -1,4 +1,11 @@
-file_name,row_count,duplicate_key_count,null_value_count,status
-inventory_snapshot.csv,70176,0,0,PASS
-transactions.csv,72571,2395,0,WARN
-cycle_counts.csv,2304,0,0,PASS
+check_name,source_file,check_detail,failed_rows,status
+required_fields_and_duplicates,inventory_snapshot.csv,"required keys: snapshot_date, sku, location",0,PASS
+required_fields_and_duplicates,product_master.csv,required keys: sku,0,PASS
+required_fields_and_duplicates,transactions.csv,"required keys: transaction_date, sku, location, transaction_type",0,PASS
+required_fields_and_duplicates,orders.csv,"required keys: order_id, order_date, sku",0,PASS
+required_fields_and_duplicates,cycle_counts.csv,"required keys: count_id, count_date, sku, location",0,PASS
+sku_reference_integrity,all sources,all source SKUs exist in product master,0,PASS
+date_range_180_days,all sources,observed period is 180 days,0,PASS
+minimum_order_volume,all sources,38118 orders,0,PASS
+minimum_transaction_volume,all sources,686118 transactions,0,PASS
+minimum_cycle_count_volume,all sources,46800 counts,0,PASS
