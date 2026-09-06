@@ -59,7 +59,12 @@ This is a historical monitoring metric, not the current action queue.
 | Source contract and regeneration steps | `data/README.md` |
 | Field-level output and source dictionary | `docs/data_dictionary.md` |
 | Evidence-based narrative | `docs/executive_summary.md` |
-| Dashboard wireframe | `dashboard/README.md` |
+| Excel dashboard build guide | [`dashboard/README.md`](dashboard/README.md) |
+| Excel dashboard workbook | [`dashboard/inventory_accuracy_stockout_risk_dashboard.xlsx`](dashboard/inventory_accuracy_stockout_risk_dashboard.xlsx) |
+| Executive Control Tower PDF | [`dashboard/executive-control-tower.pdf`](dashboard/executive-control-tower.pdf) |
+| Executive Control Tower PNG | [`dashboard/executive-control-tower.png`](dashboard/executive-control-tower.png) |
+| Excel dashboard documentation | [`docs/excel_dashboard_build.md`](docs/excel_dashboard_build.md) |
+| Executive decision brief | [`docs/executive-brief.pdf`](docs/executive-brief.pdf) |
 | Validation evidence | `docs/pr_validation_report.md` |
 
 ## Queue definitions
