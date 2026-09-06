@@ -1,0 +1,9 @@
+metric_name,metric_value,metric_unit,calculation_note
+inventory_accuracy_pct,99.98,percent,1 - absolute system/physical variance divided by physical quantity
+adjustment_value,1028298.30,currency,absolute snapshot variance multiplied by unit cost
+stockout_rate_pct,19.19,percent,stockout observations divided by inventory snapshots
+inventory_turnover,0.00,turns,cost of sales divided by average inventory value
+days_of_supply,15117491.47,days,inventory value divided by average daily demand value
+cycle_count_completion_pct,100.00,percent,completed counts divided by scheduled counts
+late_order_rate_pct,9.09,percent,orders shipped after promised date
+inventory_value,15117491.47,currency,average system inventory value during the period
