@@ -1,18 +1,23 @@
-# Operations Analyst Portfolio Planning Guide
+# Data Analyst Portfolio Planning Guide
 
 ## Purpose
 
-Build three polished, operations-specific portfolio case studies that demonstrate the work employers expect from an Operations Analyst: defining a business problem, preparing data, tracking KPIs, identifying root causes, estimating impact, and recommending a measurable operational action.
+Build a coherent set of polished portfolio projects that demonstrate the work employers expect from a Data Analyst: defining a business problem, preparing data, exploring patterns, building useful reporting, validating results, communicating findings, and recommending a measurable action.
 
-This plan is tailored toward inventory control, warehouse/distribution operations, reporting, process improvement, and CMMS/maintenance analytics.
+The portfolio combines operations reporting, interactive dashboards, notebook workflows, public-data analysis, and business-facing data products.
 
 ## Portfolio Goal
 
-Create three deep, interview-ready projects rather than many generic dashboards.
+Create a small set of interview-ready projects with different analytical surfaces rather than many generic dashboards.
 
 1. Inventory Accuracy & Stockout Risk Dashboard
 2. Warehouse Throughput & Labor Utilization Dashboard
 3. CMMS Maintenance & Work-Order Analytics Dashboard
+
+The broader repository also includes five completed or in-progress projects that
+demonstrate additional data-analysis workflows. Their walkthroughs are included
+below so every project in `projects/` has a clear business purpose, workflow,
+and review path.
 
 ## Target Skills to Demonstrate
 
@@ -383,7 +388,199 @@ Protect weekly preventive-maintenance capacity for critical assets, establish es
 
 ---
 
-# Additional Project Options
+# Additional Project Walkthroughs
+
+## Athlete Events — Interactive Participation Explorer
+
+### Purpose
+
+Explore athlete participation and medal-related patterns across Olympic-style
+event data. This project demonstrates how a public dataset can become a
+filterable browser-based analysis rather than a static chart.
+
+### Core questions
+
+- Which countries, sports, seasons, and events have the highest participation?
+- How do athlete demographics and medal outcomes vary across filters?
+- Can a user move from an overview to a focused comparison without rerunning
+  the analysis?
+
+### Existing implementation
+
+- Entrypoint: `projects/athlete_events/athlete_events.py`
+- Interface: Dash with reusable layout and callback components.
+- Supporting assets: `components/` and `assets/styles.css`.
+- Setup: `projects/athlete_events/setup.sh`.
+
+### Walkthrough
+
+1. Start with the README and setup script to reproduce the local Dash app.
+2. Inspect the layout components to see how the page is divided into analysis
+    views.
+3. Trace callback inputs and outputs to understand how filters update charts.
+4. Review the CSS and component boundaries as evidence of reusable dashboard
+    structure.
+5. Use the project to discuss interactive exploration, callback design, and
+    communicating patterns in public data.
+
+### Portfolio takeaway
+
+This project demonstrates interactive dashboard architecture, public-data
+exploration, and the translation of user selections into updated evidence.
+
+## Car Sales — Interactive Sales and Specification Dashboard
+
+### Purpose
+
+Compare vehicle sales, pricing, performance, and fuel-efficiency attributes in
+an interactive Dash application. The project is useful for demonstrating a
+business-facing filter workflow with multiple chart types.
+
+### Core questions
+
+- Which manufacturers and models lead sales?
+- How do horsepower, fuel efficiency, and pricing relate?
+- How does the selected manufacturer or model set change the visible evidence?
+
+### Existing implementation
+
+- Entrypoint: `projects/car-sales/car_sales_app.py`
+- Utilities: `projects/car-sales/util_car.py`
+- Source data: `projects/car-sales/Car_sales.csv`
+- Visual components: `projects/car-sales/components_car/`.
+- Narrative artifacts: `post.md` and `SUMMARY.md`.
+
+### Walkthrough
+
+1. Install the project requirements described in the README.
+2. Start the Dash app and inspect the manufacturer and model dropdowns.
+3. Compare the sales pie, vertical bar, horizontal bar, and specification
+    scatter views.
+4. Use the filters to move from a market overview to a model-level question.
+5. Review the utility and component files to explain how data preparation and
+    visualization responsibilities are separated.
+
+### Portfolio takeaway
+
+This project demonstrates interactive filtering, reusable chart components,
+and concise communication of sales and product-specification patterns.
+
+## DuckDB CSV GUI — Notebook Analytics Workflow
+
+### Purpose
+
+Turn uploaded CSV files into a lightweight relational analytics workflow using
+DuckDB and notebooks. The focus is the workflow itself: inspect schemas,
+approve relationships, query data, and produce report-ready views.
+
+### Core questions
+
+- How can a user move from several raw CSVs to a usable analytical model?
+- Which relationships are plausible and should be approved?
+- Can SQL results be inspected, visualized, and shared without a full backend?
+
+### Existing implementation
+
+- Core logic: `projects/duckdb-csv-gui/duckdb_csv_gui.py`
+- Local notebook: `duckdb_csv_gui.ipynb`
+- Colab notebook: `duckdb_csv_gui_colab.ipynb`
+- Requirements: `projects/duckdb-csv-gui/requirements.txt`
+- Reports: `projects/duckdb-csv-gui/reports/`.
+
+### Walkthrough
+
+1. Install the notebook requirements and open the local or Colab notebook.
+2. Upload sample CSV files and inspect inferred schemas.
+3. Review proposed relationships before approving them.
+4. Run SQL against the DuckDB tables and inspect the result inline.
+5. Generate a simple chart or export a query result to demonstrate the path
+    from raw files to a shareable analysis.
+
+### Portfolio takeaway
+
+This project demonstrates lightweight data modeling, schema inspection,
+interactive relationship review, SQL exploration, and notebook-based delivery.
+
+## Heart Disease — Interactive Clinical Feature Explorer
+
+### Purpose
+
+Explore relationships between demographic, symptom, vital, laboratory, and
+heart-disease outcome fields through an interactive Dash dashboard. This is a
+public-data demonstration and not a clinical decision tool.
+
+### Core questions
+
+- How do disease outcomes vary by sex and chest-pain category?
+- How do cholesterol and maximum heart-rate patterns differ across groups?
+- What relationships can be explored through filtered distributions and
+  scatterplots?
+
+### Existing implementation
+
+- Entrypoint: `projects/heart-disease/heart_analysis_app.py`
+- Utility module: `projects/heart-disease/util_heart.py`
+- Source data: `projects/heart-disease/heart.csv`
+- Visual components: `projects/heart-disease/components_heart/`.
+
+### Walkthrough
+
+1. Install the documented Dash dependencies and start the application.
+2. Filter by sex and chest-pain type to establish subgroup comparisons.
+3. Review disease outcome counts, average cholesterol, and average maximum
+    heart rate.
+4. Use the age-versus-cholesterol scatterplot to discuss association without
+    presenting it as causation or medical advice.
+5. Inspect the component modules to show how the dashboard separates controls,
+    chart construction, and layout.
+
+### Portfolio takeaway
+
+This project demonstrates responsible public-data visualization, subgroup
+filtering, reusable dashboard components, and clear limits on interpretation.
+
+## Excel-only Analysis — Business Reporting Workspace
+
+### Purpose
+
+Provide a business-facing analysis and dashboard workspace for operational
+trends and exceptions using Excel artifacts. This project is a spreadsheet
+reporting surface, distinct from the Python-generated Inventory Accuracy &
+Stockout Risk reporting package.
+
+### Core questions
+
+- Which operational trends or exceptions need management attention?
+- Can the workbook present a clear decision, supporting evidence, and a short
+  narrative for business users?
+- Which calculations, controls, and visuals should be refreshed together?
+
+### Existing implementation
+
+- Workbook artifacts: `projects/excel-only-analysis/`.
+- Project guide: `README.md`.
+- Summary and narrative: `SUMMARY.md` and `post.md`.
+- Included workbooks cover inventory reconciliation, operations KPIs, and
+  reporting automation examples.
+
+### Walkthrough
+
+1. Start with the project README and summary to understand the intended
+    business question and workbook scope.
+2. Open the relevant workbook and identify source tabs, calculation areas,
+    KPI views, and exception outputs.
+3. Trace a headline KPI back to its source fields and supporting table.
+4. Review the dashboard layout for readable decision cues, not just chart
+    variety.
+5. Use the project to discuss spreadsheet controls, recurring reporting, and
+    handoff to business users.
+
+### Portfolio takeaway
+
+This project demonstrates Excel-based reporting, operational KPI communication,
+and the practical constraints of maintaining business-facing workbooks.
+
+## Additional Project Options
 
 ## Vendor and purchase-order performance
 

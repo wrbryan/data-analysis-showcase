@@ -74,7 +74,7 @@ Excel | Power Query | SQL | Python | pandas | DuckDB | Power BI | Tableau | GitH
 
 - [Portfolio Index](docs/portfolio_index.md)
 - [Projects Catalog](docs/projects_catalog.md)
-- [Operations Analyst Portfolio Planning Guide](docs/operations_analyst_portfolio_planning_guide.md)
+- [Data Analyst Portfolio Planning Guide](docs/data_analyst_portfolio_planning_guide.md)
 - [Showcase Planning and Synchronization for Effective Monetization](docs/showcase%20planning%20and%20synchronization%20for%20effective%20monetization.md)
 
 ## Professional Direction
