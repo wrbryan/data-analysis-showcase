@@ -1,0 +1,25 @@
+sku,product_name,category,unit_cost,reorder_point,target_stock_days,supplier_id
+SKU001,Beverage Item 01,Beverage,29.23,16,14,SUP01
+SKU002,Snacks Item 02,Snacks,35.13,24,22,SUP02
+SKU003,Household Item 03,Household,43.34,11,19,SUP03
+SKU004,Personal Care Item 04,Personal Care,4.37,14,16,SUP04
+SKU005,Pantry Item 05,Pantry,5.09,15,13,SUP05
+SKU006,Pet Item 06,Pet,33.48,35,18,SUP06
+SKU007,Beverage Item 07,Beverage,29.37,26,17,SUP07
+SKU008,Snacks Item 08,Snacks,38.44,14,22,SUP08
+SKU009,Household Item 09,Household,40.97,33,13,SUP01
+SKU010,Personal Care Item 10,Personal Care,6.93,20,13,SUP02
+SKU011,Pantry Item 11,Pantry,35.61,29,21,SUP03
+SKU012,Pet Item 12,Pet,8.12,26,12,SUP04
+SKU013,Beverage Item 13,Beverage,28.23,9,28,SUP05
+SKU014,Snacks Item 14,Snacks,20.20,31,13,SUP06
+SKU015,Household Item 15,Household,10.76,14,14,SUP07
+SKU016,Personal Care Item 16,Personal Care,14.81,25,18,SUP08
+SKU017,Pantry Item 17,Pantry,25.87,10,13,SUP01
+SKU018,Pet Item 18,Pet,12.95,35,22,SUP02
+SKU019,Beverage Item 19,Beverage,41.81,31,28,SUP03
+SKU020,Snacks Item 20,Snacks,20.56,9,17,SUP04
+SKU021,Household Item 21,Household,6.81,28,28,SUP05
+SKU022,Personal Care Item 22,Personal Care,11.82,34,28,SUP06
+SKU023,Pantry Item 23,Pantry,47.18,16,27,SUP07
+SKU024,Pet Item 24,Pet,9.81,34,26,SUP08
