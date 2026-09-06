@@ -1,44 +1,148 @@
-# Dashboard wireframe
+# Excel Executive Control Tower Build Guide
 
-This wireframe is designed for Power BI, Tableau, or a spreadsheet model.
-Every page should show the synthetic-data disclaimer and refresh timestamp.
-`data_quality_checks.csv` must be all `PASS`.
+## Purpose
 
-## 1. Executive control tower
+This guide explains how to build the Excel-based Executive Control Tower
+from the validated output files in this project.
 
-* KPI cards: replenishment SKU tier distribution, count-queue tier
-  distribution, Critical+High SKU stockout count, inventory accuracy,
-  adjustment exposure, cycle-count completion/recount rate, and shipment
-  service from `kpi_summary.csv`.
-* Keep the two distributions in separate visuals and label their grains:
-  **SKU replenishment** versus **SKU/location inventory control**.
+The dashboard presents two intentionally separate decisions:
 
-## 2. SKU replenishment and stockout risk
+1. SKU-level replenishment risk across all warehouse locations.
+2. SKU/location-level cycle-count and inventory-control priority.
 
-* Action table uses `stockout_risk_report.csv`, which is intentionally only
-  Critical+High **SKU rows**: total physical quantity, average daily demand,
-  DOS, reorder point, safety stock, lead time, tier, reason, and action.
-* Supporting table uses `sku_replenishment_priorities.csv` for all 300 SKUs.
-  Show total on-hand/value and adjustment exposure across locations.
-* Keep the tier order visible: Critical, High, Watch, Routine. Do not
-  calculate enterprise stockout risk from a single bin.
+## Prerequisites
 
-## 3. Inventory control and cycle-count priority
+- Microsoft Excel with Power Query support.
+- A local copy of this repository.
+- Generated and analyzed Project 1 source/output files.
 
-* Queue uses `sku_location_count_priorities.csv` and retains all 3,600
-  SKU/location records.
-* Show `control_tier`, `control_reason`, variance events, recurring variance,
-  recount count/rate, transaction volume, location recurrence, and recommended
-  frequency. This page must not show a replenishment/stockout tier.
-* Heatmap summarizes `location_variance_summary.csv` by zone/location.
+## Reproduce the analysis
 
-## 4. Accuracy, service, and drill-through
+From the repository root:
 
-* Pareto: adjustment exposure and absolute variance by SKU/location.
-* Detail filters: count date, counter team, completion/recount flags, and
-  variance quantity from generated `cycle_counts.csv`.
-* Service slice: customer segment, ordered/shipped quantity, promised date,
-  and ship date from generated `orders.csv`.
+```bash
+python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
+python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
+```
 
-Assignment fields (owner, target date, status, expected impact) are
-dashboard-only and should not be written back to synthetic source data.
+## Import files
+
+Import the five CSV output files from:
+
+```text
+projects/inventory-accuracy-stockout-risk/outputs/
+```
+
+| File | Grain | Use |
+|---|---|---|
+| `kpi_summary.csv` | One row per KPI | KPI cards |
+| `sku_replenishment_priorities.csv` | One row per SKU | Replenishment-risk chart |
+| `sku_location_count_priorities.csv` | One row per SKU/location | Cycle-count workload chart |
+| `location_variance_summary.csv` | One row per location | Location-adjustment chart |
+| `data_quality_checks.csv` | One row per validation check | Data-quality indicator |
+
+## Workbook design
+
+Create:
+
+```text
+inventory_accuracy_stockout_risk_dashboard.xlsx
+```
+
+Use one presentation worksheet:
+
+```text
+Executive Control Tower
+```
+
+Supporting query tables can remain in hidden worksheets or Excel's data model.
+
+## KPI cards
+
+Create these nine cards from `kpi_summary.csv`:
+
+| Card | Source `metric_name` | Expected value | Display format |
+|---|---|---:|---|
+| Critical + High Replenishment SKUs | `current_replenishment_queue_statement` | 8 | Whole number |
+| Critical + High Replenishment Rate | `replenishment_critical_high_rate_pct` | 2.67% | Percentage, two decimals |
+| Weekly Cycle-Count Assignments | `weekly_count_priority_statement` | 6 | Whole number |
+| Biweekly Cycle-Count Assignments | `biweekly_count_priority_statement` | 472 | Whole number |
+| Inventory Record Accuracy | `inventory_accuracy_pct` | 100.00% | Percentage, two decimals |
+| Cumulative Adjustment Exposure | `adjustment_value` | $211,618.40 | Currency, two decimals |
+| Cycle-Count Completion | `cycle_count_completion_pct` | 94.12% | Percentage, two decimals |
+| Recount Rate | `recount_rate_pct` | 14.10% | Percentage, two decimals |
+| On-Time Shipment Rate | `on_time_shipment_rate_pct` | 90.90% | Percentage, two decimals |
+
+Percentage values in the CSV are stored as values such as `2.67` and should be
+converted to decimal percentages before applying percentage formatting.
+
+## Supporting charts
+
+### Current SKU Replenishment Risk
+
+- Source: `sku_replenishment_priorities.csv`
+- Category: `replenishment_tier`
+- Value: Count of SKU records
+- Sort order: Critical, High, Watch, Routine
+- Expected counts: 6 Critical, 2 High, 96 Watch, 196 Routine
+- Decision grain label: **SKU replenishment: SKU across all locations**
+
+### Recommended Cycle-Count Workload
+
+- Source: `sku_location_count_priorities.csv`
+- Category: `recommended_count_frequency`
+- Value: Count of SKU/location assignments
+- Sort order: Weekly, Biweekly, Monthly, Quarterly
+- Expected counts: 6 Weekly, 472 Biweekly, 122 Monthly, 3,000 Quarterly
+- Value-axis label: **SKU/location assignments**
+- Decision grain label: **Count-control risk: SKU/location**
+
+### Locations With Highest Adjustment Exposure
+
+- Source: `location_variance_summary.csv`
+- Category: `location`
+- Value: Sum of `total_adjustment_value`
+- Filter: `total_adjustment_value > 0`
+- Expected values: Z3-B03 `$106,636.60`; Z2-B02 `$104,981.80`
+- Format: Currency with two decimal places
+- Decision grain label: **Location-level adjustment exposure**
+
+## Action callout
+
+**Action Now**
+
+1. Review the 8 Critical + High SKUs for total supply position, inbound status, and replenishment-policy settings.
+
+2. Execute the 6 weekly and 472 biweekly SKU/location cycle-count assignments.
+
+3. Investigate the locations with recurring variance and adjustment exposure.
+
+**Decision grains:**
+Replenishment risk = SKU across all locations.
+Count-control risk = SKU/location.
+
+## Data-quality indicator
+
+Show:
+
+```text
+Data Quality: 26 / 26 Checks Passed
+```
+
+Build the indicator from `data_quality_checks.csv` by counting rows whose
+`status` is `PASS` and comparing that count with the total validation checks.
+
+## Refresh process
+
+1. Regenerate source data and analysis outputs.
+2. Open the Excel workbook.
+3. Select Data -> Refresh All.
+4. Confirm all quality checks pass.
+5. Confirm KPI cards match the refreshed KPI output.
+6. Export the Executive Control Tower to PDF.
+
+## Limitations
+
+- The dashboard is based on deterministic synthetic data.
+- Excel is used as the presentation layer.
+- Replenishment and count-control outputs are intentionally disconnected because they represent different analytical grains.
