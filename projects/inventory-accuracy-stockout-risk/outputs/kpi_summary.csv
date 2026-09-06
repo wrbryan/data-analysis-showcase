@@ -1,9 +1,32 @@
 metric_name,metric_value,metric_unit,calculation_note
-inventory_accuracy_pct,99.98,percent,1 - absolute system/physical variance divided by physical quantity
-adjustment_value,1028298.30,currency,absolute snapshot variance multiplied by unit cost
-stockout_rate_pct,19.19,percent,stockout observations divided by inventory snapshots
-inventory_turnover,0.00,turns,cost of sales divided by average inventory value
-days_of_supply,15117491.47,days,inventory value divided by average daily demand value
-cycle_count_completion_pct,100.00,percent,completed counts divided by scheduled counts
-late_order_rate_pct,9.09,percent,orders shipped after promised date
-inventory_value,15117491.47,currency,average system inventory value during the period
+inventory_accuracy_pct,100.00,percent,weighted latest-period accuracy
+adjustment_value,211618.40,currency,cumulative adjustment exposure across snapshots
+historical_stockout_observation_rate_pct,7.08,percent,historical broad trigger / all snapshots; not an enterprise current queue
+replenishment_sku_count,300.00,SKUs,one row per SKU across all locations
+count_priority_sku_location_count,3600.00,SKU/location records,all latest SKU/location pairs retained
+replenishment_critical_count,6.00,SKUs,SKU-level replenishment tier
+replenishment_high_count,2.00,SKUs,SKU-level replenishment tier
+replenishment_watch_count,96.00,SKUs,SKU-level replenishment tier
+replenishment_routine_count,196.00,SKUs,SKU-level replenishment tier
+replenishment_critical_high_rate_pct,2.67,percent,Critical + High SKUs / all SKUs
+count_priority_critical_count,6.00,SKU/location records,SKU/location control tier
+count_priority_high_count,472.00,SKU/location records,SKU/location control tier
+count_priority_watch_count,122.00,SKU/location records,SKU/location control tier
+count_priority_routine_count,3000.00,SKU/location records,SKU/location control tier
+count_priority_critical_high_rate_pct,13.28,percent,Critical + High SKU/location records / all pairs
+materiality_p75_inventory_value,623883.23,currency,PERCENTILE_CONT(0.75) across latest SKU inventory value
+materiality_p75_adjustment_exposure,969.08,currency,PERCENTILE_CONT(0.75) across SKU adjustment exposure
+cycle_count_completion_pct,94.12,percent,completed scheduled cycle counts / scheduled counts
+recount_rate_pct,14.10,percent,recounted completed counts / completed counts
+on_time_shipment_rate_pct,90.90,percent,shipped orders on or before promise
+inventory_value,124676423.10,currency,latest total physical quantity * unit cost
+replenishment_decision_grain,300.00,records,Replenishment decision grain: SKU across all warehouse locations.
+cycle_count_decision_grain,3600.00,records,Cycle-count decision grain: SKU/location.
+current_replenishment_queue_statement,8.00,SKUs,Current Critical + High replenishment queue: 8 of 300 SKUs.
+weekly_count_priority_statement,6.00,SKU/location records,Weekly: 6 SKU/location records
+biweekly_count_priority_statement,472.00,SKU/location records,Biweekly: 472 SKU/location records
+monthly_count_priority_statement,122.00,SKU/location records,Monthly: 122 SKU/location records
+quarterly_count_priority_statement,3000.00,SKU/location records,"Quarterly: 3,000 SKU/location records"
+historical_exposure_statement,7.08,percent,"Historical stockout-policy exposure: 7.08% of observations. This is a historical monitoring metric, not the current action queue."
+synthetic_data_disclaimer,1.00,statement,All data is deterministic synthetic data.
+data_safety_statement,1.00,statement,"No employer, client, customer, confidential, personal, or proprietary data is included."
