@@ -15,7 +15,10 @@ SEED = 20260905
 START_DATE = date(2026, 1, 1)
 DAYS = 180
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data"
+# Full deterministic inputs are generated locally and ignored.  A small,
+# checked-in sample under data/sample/ documents the source contract without
+# carrying the entire synthetic population in the repository.
+DATA = ROOT / "data" / "generated"
 
 PRODUCT_FIELDS = [
     "sku", "product_name", "category", "supplier", "unit_cost",

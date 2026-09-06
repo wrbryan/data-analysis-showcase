@@ -10,9 +10,10 @@ non_negative_inventory,PASS,0,system and physical quantities are non-negative
 snapshot_cost_matches_master,PASS,0,snapshot unit costs match product master
 shipped_not_over_ordered,PASS,0,shipped quantity does not exceed ordered quantity
 ship_date_not_before_order,PASS,0,shipment dates are not before order dates
-required_transaction_types,PASS,0,"transactions include RECEIPT, PICK, ADJUSTMENT, TRANSFER_IN, TRANSFER_OUT, and RETURN"
+required_transaction_types,PASS,0,transactions include all six documented movement types
 partial_shipments,PASS,0,orders include partial shipments
 delayed_shipments,PASS,0,orders include delayed shipments
 minimum_order_volume,PASS,0,162000 orders
 minimum_transaction_volume,PASS,0,555773 transactions
 minimum_cycle_count_volume,PASS,0,46800 counts
+current_tier_partition,PASS,0,Critical + High + Watch + Routine equals latest SKU/location records

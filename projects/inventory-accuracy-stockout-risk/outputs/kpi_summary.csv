@@ -1,7 +1,16 @@
 metric_name,metric_value,metric_unit,calculation_note
 inventory_accuracy_pct,99.98,percent,"100 * (1 - sum(abs(system_qty - physical_qty)) / sum(max(physical_qty, 1)))"
-adjustment_value,1032961.10,currency,sum(abs(system_qty - physical_qty) * unit_cost) across snapshots
-stockout_rate_pct,70.29,percent,stockout observations (physical <= reorder point or days of supply <= lead time) / snapshots
+adjustment_value,1032961.10,currency,sum(abs(system_qty - physical_qty) * unit_cost) across all snapshots
+historical_stockout_observation_rate_pct,70.29,percent,historical observations meeting physical <= reorder point OR days of supply <= lead time / all snapshots
+current_critical_high_count,2027.00,records,latest SKU/location records classified Critical or High
+current_critical_high_rate_pct,56.31,percent,current Critical + High records / latest SKU/location records
+current_critical_count,1984.00,records,latest SKU/location records classified Critical
+current_high_count,43.00,records,latest SKU/location records classified High
+current_watch_count,311.00,records,latest SKU/location records classified Watch
+current_routine_count,1262.00,records,latest SKU/location records classified Routine
+materiality_p75_inventory_value,12368.18,currency,PERCENTILE_CONT(0.75) across latest SKU/location inventory value
+materiality_p75_unit_cost,92.92,currency,PERCENTILE_CONT(0.75) across latest SKU/location unit cost
+materiality_p75_cumulative_adjustment_value,438.50,currency,PERCENTILE_CONT(0.75) across latest SKU/location cumulative adjustment value
 days_of_supply,14.83,days,latest physical quantity / average daily demand
 cycle_count_completion_pct,94.12,percent,completed scheduled cycle counts / scheduled cycle counts
 recount_rate_pct,44.45,percent,recounted completed cycle counts / completed cycle counts

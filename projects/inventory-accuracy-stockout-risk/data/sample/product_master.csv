@@ -1,0 +1,11 @@
+sku,product_name,category,supplier,unit_cost,lead_time_days,reorder_point,safety_stock,annual_demand_estimate,active_flag
+SKU0001,Industrial Supplies 0001,Industrial Supplies,Atlas Industrial,7.70,11,31,15,1283,Y
+SKU0002,Electrical Components 0002,Electrical Components,Blue Ridge Supply,11.40,18,42,20,1366,Y
+SKU0003,Safety Supplies 0003,Safety Supplies,Cedar Components,15.10,7,53,25,1449,Y
+SKU0004,Packaging 0004,Packaging,Harbor Safety,18.80,14,64,30,1532,Y
+SKU0005,Tools 0005,Tools,Summit Packaging,22.50,21,75,35,1615,Y
+SKU0006,Consumables 0006,Consumables,Atlas Industrial,26.20,10,86,40,1698,Y
+SKU0007,Fasteners 0007,Fasteners,Blue Ridge Supply,29.90,17,97,45,1781,Y
+SKU0008,Maintenance Parts 0008,Maintenance Parts,Cedar Components,33.60,6,28,10,1864,Y
+SKU0009,Shipping Supplies 0009,Shipping Supplies,Harbor Safety,37.30,13,39,15,1947,Y
+SKU0010,Material Handling 0010,Material Handling,Summit Packaging,41.00,20,50,20,2030,Y
