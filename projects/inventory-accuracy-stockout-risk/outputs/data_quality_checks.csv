@@ -1,15 +1,18 @@
 check_name,status,records_affected,details
-inventory_snapshot.csv required fields and duplicates,PASS,0,"required keys: snapshot_date, sku, location"
-product_master.csv required fields and duplicates,PASS,0,required keys: sku
-transactions.csv required fields and duplicates,PASS,0,"required keys: transaction_date, sku, location, transaction_type"
-orders.csv required fields and duplicates,PASS,0,"required keys: order_id, order_date, sku"
-cycle_counts.csv required fields and duplicates,PASS,0,"required keys: count_id, count_date, sku, location"
+inventory_snapshot.csv required fields and duplicates,PASS,0,"required fields present; unique key: snapshot_date, sku, location"
+product_master.csv required fields and duplicates,PASS,0,required fields present; unique key: sku
+transactions.csv required fields and duplicates,PASS,0,required fields present; unique key: transaction_id
+orders.csv required fields and duplicates,PASS,0,required fields present; unique key: order_id
+cycle_counts.csv required fields and duplicates,PASS,0,required fields present; unique key: count_id
 sku_reference_integrity,PASS,0,all source SKUs exist in product master
-date_range_180_days,PASS,0,observed period is 180 days
+date_range_180_days,PASS,0,observed period is 180 calendar days
 non_negative_inventory,PASS,0,system and physical quantities are non-negative
 snapshot_cost_matches_master,PASS,0,snapshot unit costs match product master
 shipped_not_over_ordered,PASS,0,shipped quantity does not exceed ordered quantity
 ship_date_not_before_order,PASS,0,shipment dates are not before order dates
-minimum_order_volume,PASS,0,38118 orders
-minimum_transaction_volume,PASS,0,533416 transactions
+required_transaction_types,PASS,0,"transactions include RECEIPT, PICK, ADJUSTMENT, TRANSFER_IN, TRANSFER_OUT, and RETURN"
+partial_shipments,PASS,0,orders include partial shipments
+delayed_shipments,PASS,0,orders include delayed shipments
+minimum_order_volume,PASS,0,162000 orders
+minimum_transaction_volume,PASS,0,555773 transactions
 minimum_cycle_count_volume,PASS,0,46800 counts

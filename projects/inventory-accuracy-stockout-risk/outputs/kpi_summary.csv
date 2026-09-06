@@ -1,9 +1,9 @@
 metric_name,metric_value,metric_unit,calculation_note
-inventory_accuracy_pct,99.98,percent,1 - absolute system/physical variance divided by physical quantity
-adjustment_value,1028298.30,currency,absolute snapshot variance multiplied by unit cost
-stockout_rate_pct,19.19,percent,stockout observations divided by inventory snapshots
-inventory_turnover,0.00,turns,cost of sales divided by average inventory value
-days_of_supply,15117491.47,days,inventory value divided by average daily demand value
-cycle_count_completion_pct,100.00,percent,completed counts divided by scheduled counts
-late_order_rate_pct,9.09,percent,orders shipped after promised date
-inventory_value,15117491.47,currency,average system inventory value during the period
+inventory_accuracy_pct,99.98,percent,"100 * (1 - sum(abs(system_qty - physical_qty)) / sum(max(physical_qty, 1)))"
+adjustment_value,1032961.10,currency,sum(abs(system_qty - physical_qty) * unit_cost) across snapshots
+stockout_rate_pct,70.29,percent,stockout observations (physical <= reorder point or days of supply <= lead time) / snapshots
+days_of_supply,14.83,days,latest physical quantity / average daily demand
+cycle_count_completion_pct,94.12,percent,completed scheduled cycle counts / scheduled cycle counts
+recount_rate_pct,44.45,percent,recounted completed cycle counts / completed cycle counts
+on_time_shipment_rate_pct,90.91,percent,shipped orders with ship_date <= promised_date / shipped orders
+inventory_value,37957832.60,currency,latest physical quantity * unit cost across SKU/location pairs
