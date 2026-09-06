@@ -2,11 +2,16 @@
 
 ## Client-ready overview
 
-This portfolio project turns daily warehouse snapshots, inventory movements,
-customer orders, and cycle counts into a reproducible operational action
-queue. It distinguishes a **historical stockout-observation KPI** from
-**current latest-snapshot action risk**. All source data is synthetic,
-deterministic, and not a substitute for production WMS/ERP data.
+This reproducible synthetic project separates two operational decisions that
+should not be conflated:
+
+1. **SKU replenishment / stockout queue:** one row per SKU, aggregating the
+   latest system and physical quantity, inventory value, and adjustment
+   exposure across all locations. Demand is SKU-level from customer orders.
+2. **SKU/location cycle-count / inventory-control queue:** one row per bin,
+   prioritizing variance, adjustment exposure, recurrence, recount patterns,
+   transaction volume, and location recurrence. A low quantity in one bin is
+   never treated as an enterprise SKU stockout.
 
 ## Run from repository root
 
@@ -16,11 +21,14 @@ python projects/inventory-accuracy-stockout-risk/python/analyze_inventory.py
 python -m py_compile projects/inventory-accuracy-stockout-risk/python/*.py
 ```
 
-The fixed seed is `20260905`. Generation writes the full five-file source
-population to `data/generated/` (ignored by Git). Only compact schema examples
-are committed under `data/sample/`; sample files are not analysis inputs.
-The analyzer reads `data/generated/` and overwrites the five CSVs in
-`outputs/`. The DuckDB reference is `sql/inventory_analysis.sql`.
+The fixed seed is `20260905`. Full five-file inputs are regenerated in
+`data/generated/` (ignored by Git); compact schema examples remain in
+`data/sample/`. The DuckDB reference is
+`sql/inventory_analysis.sql`.
+
+The generated population covers 180 calendar days, 300 SKUs, 10 categories,
+5 suppliers, and 12 bins across zones Z1-Z3: 648,000 snapshots, about 585,000
+movements, 13,500 SKU-level orders, and 46,800 cycle counts.
 
 ## Delivered scope
 
@@ -30,74 +38,50 @@ The analyzer reads `data/generated/` and overwrites the five CSVs in
 | Standard-library analyzer | `python/analyze_inventory.py` |
 | DuckDB reference SQL | `sql/inventory_analysis.sql` |
 | Source contract and regeneration steps | `data/README.md` |
-| Field-level data dictionary | `docs/data_dictionary.md` |
+| Field-level output and source dictionary | `docs/data_dictionary.md` |
 | Evidence-based narrative | `docs/executive_summary.md` |
 | Dashboard wireframe | `dashboard/README.md` |
 | Validation evidence | `docs/pr_validation_report.md` |
 
-The generated population covers 180 calendar days, 300 SKUs, 10 categories,
-5 suppliers, and 12 bins across zones Z1-Z3: 648,000 snapshots, 555,773
-movements, 162,000 orders, and 46,800 cycle counts.
+## Queue definitions
 
-## Risk definitions
+### SKU replenishment
 
-Historical stockout observations are evaluated for **every snapshot**:
-`physical_qty <= reorder_point OR days_of_supply <= lead_time_days`.
-`historical_stockout_observation_rate_pct` is those observations divided by all
-snapshots. It is a workload/history KPI, not the current action queue.
+`average_daily_demand = sum(orders.ordered_qty) / calendar days` at SKU
+grain. `days_of_supply = total latest physical quantity / average daily
+demand`. Tiers compare **total** on-hand to the SKU policy reorder point and
+safety stock and compare DOS to the SKU lead time:
 
-Current risk is evaluated once per SKU/location using its latest snapshot.
-Tiers are mutually exclusive and applied in this order:
+* **Critical:** total physical quantity is zero, DOS is at or below 25% of
+  lead time, or a material safety-stock/lead-time exception exists.
+* **High:** total quantity is at or below reorder point and DOS is at or below
+  lead time.
+* **Watch:** a broad SKU policy trigger or material adjustment exposure exists.
+* **Routine:** neither current SKU-level trigger is met.
 
-1. **Critical:** current `physical_qty = 0` **OR** days of supply
-   `<= 0.25 * lead_time_days` **OR** (`physical_qty <= safety_stock` **AND**
-   `materiality_flag=Y` **AND** the current stockout-risk condition is true).
-2. **High:** not Critical, physical quantity `<= reorder_point` **AND** days
-   of supply `<= lead_time_days` **AND** `materiality_flag=Y`.
-3. **Watch:** not Critical/High, physical quantity `<= reorder_point` **OR**
-   days of supply `<= lead_time_days` **OR** (`materiality_flag=Y` **AND**
-   recurring variance).
-4. **Routine:** otherwise.
+`stockout_risk_report.csv` contains only Critical and High **SKU rows**.
 
-The exact current stockout-risk condition is
-`physical_qty <= reorder_point OR days_of_supply <= lead_time_days`. It is
-used for the Critical safety-stock clause and is also the `stockout_risk_flag`
-policy trigger. Historical exposure applies this same condition to every
-snapshot. Recurring variance means at least two non-zero quantity-variance
-snapshots for the SKU/location pair across the source period.
+### SKU/location inventory control
 
-`current_action_flag=Y` only for Critical and High; therefore
-`stockout_risk_report.csv` contains only those tiers. `sku_risk_priorities.csv`
-retains all 3,600 latest SKU/location records, including Watch and Routine.
-
-Materiality is data-derived, never a fixed business cutoff. Across all latest
-SKU/location records, calculate the exact linear-interpolated
-`PERCENTILE_CONT(0.75)` independently for latest inventory value
-(`physical_qty * unit_cost`), latest unit cost, and cumulative historical
-adjustment value (`sum(abs(system_qty - physical_qty) * unit_cost)`). A record
-is material when **any** of its three values is greater than or equal to its
-corresponding 75th-percentile threshold. The exact thresholds are published
-in `kpi_summary.csv`.
+`sku_location_count_priorities.csv` retains all 3,600 latest SKU/location
+records. It uses recurring non-zero variance, adjustment exposure, recount
+count/rate, transaction volume, and location recurrence to recommend weekly,
+biweekly, monthly, or quarterly count frequency. It deliberately contains no
+enterprise stockout/replenishment tier.
 
 ## Output contract
 
-The analyzer writes exactly:
+The analyzer writes:
 
-* `kpi_summary.csv`: `metric_name,metric_value,metric_unit,calculation_note`
-* `sku_risk_priorities.csv`: one row per SKU/location; see the exact ordered
-  schema in `docs/data_dictionary.md`
-* `location_variance_summary.csv`: one row per location
-* `stockout_risk_report.csv`: only current Critical + High action rows
-* `data_quality_checks.csv`: `check_name,status,records_affected,details`
+* `kpi_summary.csv`: KPI values plus separate replenishment and count-queue
+  tier distributions.
+* `sku_replenishment_priorities.csv`: exactly 300 SKU rows.
+* `sku_location_count_priorities.csv`: exactly 3,600 SKU/location rows.
+* `stockout_risk_report.csv`: only Critical + High SKU replenishment rows.
+* `location_variance_summary.csv`: supporting zone/location control rollup.
+* `data_quality_checks.csv`: publication gate; every row must be `PASS`.
 
-All quality checks must be `PASS` before using the reports. Output CSVs are
-intentionally compact and reviewable; full source data is reproducibly
-regenerated rather than committed.
-
-## Assumptions and production handoff
-
-Orders omit location, so SKU demand is allocated evenly across observed bins.
-Synthetic lead times and costs are policy attributes, not supplier performance.
-Production use should replace these assumptions with WMS/ERP keys, open-order
-status, measured supplier lead time, approved adjustment reason codes, and
-business-approved action governance.
+The generator naturally produces a small set of high-value, long-lead,
+fast-moving SKU supply risks and a limited set of recurring-variance bins.
+Recount rate is an emergent result of observed count variance and is expected
+to land naturally around 10–15%; it is not hardcoded as an output target.

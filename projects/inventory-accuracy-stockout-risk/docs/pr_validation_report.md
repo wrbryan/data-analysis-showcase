@@ -1,7 +1,7 @@
 # PR validation report
 
-Validation was run on branch `feature/inventory-project-data-analysis-qc` after
-regenerating the deterministic source population with seed `20260905`.
+Validation was run on branch `feature/inventory-project-data-analysis-qc`
+after regenerating the deterministic source population with seed `20260905`.
 
 ## Final population and output counts
 
@@ -9,60 +9,55 @@ regenerating the deterministic source population with seed `20260905`.
 |---|---:|
 | SKUs | 300 |
 | inventory snapshots | 648,000 |
-| transactions | 555,773 |
-| orders | 162,000 |
+| transactions | 584,997 |
+| orders | 13,500 |
 | cycle counts | 46,800 |
-| latest SKU/location records retained in `sku_risk_priorities.csv` | 3,600 |
-| Critical+High rows in `stockout_risk_report.csv` | 1,636 |
+| SKU replenishment rows | 300 |
+| SKU/location count-priority rows | 3,600 |
+| Critical+High SKU stockout rows | 8 |
 
-## Risk and KPI results
+## Separate tier distributions
 
-* Historical stockout-observation rate: **70.29%** (all snapshots).
-* Current Critical+High: **1,636 / 3,600 = 45.44%**.
-* Current tier counts: **Critical 1,525; High 111; Watch 1,428;
-  Routine 536**.
-* Current tier logic is exact and mutually exclusive: Critical when
-  `physical_qty = 0` or `days_of_supply <= 0.25 * lead_time`, or when
-  `physical_qty <= safety_stock` with materiality and the current stockout-risk
-  condition; High when both reorder-point and lead-time triggers plus
-  materiality hold; Watch when either broad trigger or material recurring
-  variance holds; Routine otherwise.
-* The current stockout-risk condition is
-  `physical_qty <= reorder_point OR days_of_supply <= lead_time`. Historical
-  exposure uses the same condition on every snapshot. Recurring variance means
-  at least two non-zero variance snapshots per SKU/location.
-* Inventory accuracy: **99.98%**.
-* Cumulative adjustment value: **$1,032,961.10**.
-* Latest inventory value: **$37,957,832.60**.
-* Aggregate latest days of supply: **14.83 days**.
+| tier | SKU replenishment | SKU/location count control |
+|---|---:|---:|
+| Critical | 6 | 6 |
+| High | 2 | 472 |
+| Watch | 96 | 122 |
+| Routine | 196 | 3,000 |
+
+Routine is the clear majority at both grains. The queues are not
+interchangeable: the replenishment queue uses total SKU position and SKU
+demand, while the count queue uses local variance/control signals.
+
+## KPI results
+
+* SKU Critical+High rate: **2.67%** (8 of 300).
+* Count-queue Critical+High rate: **13.28%** (478 of 3,600).
+* Inventory accuracy: **100.00%** rounded; adjustment exposure:
+  **$211,618.40**.
+* Latest inventory value: **$124,676,423.10**.
 * Cycle-count completion: **94.12%**.
-* Recount rate: **44.45%**. This is an intentionally elevated synthetic
-  control signal, **not a benchmark or target**.
-* On-time shipment rate: **90.91%**.
-* Materiality P75 thresholds: latest inventory value **$12,368.18**, unit cost
-  **$92.92**, cumulative adjustment value **$438.50**.
+* Recount rate: **14.10%** of completed counts, naturally generated and not
+  hardcoded.
+* Historical broad stockout-observation rate: **7.08%** of snapshots.
+* On-time shipment rate: **90.90%**.
 
 ## Quality checks
 
-All 20 rows in `outputs/data_quality_checks.csv` are `PASS` with
-`records_affected=0`:
+All **26** rows in `outputs/data_quality_checks.csv` are `PASS` with
+`records_affected=0`, including:
 
-1. required fields and duplicate keys for each of the five sources;
-2. SKU reference integrity;
-3. 180-day date range;
-4. non-negative inventory;
-5. snapshot cost matches product master;
-6. shipped quantity does not exceed ordered quantity;
-7. shipment date is not before order date;
-8. all six transaction types are present;
-9. partial shipments are present;
-10. delayed shipments are present;
-11. minimum order, transaction, and cycle-count volumes;
-12. current tier partition equals all latest SKU/location records;
-13. published priority and Critical+High action outputs are consistent;
-14. stockout output contains only Critical+High action rows.
+* source required fields, duplicate keys, references, dates, quantities, and
+  movement/order behavior;
+* replenishment tier reconciliation at SKU grain;
+* one replenishment row per SKU;
+* count-control tier reconciliation at SKU/location grain;
+* retention of all 3,600 SKU/location records;
+* Routine-majority checks at both grains;
+* SKU-grain stockout report uniqueness and Critical+High-only filtering;
+* explicit check that the count queue has no enterprise stockout inference.
 
-Additional validation completed:
+Validation commands:
 
 ```text
 python projects/inventory-accuracy-stockout-risk/python/generate_synthetic_data.py
@@ -71,15 +66,4 @@ python -m py_compile projects/inventory-accuracy-stockout-risk/python/*.py
 duckdb < projects/inventory-accuracy-stockout-risk/sql/inventory_analysis.sql
 ```
 
-The DuckDB reference completed successfully and reproduced the source counts,
-accuracy, cycle-count, shipment, and movement-type checks.
-
-## Limitations
-
-Data is synthetic and deterministic. Orders have no location, so demand is
-allocated evenly across each SKU's observed bins. Lead times, costs, demand,
-and recount behavior are synthetic planning/control signals. Materiality is
-relative to the current latest-record population and is not a universal
-financial threshold. The score and tiers require business governance before
-production use; real deployments should add WMS/ERP keys, open-order status,
-measured supplier performance, and approved adjustment reason codes.
+Full generated inputs remain ignored; compact samples remain checked in.

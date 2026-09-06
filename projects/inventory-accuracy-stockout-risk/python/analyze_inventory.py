@@ -1,8 +1,9 @@
-"""Analyze generated inventory sources and publish compact operational reports.
+"""Publish complementary SKU replenishment and SKU/location count queues.
 
-The analyzer deliberately uses only the Python standard library.  Historical
-stockout observations are calculated at snapshot grain; current action risk is
-calculated once per SKU/location from the latest snapshot.
+The replenishment queue aggregates the latest inventory position across all
+locations for each SKU.  The count queue remains at SKU/location grain and
+uses variance, recount, and transaction-control signals only; a low bin never
+becomes an enterprise SKU stockout by itself.
 """
 from __future__ import annotations
 
@@ -41,27 +42,37 @@ SOURCE_FIELDS = {
 }
 
 KPI_FIELDS = ["metric_name", "metric_value", "metric_unit", "calculation_note"]
-PRIORITY_FIELDS = [
-    "priority_rank", "sku", "product_name", "category", "supplier", "location",
-    "zone", "system_qty", "physical_qty", "quantity_variance",
+REPLENISHMENT_FIELDS = [
+    "priority_rank", "sku", "product_name", "category", "supplier",
+    "location_count", "total_system_qty", "total_physical_qty",
+    "total_quantity_variance", "total_absolute_quantity_variance", "unit_cost",
+    "inventory_value", "adjustment_exposure", "average_daily_demand",
+    "days_of_supply", "reorder_point", "safety_stock", "lead_time_days",
+    "reorder_point_trigger", "safety_stock_trigger", "lead_time_trigger",
+    "materiality_flag", "replenishment_tier", "replenishment_reason",
+    "action_flag", "priority_score",
+]
+COUNT_PRIORITY_FIELDS = [
+    "priority_rank", "sku", "product_name", "category", "location", "zone",
+    "latest_system_qty", "latest_physical_qty", "quantity_variance",
     "absolute_quantity_variance", "unit_cost", "inventory_value",
-    "cumulative_adjustment_value", "average_daily_demand", "days_of_supply",
-    "reorder_point", "safety_stock", "lead_time_days", "stockout_risk_flag",
-    "historical_stockout_observation_count", "variance_event_count",
-    "materiality_flag", "risk_tier", "risk_reason", "current_action_flag",
-    "priority_score", "recommended_count_frequency",
+    "location_adjustment_exposure", "variance_event_count",
+    "recurring_variance", "count_records", "recount_count", "recount_rate",
+    "transaction_volume", "location_recurrence_flag", "control_tier",
+    "control_reason", "count_action_flag", "priority_score",
+    "recommended_count_frequency",
 ]
 LOCATION_FIELDS = [
     "zone", "location", "sku_location_records", "total_adjustment_value",
-    "average_inventory_accuracy", "stockout_risk_records",
-    "recount_count", "priority_rank",
+    "average_inventory_accuracy", "recurring_variance_pairs",
+    "recount_count", "transaction_volume", "priority_rank",
 ]
 STOCKOUT_FIELDS = [
-    "sku", "product_name", "category", "supplier", "location", "zone",
-    "physical_qty", "average_daily_demand", "days_of_supply", "reorder_point",
-    "safety_stock", "lead_time_days", "materiality_flag", "risk_tier",
-    "risk_reason", "current_action_flag", "stockout_risk_reason",
-    "recommended_action",
+    "priority_rank", "sku", "product_name", "category", "supplier",
+    "total_physical_qty", "average_daily_demand", "days_of_supply",
+    "reorder_point", "safety_stock", "lead_time_days", "materiality_flag",
+    "replenishment_tier", "replenishment_reason", "action_flag",
+    "stockout_risk_reason", "recommended_action",
 ]
 QUALITY_FIELDS = ["check_name", "status", "records_affected", "details"]
 
@@ -75,9 +86,8 @@ def read_csv(name: str) -> list[dict[str, str]]:
     with path.open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
         fields = reader.fieldnames or []
-        expected = SOURCE_FIELDS[name]
-        if fields != expected:
-            raise ValueError(f"{name} columns must be {expected}; found {fields}")
+        if fields != SOURCE_FIELDS[name]:
+            raise ValueError(f"{name} columns must be {SOURCE_FIELDS[name]}; found {fields}")
         return list(reader)
 
 
@@ -98,15 +108,13 @@ def ratio(numerator: float, denominator: float) -> float:
 
 
 def percentile(values: list[float], probability: float) -> float:
-    """Return the exact linear-interpolated percentile used by PERCENTILE_CONT."""
     ordered = sorted(values)
     if not ordered:
         return 0.0
     position = (len(ordered) - 1) * probability
     lower = int(position)
     upper = min(lower + 1, len(ordered) - 1)
-    fraction = position - lower
-    return ordered[lower] + fraction * (ordered[upper] - ordered[lower])
+    return ordered[lower] + (position - lower) * (ordered[upper] - ordered[lower])
 
 
 def main() -> None:
@@ -122,52 +130,77 @@ def main() -> None:
     dates = sorted({row["snapshot_date"] for row in snapshots})
     period_start, period_end = date.fromisoformat(dates[0]), date.fromisoformat(dates[-1])
     period_days = (period_end - period_start).days + 1
-
-    locations = {
-        row["location"]: row["zone"] for row in snapshots
-    }
-    location_count_by_sku = defaultdict(set)
-    for row in snapshots:
-        location_count_by_sku[row["sku"]].add(row["location"])
-
+    locations = {row["location"]: row["zone"] for row in snapshots}
     pair = defaultdict(lambda: {
-        "snapshot_count": 0, "latest_date": "", "latest_system": 0,
-        "latest_physical": 0, "latest_cost": 0.0, "signed_variance": 0,
-        "abs_variance": 0.0, "adjustment_value": 0.0,
-        "variance_event_count": 0, "accuracy_numerator": 0.0,
-        "accuracy_denominator": 0.0, "historical_stockout_count": 0,
+        "latest_date": "", "latest_system": 0, "latest_physical": 0,
+        "latest_cost": 0.0, "signed_variance": 0, "abs_variance": 0.0,
+        "adjustment_value": 0.0, "variance_event_count": 0,
+        "accuracy_numerator": 0.0, "accuracy_denominator": 0.0,
+    })
+    sku_state = defaultdict(lambda: {
+        "total_system": 0, "total_physical": 0, "total_variance": 0,
+        "total_abs_variance": 0.0, "inventory_value": 0.0,
+        "adjustment_exposure": 0.0, "historical_stockout_count": 0,
     })
     snapshots_by_pair = defaultdict(list)
     location_stats = defaultdict(lambda: {
         "adjustment_value": 0.0, "accuracy_numerator": 0.0,
-        "accuracy_denominator": 0.0, "variance_event_count": 0,
-        "stockout_risk_records": 0, "recount_count": 0,
+        "accuracy_denominator": 0.0, "transaction_volume": 0,
+        "recurring_variance_pairs": 0, "recount_count": 0,
     })
     for row in snapshots:
         sku, location = row["sku"], row["location"]
-        state = pair[(sku, location)]
-        system = int(row["system_qty"])
-        physical = int(row["physical_qty"])
-        cost = float(row["unit_cost"])
+        system, physical, cost = int(row["system_qty"]), int(row["physical_qty"]), float(row["unit_cost"])
         absolute_variance = abs(system - physical)
-        state["snapshot_count"] += 1
-        if row["snapshot_date"] >= state["latest_date"]:
-            state["latest_date"] = row["snapshot_date"]
-            state["latest_system"] = system
-            state["latest_physical"] = physical
-            state["latest_cost"] = cost
-            state["signed_variance"] = system - physical
+        state = pair[(sku, location)]
+        state["latest_date"] = row["snapshot_date"]
+        state["latest_system"] = system
+        state["latest_physical"] = physical
+        state["latest_cost"] = cost
+        state["signed_variance"] = system - physical
         state["abs_variance"] += absolute_variance
         state["adjustment_value"] += absolute_variance * cost
         state["variance_event_count"] += int(absolute_variance > 0)
         state["accuracy_numerator"] += max(physical, 1) - absolute_variance
         state["accuracy_denominator"] += max(physical, 1)
         snapshots_by_pair[(sku, location)].append((physical, cost))
+        aggregate = sku_state[sku]
+        aggregate["total_system"] += system
+        aggregate["total_physical"] += physical
+        aggregate["total_variance"] += system - physical
+        aggregate["total_abs_variance"] += absolute_variance
+        aggregate["adjustment_exposure"] += absolute_variance * cost
         location_state = location_stats[location]
         location_state["adjustment_value"] += absolute_variance * cost
         location_state["accuracy_numerator"] += max(physical, 1) - absolute_variance
         location_state["accuracy_denominator"] += max(physical, 1)
-        location_state["variance_event_count"] += int(absolute_variance > 0)
+
+    transaction_volume_by_pair = defaultdict(int)
+    for row in transactions:
+        transaction_volume_by_pair[(row["sku"], row["location"])] += 1
+        location_stats[row["location"]]["transaction_volume"] += 1
+
+    # Rebuild the SKU position from the latest record in each location.  The
+    # exposure fields above intentionally remain cumulative across the source
+    # period, while on-hand/value fields are current operational position.
+    for sku in sku_state:
+        aggregate = sku_state[sku]
+        aggregate["total_system"] = sum(
+            state["latest_system"] for (pair_sku, _location), state in pair.items()
+            if pair_sku == sku
+        )
+        aggregate["total_physical"] = sum(
+            state["latest_physical"] for (pair_sku, _location), state in pair.items()
+            if pair_sku == sku
+        )
+        aggregate["total_variance"] = sum(
+            state["signed_variance"] for (pair_sku, _location), state in pair.items()
+            if pair_sku == sku
+        )
+        aggregate["total_abs_variance"] = sum(
+            abs(state["signed_variance"]) for (pair_sku, _location), state in pair.items()
+            if pair_sku == sku
+        )
 
     order_units_by_sku = defaultdict(int)
     for row in orders:
@@ -176,280 +209,265 @@ def main() -> None:
         sku: ratio(units, period_days) for sku, units in order_units_by_sku.items()
     }
 
-    def pair_demand(sku: str) -> float:
-        return ratio(demand_by_sku.get(sku, 0.0), len(location_count_by_sku[sku]))
-
-    # Historical KPI: evaluate every daily observation, not only the latest row.
+    # Historical exposure is retained as a KPI, but it is not used to infer
+    # SKU stockout risk from one low location.
+    historical_stockout_observations = 0
     for (sku, location), state in pair.items():
         product = products[sku]
-        demand = pair_demand(sku)
-        lead = int(product["lead_time_days"])
+        daily_demand = demand_by_sku.get(sku, 0.0)
         for physical, _cost in snapshots_by_pair[(sku, location)]:
-            days_supply = ratio(physical, demand) if demand else float("inf")
-            state["historical_stockout_count"] += int(
-                physical <= int(product["reorder_point"]) or days_supply <= lead
-            )
+            days_supply = ratio(physical, daily_demand)
+            trigger = physical <= int(product["reorder_point"]) or days_supply <= int(product["lead_time_days"])
+            historical_stockout_observations += int(trigger)
 
-    # The latest record per SKU/location is the only record used for action risk.
-    latest_values = []
-    for state in pair.values():
-        latest_values.append({
-            "inventory_value": state["latest_physical"] * state["latest_cost"],
-            "unit_cost": state["latest_cost"],
-            "cumulative_adjustment_value": state["adjustment_value"],
-        })
-    materiality_thresholds = {
-        key: percentile([row[key] for row in latest_values], 0.75)
-        for key in ("inventory_value", "unit_cost", "cumulative_adjustment_value")
-    }
-
-    def current_metrics(sku: str, state: dict[str, object]) -> dict[str, object]:
-        product = products[sku]
-        demand = pair_demand(sku)
-        physical = int(state["latest_physical"])
-        lead = int(product["lead_time_days"])
-        reorder = int(product["reorder_point"])
-        safety = int(product["safety_stock"])
-        days_supply = ratio(physical, demand) if demand else float("inf")
-        inventory_value = physical * float(state["latest_cost"])
-        materiality = (
-            inventory_value >= materiality_thresholds["inventory_value"]
-            or float(state["latest_cost"]) >= materiality_thresholds["unit_cost"]
-            or float(state["adjustment_value"])
-            >= materiality_thresholds["cumulative_adjustment_value"]
-        )
-        physical_zero = physical == 0
-        days_critical = days_supply <= 0.25 * lead
-        physical_reorder = physical <= reorder
-        days_lead = days_supply <= lead
-        current_trigger = physical_reorder or days_lead
-        recurring_variance = int(state["variance_event_count"]) >= 2
-        materialized_safety_risk = (
-            physical <= safety and materiality and current_trigger
-        )
-        if physical_zero or days_critical or materialized_safety_risk:
-            tier = "Critical"
-            reasons = []
-            if physical_zero:
-                reasons.append("physical quantity = 0")
-            if days_critical:
-                reasons.append("days of supply <= 0.25 lead time")
-            if materialized_safety_risk:
-                reasons.append(
-                    "physical quantity <= safety stock with materiality and "
-                    "current stockout-risk condition"
-                )
-            reason = "Critical: " + " and ".join(reasons)
-        elif physical_reorder and days_lead and materiality:
-            tier = "High"
-            reason = (
-                "High: physical quantity <= reorder point and days of supply "
-                "<= lead time; materiality flag=Y"
-            )
-        elif current_trigger or (materiality and recurring_variance):
-            tier = "Watch"
-            reasons = []
-            if physical <= reorder:
-                reasons.append("physical quantity <= reorder point")
-            if days_supply <= lead:
-                reasons.append("days of supply <= lead time")
-            if materiality and recurring_variance:
-                reasons.append(
-                    "materiality flag=Y and recurring variance "
-                    "(at least two non-zero variance snapshots)"
-                )
-            reason = "Watch: " + " or ".join(reasons)
-        else:
-            tier = "Routine"
-            reason = "Routine: neither current quantity trigger is met"
-        return {
-            "demand": demand, "days_supply": days_supply,
-            "inventory_value": inventory_value, "materiality": materiality,
-            "current_trigger": current_trigger,
-            "recurring_variance": recurring_variance,
-            "tier": tier, "reason": reason,
-            "action": tier in {"Critical", "High"},
-        }
-
-    total_adjustment_value = sum(state["adjustment_value"] for state in pair.values())
-    weighted_accuracy = ratio(
-        sum(state["accuracy_numerator"] for state in pair.values()),
-        sum(state["accuracy_denominator"] for state in pair.values()),
-    )
-    historical_stockout_observations = sum(
-        state["historical_stockout_count"] for state in pair.values()
-    )
-    total_snapshots = len(snapshots)
-    shipped_orders = [row for row in orders if int(row["shipped_qty"]) > 0]
-    on_time_shipments = sum(
-        date.fromisoformat(row["ship_date"]) <= date.fromisoformat(row["promised_date"])
-        for row in shipped_orders
-    )
-    current_rows = {
-        key: current_metrics(key[0], state) for key, state in pair.items()
-    }
-    tier_counts = defaultdict(int)
-    for metrics in current_rows.values():
-        tier_counts[metrics["tier"]] += 1
-
-    # Priority score remains a bounded triage score, but its stockout component
-    # is explicitly current latest-snapshot trigger risk.
-    max_adjustment = max((state["adjustment_value"] for state in pair.values()), default=1.0)
-    max_inventory_value = max(
-        (metrics["inventory_value"] for metrics in current_rows.values()), default=1.0
-    )
-    max_lead = max(int(product["lead_time_days"]) for product in products.values())
-    max_location_recurrence = max(
-        (stats["variance_event_count"] for stats in location_stats.values()), default=1
-    )
-    priority_rows = []
-    stockout_rows = []
-    for (sku, location), state in sorted(pair.items()):
-        product = products[sku]
-        metrics = current_rows[(sku, location)]
-        demand = float(metrics["demand"])
-        days_supply = float(metrics["days_supply"])
-        current_trigger = bool(metrics["current_trigger"])
-        location_state = location_stats[location]
-        location_state["stockout_risk_records"] += int(current_trigger)
-        adjustment_score = 100 * state["adjustment_value"] / max_adjustment
-        stockout_score = 100.0 if current_trigger else 0.0
-        recurrence_score = 100 * state["variance_event_count"] / max(state["snapshot_count"], 1)
-        location_score = 100 * location_state["variance_event_count"] / max_location_recurrence
-        context_score = (
-            40 * float(metrics["inventory_value"]) / max_inventory_value
-            + 30 * int(product["lead_time_days"]) / max_lead
-            + 30 * location_score / 100
-        )
-        score = min(
-            100.0,
-            0.35 * adjustment_score + 0.30 * stockout_score
-            + 0.20 * recurrence_score + 0.15 * context_score,
-        )
-        frequency = (
-            "Weekly" if bool(metrics["action"]) or score >= 70
-            else "Biweekly" if score >= 40 else "Monthly"
-        )
-        common = {
-            "sku": sku, "product_name": product["product_name"],
-            "category": product["category"], "supplier": product["supplier"],
-            "location": location, "zone": locations[location],
-            "physical_qty": state["latest_physical"],
-            "average_daily_demand": f"{demand:.2f}",
-            "days_of_supply": f"{days_supply:.2f}",
-            "reorder_point": product["reorder_point"],
-            "safety_stock": product["safety_stock"],
-            "lead_time_days": product["lead_time_days"],
-            "materiality_flag": "Y" if metrics["materiality"] else "N",
-            "risk_tier": metrics["tier"], "risk_reason": metrics["reason"],
-            "current_action_flag": "Y" if metrics["action"] else "N",
-        }
-        stockout_rows.append({
-            **common,
-            "stockout_risk_reason": (
-                "Current trigger: physical quantity <= reorder point or "
-                "days of supply <= lead time"
-            ) if current_trigger else "No current trigger",
-            "recommended_action": (
-                "Prioritize count and replenish" if metrics["action"]
-                else "Monitor; no immediate action"
-            ),
-        })
-        priority_rows.append({
-            "_score": score, "_sku": sku, "_location": location,
-            "priority_rank": 0, **common,
-            "system_qty": state["latest_system"],
-            "quantity_variance": state["signed_variance"],
-            "absolute_quantity_variance": round(state["abs_variance"], 2),
-            "unit_cost": product["unit_cost"],
-            "inventory_value": f"{float(metrics['inventory_value']):.2f}",
-            "cumulative_adjustment_value": f"{state['adjustment_value']:.2f}",
-            "stockout_risk_flag": "Y" if current_trigger else "N",
-            "historical_stockout_observation_count": state["historical_stockout_count"],
-            "variance_event_count": state["variance_event_count"],
-            "priority_score": f"{score:.2f}",
-            "recommended_count_frequency": frequency,
-        })
-
-    priority_rows.sort(key=lambda row: (-row["_score"], row["_sku"], row["_location"]))
-    for rank, row in enumerate(priority_rows, 1):
-        row["priority_rank"] = rank
-        for private_key in ("_score", "_sku", "_location"):
-            del row[private_key]
-
+    count_state = defaultdict(lambda: {
+        "count_records": 0, "completed_count": 0, "recount_count": 0,
+        "variance_abs": 0,
+    })
     scheduled_counts = completed_counts = recounts = 0
     for row in counts:
+        key = (row["sku"], row["location"])
         scheduled = row["scheduled_flag"].upper() == "Y"
         completed = scheduled and row["completed_flag"].upper() == "Y"
+        recount = completed and row["recount_flag"].upper() == "Y"
         scheduled_counts += int(scheduled)
         completed_counts += int(completed)
-        recounts += int(completed and row["recount_flag"].upper() == "Y")
-        if row["recount_flag"].upper() == "Y":
-            location_stats[row["location"]]["recount_count"] += 1
-    # Location rows are assembled after count totals below.
+        recounts += int(recount)
+        state = count_state[key]
+        state["count_records"] += int(scheduled)
+        state["completed_count"] += int(completed)
+        state["recount_count"] += int(recount)
+        state["variance_abs"] += abs(int(row["variance_qty"]))
+        location_stats[row["location"]]["recount_count"] += int(recount)
+
+    recurring_location_pairs = {
+        key: int(state["variance_event_count"] >= 2)
+        for key, state in pair.items()
+    }
+    for (sku, location), recurring in recurring_location_pairs.items():
+        location_stats[location]["recurring_variance_pairs"] += recurring
+    location_recurrence = {
+        location: stats["recurring_variance_pairs"] >= 2
+        for location, stats in location_stats.items()
+    }
+
+    # SKU-grain materiality and replenishment tiering.
+    sku_values = []
+    for sku, aggregate in sku_state.items():
+        cost = float(products[sku]["unit_cost"])
+        sku_values.append({
+            "inventory_value": aggregate["total_physical"] * cost,
+            "adjustment_exposure": aggregate["adjustment_exposure"],
+            "unit_cost": cost,
+        })
+    materiality_thresholds = {
+        key: percentile([row[key] for row in sku_values], 0.75)
+        for key in ("inventory_value", "adjustment_exposure", "unit_cost")
+    }
+    sku_metrics = {}
+    for sku, aggregate in sku_state.items():
+        product = products[sku]
+        cost = float(product["unit_cost"])
+        demand = demand_by_sku.get(sku, 0.0)
+        total_physical = aggregate["total_physical"]
+        days_supply = ratio(total_physical, demand)
+        inventory_value = total_physical * cost
+        materiality = (
+            inventory_value >= materiality_thresholds["inventory_value"]
+            or aggregate["adjustment_exposure"] >= materiality_thresholds["adjustment_exposure"]
+            or cost >= materiality_thresholds["unit_cost"]
+        )
+        reorder_trigger = total_physical <= int(product["reorder_point"])
+        safety_trigger = total_physical <= int(product["safety_stock"])
+        lead_trigger = days_supply <= int(product["lead_time_days"])
+        current_trigger = reorder_trigger or lead_trigger
+        if total_physical == 0 or days_supply <= 0.25 * int(product["lead_time_days"]):
+            tier = "Critical"
+            reason = "Critical: total physical quantity is zero or days of supply <= 0.25 lead time"
+        elif safety_trigger and lead_trigger and materiality:
+            tier = "Critical"
+            reason = "Critical: total quantity <= safety stock with materiality and lead-time trigger"
+        elif reorder_trigger and lead_trigger:
+            tier = "High"
+            reason = "High: total quantity <= reorder point and days of supply <= lead time"
+        elif current_trigger or (materiality and aggregate["adjustment_exposure"] > 0):
+            tier = "Watch"
+            reason = "Watch: total quantity or days-of-supply policy trigger, or material exposure"
+        else:
+            tier = "Routine"
+            reason = "Routine: SKU-level quantity and supply policy triggers are not met"
+        sku_metrics[sku] = {
+            "demand": demand, "days_supply": days_supply, "inventory_value": inventory_value,
+            "materiality": materiality, "reorder_trigger": reorder_trigger,
+            "safety_trigger": safety_trigger, "lead_trigger": lead_trigger,
+            "tier": tier, "reason": reason, "action": tier in {"Critical", "High"},
+            "current_trigger": current_trigger,
+        }
+
+    sku_tier_counts = defaultdict(int)
+    for metrics in sku_metrics.values():
+        sku_tier_counts[metrics["tier"]] += 1
+    max_sku_adjustment = max((a["adjustment_exposure"] for a in sku_state.values()), default=1.0)
+    max_sku_inventory = max((m["inventory_value"] for m in sku_metrics.values()), default=1.0)
+    replenishment_rows = []
+    for sku in sorted(sku_state):
+        aggregate, product, metrics = sku_state[sku], products[sku], sku_metrics[sku]
+        score = min(100.0, 45 * aggregate["adjustment_exposure"] / max_sku_adjustment
+                    + 35 * int(metrics["current_trigger"])
+                    + 20 * metrics["inventory_value"] / max_sku_inventory)
+        replenishment_rows.append({
+            "_score": score, "_sku": sku, "priority_rank": 0, "sku": sku,
+            "product_name": product["product_name"], "category": product["category"],
+            "supplier": product["supplier"], "location_count": len(locations),
+            "total_system_qty": aggregate["total_system"],
+            "total_physical_qty": aggregate["total_physical"],
+            "total_quantity_variance": aggregate["total_variance"],
+            "total_absolute_quantity_variance": round(aggregate["total_abs_variance"], 2),
+            "unit_cost": product["unit_cost"],
+            "inventory_value": f"{metrics['inventory_value']:.2f}",
+            "adjustment_exposure": f"{aggregate['adjustment_exposure']:.2f}",
+            "average_daily_demand": f"{metrics['demand']:.2f}",
+            "days_of_supply": f"{metrics['days_supply']:.2f}",
+            "reorder_point": product["reorder_point"], "safety_stock": product["safety_stock"],
+            "lead_time_days": product["lead_time_days"],
+            "reorder_point_trigger": "Y" if metrics["reorder_trigger"] else "N",
+            "safety_stock_trigger": "Y" if metrics["safety_trigger"] else "N",
+            "lead_time_trigger": "Y" if metrics["lead_trigger"] else "N",
+            "materiality_flag": "Y" if metrics["materiality"] else "N",
+            "replenishment_tier": metrics["tier"], "replenishment_reason": metrics["reason"],
+            "action_flag": "Y" if metrics["action"] else "N", "priority_score": f"{score:.2f}",
+        })
+    replenishment_rows.sort(key=lambda row: (-row["_score"], row["_sku"]))
+    for rank, row in enumerate(replenishment_rows, 1):
+        row["priority_rank"] = rank
+        del row["_score"], row["_sku"]
+
+    # Location-control tiering intentionally does not include SKU replenishment
+    # tier or a stockout flag.
+    max_pair_adjustment = max((state["adjustment_value"] for state in pair.values()), default=1.0)
+    max_pair_transactions = max(transaction_volume_by_pair.values(), default=1)
+    count_rows = []
+    count_tier_counts = defaultdict(int)
+    for (sku, location), state in sorted(pair.items()):
+        product, cstate = products[sku], count_state[(sku, location)]
+        abs_latest = abs(int(state["signed_variance"]))
+        recurring = int(state["variance_event_count"]) >= 2
+        recount_rate = ratio(cstate["recount_count"], cstate["completed_count"])
+        loc_repeat = location_recurrence[location]
+        if recurring and abs_latest >= 2 and cstate["recount_count"] >= 3 and loc_repeat:
+            tier = "Critical"
+            reason = "Critical: recurring variance, large latest discrepancy, and repeated recounts in a recurring-variance location"
+        elif recurring and (cstate["recount_count"] >= 2 or state["adjustment_value"] >= max_pair_adjustment * 0.75):
+            tier = "High"
+            reason = "High: recurring SKU/location variance with repeated recount or material adjustment exposure"
+        elif recurring or cstate["recount_count"] > 0 or abs_latest > 0:
+            tier = "Watch"
+            reason = "Watch: variance or recount pattern warrants monitoring"
+        else:
+            tier = "Routine"
+            reason = "Routine: no recurring variance or recount pattern"
+        count_tier_counts[tier] += 1
+        score = min(100.0, 45 * state["adjustment_value"] / max_pair_adjustment
+                    + 25 * int(recurring) + 20 * min(recount_rate / 0.5, 1)
+                    + 10 * transaction_volume_by_pair[(sku, location)] / max_pair_transactions)
+        count_rows.append({
+            "_score": score, "_key": (sku, location), "priority_rank": 0, "sku": sku,
+            "product_name": product["product_name"], "category": product["category"],
+            "location": location, "zone": locations[location],
+            "latest_system_qty": state["latest_system"], "latest_physical_qty": state["latest_physical"],
+            "quantity_variance": state["signed_variance"], "absolute_quantity_variance": abs_latest,
+            "unit_cost": product["unit_cost"],
+            "inventory_value": f"{state['latest_physical'] * float(product['unit_cost']):.2f}",
+            "location_adjustment_exposure": f"{state['adjustment_value']:.2f}",
+            "variance_event_count": state["variance_event_count"],
+            "recurring_variance": "Y" if recurring else "N",
+            "count_records": cstate["count_records"], "recount_count": cstate["recount_count"],
+            "recount_rate": f"{100 * recount_rate:.2f}",
+            "transaction_volume": transaction_volume_by_pair[(sku, location)],
+            "location_recurrence_flag": "Y" if loc_repeat else "N",
+            "control_tier": tier, "control_reason": reason,
+            "count_action_flag": "Y" if tier in {"Critical", "High"} else "N",
+            "priority_score": f"{score:.2f}",
+            "recommended_count_frequency": (
+                "Weekly" if tier == "Critical" else
+                "Biweekly" if tier == "High" else
+                "Monthly" if tier == "Watch" else "Quarterly"
+            ),
+        })
+    count_rows.sort(key=lambda row: (-row["_score"], row["sku"], row["location"]))
+    for rank, row in enumerate(count_rows, 1):
+        row["priority_rank"] = rank
+        del row["_score"], row["_key"]
+
+    stockout_rows = []
+    for row in replenishment_rows:
+        if row["action_flag"] != "Y":
+            continue
+        stockout_rows.append({
+            "priority_rank": row["priority_rank"], "sku": row["sku"],
+            "product_name": row["product_name"], "category": row["category"],
+            "supplier": row["supplier"], "total_physical_qty": row["total_physical_qty"],
+            "average_daily_demand": row["average_daily_demand"], "days_of_supply": row["days_of_supply"],
+            "reorder_point": row["reorder_point"], "safety_stock": row["safety_stock"],
+            "lead_time_days": row["lead_time_days"], "materiality_flag": row["materiality_flag"],
+            "replenishment_tier": row["replenishment_tier"],
+            "replenishment_reason": row["replenishment_reason"], "action_flag": row["action_flag"],
+            "stockout_risk_reason": "SKU-level total on-hand compared with reorder point and lead time",
+            "recommended_action": "Validate supply position and expedite replenishment",
+        })
+
     location_rows = []
     for location, stats in sorted(location_stats.items()):
         location_rows.append({
             "zone": locations[location], "location": location,
-            "sku_location_records": sum(1 for _sku, loc in pair if loc == location),
+            "sku_location_records": sum(loc == location for _sku, loc in pair),
             "total_adjustment_value": f"{stats['adjustment_value']:.2f}",
             "average_inventory_accuracy": f"{100 * ratio(stats['accuracy_numerator'], stats['accuracy_denominator']):.2f}",
-            "stockout_risk_records": stats["stockout_risk_records"],
-            "recount_count": stats["recount_count"], "priority_rank": 0,
+            "recurring_variance_pairs": stats["recurring_variance_pairs"],
+            "recount_count": stats["recount_count"],
+            "transaction_volume": stats["transaction_volume"], "priority_rank": 0,
         })
     location_rows.sort(key=lambda row: (-float(row["total_adjustment_value"]), row["location"]))
     for rank, row in enumerate(location_rows, 1):
         row["priority_rank"] = rank
 
+    weighted_accuracy = ratio(
+        sum(state["accuracy_numerator"] for state in pair.values()),
+        sum(state["accuracy_denominator"] for state in pair.values()),
+    )
+    shipped_orders = [row for row in orders if int(row["shipped_qty"]) > 0]
+    on_time_shipments = sum(
+        date.fromisoformat(row["ship_date"]) <= date.fromisoformat(row["promised_date"])
+        for row in shipped_orders
+    )
     kpis = [
-        ("inventory_accuracy_pct", 100 * weighted_accuracy, "percent",
-         "100 * (1 - sum(abs(system_qty - physical_qty)) / sum(max(physical_qty, 1)))"),
-        ("adjustment_value", total_adjustment_value, "currency",
-         "sum(abs(system_qty - physical_qty) * unit_cost) across all snapshots"),
-        ("historical_stockout_observation_rate_pct",
-         pct(historical_stockout_observations, total_snapshots), "percent",
-         "historical observations meeting physical <= reorder point OR days of supply <= lead time / all snapshots"),
-        ("current_critical_high_count",
-         tier_counts["Critical"] + tier_counts["High"], "records",
-         "latest SKU/location records classified Critical or High"),
-        ("current_critical_high_rate_pct",
-         pct(tier_counts["Critical"] + tier_counts["High"], len(pair)), "percent",
-         "current Critical + High records / latest SKU/location records"),
-        ("current_critical_count", tier_counts["Critical"], "records",
-         "latest SKU/location records classified Critical"),
-        ("current_high_count", tier_counts["High"], "records",
-         "latest SKU/location records classified High"),
-        ("current_watch_count", tier_counts["Watch"], "records",
-         "latest SKU/location records classified Watch"),
-        ("current_routine_count", tier_counts["Routine"], "records",
-         "latest SKU/location records classified Routine"),
-        ("materiality_p75_inventory_value", materiality_thresholds["inventory_value"],
-         "currency", "PERCENTILE_CONT(0.75) across latest SKU/location inventory value"),
-        ("materiality_p75_unit_cost", materiality_thresholds["unit_cost"], "currency",
-         "PERCENTILE_CONT(0.75) across latest SKU/location unit cost"),
-        ("materiality_p75_cumulative_adjustment_value",
-         materiality_thresholds["cumulative_adjustment_value"], "currency",
-         "PERCENTILE_CONT(0.75) across latest SKU/location cumulative adjustment value"),
-        ("days_of_supply", ratio(
-            sum(int(state["latest_physical"]) for state in pair.values()),
-            sum(pair_demand(sku) for sku, _location in pair),
-        ), "days", "latest physical quantity / average daily demand"),
-        ("cycle_count_completion_pct", pct(completed_counts, scheduled_counts), "percent",
-         "completed scheduled cycle counts / scheduled cycle counts"),
-        ("recount_rate_pct", pct(recounts, completed_counts), "percent",
-         "recounted completed cycle counts / completed cycle counts"),
-        ("on_time_shipment_rate_pct", pct(on_time_shipments, len(shipped_orders)), "percent",
-         "shipped orders with ship_date <= promised_date / shipped orders"),
-        ("inventory_value",
-         sum(float(metrics["inventory_value"]) for metrics in current_rows.values()),
-         "currency", "latest physical quantity * unit cost across SKU/location pairs"),
+        ("inventory_accuracy_pct", 100 * weighted_accuracy, "percent", "weighted latest-period accuracy"),
+        ("adjustment_value", sum(a["adjustment_exposure"] for a in sku_state.values()), "currency", "cumulative adjustment exposure across snapshots"),
+        ("historical_stockout_observation_rate_pct", pct(historical_stockout_observations, len(snapshots)), "percent", "historical broad trigger / all snapshots; not an enterprise current queue"),
+        ("replenishment_sku_count", len(replenishment_rows), "SKUs", "one row per SKU across all locations"),
+        ("count_priority_sku_location_count", len(count_rows), "SKU/location records", "all latest SKU/location pairs retained"),
+        ("replenishment_critical_count", sku_tier_counts["Critical"], "SKUs", "SKU-level replenishment tier"),
+        ("replenishment_high_count", sku_tier_counts["High"], "SKUs", "SKU-level replenishment tier"),
+        ("replenishment_watch_count", sku_tier_counts["Watch"], "SKUs", "SKU-level replenishment tier"),
+        ("replenishment_routine_count", sku_tier_counts["Routine"], "SKUs", "SKU-level replenishment tier"),
+        ("replenishment_critical_high_rate_pct", pct(sku_tier_counts["Critical"] + sku_tier_counts["High"], len(replenishment_rows)), "percent", "Critical + High SKUs / all SKUs"),
+        ("count_priority_critical_count", count_tier_counts["Critical"], "SKU/location records", "SKU/location control tier"),
+        ("count_priority_high_count", count_tier_counts["High"], "SKU/location records", "SKU/location control tier"),
+        ("count_priority_watch_count", count_tier_counts["Watch"], "SKU/location records", "SKU/location control tier"),
+        ("count_priority_routine_count", count_tier_counts["Routine"], "SKU/location records", "SKU/location control tier"),
+        ("count_priority_critical_high_rate_pct", pct(count_tier_counts["Critical"] + count_tier_counts["High"], len(count_rows)), "percent", "Critical + High SKU/location records / all pairs"),
+        ("materiality_p75_inventory_value", materiality_thresholds["inventory_value"], "currency", "PERCENTILE_CONT(0.75) across latest SKU inventory value"),
+        ("materiality_p75_adjustment_exposure", materiality_thresholds["adjustment_exposure"], "currency", "PERCENTILE_CONT(0.75) across SKU adjustment exposure"),
+        ("cycle_count_completion_pct", pct(completed_counts, scheduled_counts), "percent", "completed scheduled cycle counts / scheduled counts"),
+        ("recount_rate_pct", pct(recounts, completed_counts), "percent", "recounted completed counts / completed counts"),
+        ("on_time_shipment_rate_pct", pct(on_time_shipments, len(shipped_orders)), "percent", "shipped orders on or before promise"),
+        ("inventory_value", sum(float(row["inventory_value"]) for row in replenishment_rows), "currency", "latest total physical quantity * unit cost"),
     ]
     kpi_rows = [{
         "metric_name": name, "metric_value": f"{float(value):.2f}",
         "metric_unit": unit, "calculation_note": note,
     } for name, value, unit, note in kpis]
 
-    # Publication checks include source shape, references, behavior, and volume.
     quality_rows: list[dict[str, object]] = []
     required_keys = {
         "inventory_snapshot.csv": ("snapshot_date", "sku", "location"),
@@ -458,77 +476,42 @@ def main() -> None:
     }
     source_rows = {
         "inventory_snapshot.csv": snapshots, "product_master.csv": products_rows,
-        "transactions.csv": transactions, "orders.csv": orders,
-        "cycle_counts.csv": counts,
+        "transactions.csv": transactions, "orders.csv": orders, "cycle_counts.csv": counts,
     }
     for filename, keys in required_keys.items():
         rows = source_rows[filename]
-        nulls = sum(
-            1 for row in rows for field in SOURCE_FIELDS[filename]
-            if not row.get(field, "").strip()
-        )
+        nulls = sum(1 for row in rows for field in SOURCE_FIELDS[filename] if not row.get(field, "").strip())
         duplicates = len(rows) - len({tuple(row.get(key, "") for key in keys) for row in rows})
         affected = nulls + duplicates
         quality_rows.append({
             "check_name": f"{filename} required fields and duplicates",
-            "status": "PASS" if affected == 0 else "FAIL",
-            "records_affected": affected,
+            "status": "PASS" if affected == 0 else "FAIL", "records_affected": affected,
             "details": f"required fields present; unique key: {', '.join(keys)}",
         })
     transaction_types = {row["transaction_type"] for row in transactions}
-    required_transaction_types = {
-        "RECEIPT", "PICK", "ADJUSTMENT", "TRANSFER_IN", "TRANSFER_OUT", "RETURN",
-    }
-    published_stockout_rows = [
-        row for row in stockout_rows if row["current_action_flag"] == "Y"
-    ]
+    published_skus = [row["sku"] for row in stockout_rows]
     checks = [
-        ("sku_reference_integrity",
-         sum(row["sku"] not in products for row in snapshots + transactions + counts + orders),
-         "all source SKUs exist in product master"),
-        ("date_range_180_days", int(period_days != 180),
-         f"observed period is {period_days} calendar days"),
-        ("non_negative_inventory",
-         sum(int(row["system_qty"]) < 0 or int(row["physical_qty"]) < 0 for row in snapshots),
-         "system and physical quantities are non-negative"),
-        ("snapshot_cost_matches_master",
-         sum(round(float(row["unit_cost"]), 2) != round(float(products[row["sku"]]["unit_cost"]), 2) for row in snapshots),
-         "snapshot unit costs match product master"),
-        ("shipped_not_over_ordered",
-         sum(int(row["shipped_qty"]) > int(row["ordered_qty"]) for row in orders),
-         "shipped quantity does not exceed ordered quantity"),
-        ("ship_date_not_before_order",
-         sum(date.fromisoformat(row["ship_date"]) < date.fromisoformat(row["order_date"]) for row in orders),
-         "shipment dates are not before order dates"),
-        ("required_transaction_types",
-         int(not required_transaction_types.issubset(transaction_types)),
-         "transactions include all six documented movement types"),
-        ("partial_shipments",
-         int(not any(int(row["shipped_qty"]) < int(row["ordered_qty"]) for row in orders)),
-         "orders include partial shipments"),
-        ("delayed_shipments",
-         int(not any(date.fromisoformat(row["ship_date"]) > date.fromisoformat(row["promised_date"]) for row in orders)),
-         "orders include delayed shipments"),
-        ("minimum_order_volume", int(len(orders) < 1500), f"{len(orders)} orders"),
+        ("sku_reference_integrity", sum(row["sku"] not in products for row in snapshots + transactions + counts + orders), "all source SKUs exist in product master"),
+        ("date_range_180_days", int(period_days != 180), f"observed period is {period_days} calendar days"),
+        ("non_negative_inventory", sum(int(row["system_qty"]) < 0 or int(row["physical_qty"]) < 0 for row in snapshots), "system and physical quantities are non-negative"),
+        ("snapshot_cost_matches_master", sum(round(float(row["unit_cost"]), 2) != round(float(products[row["sku"]]["unit_cost"]), 2) for row in snapshots), "snapshot unit costs match product master"),
+        ("shipped_not_over_ordered", sum(int(row["shipped_qty"]) > int(row["ordered_qty"]) for row in orders), "shipped quantity does not exceed ordered quantity"),
+        ("ship_date_not_before_order", sum(date.fromisoformat(row["ship_date"]) < date.fromisoformat(row["order_date"]) for row in orders), "shipment dates are not before order dates"),
+        ("required_transaction_types", int(not {"RECEIPT", "PICK", "ADJUSTMENT", "TRANSFER_IN", "TRANSFER_OUT", "RETURN"}.issubset(transaction_types)), "all six documented movement types present"),
+        ("partial_shipments", int(not any(int(row["shipped_qty"]) < int(row["ordered_qty"]) for row in orders)), "orders include partial shipments"),
+        ("delayed_shipments", int(not any(date.fromisoformat(row["ship_date"]) > date.fromisoformat(row["promised_date"]) for row in orders)), "orders include delayed shipments"),
+        ("minimum_order_volume", int(len(orders) < 3000), f"{len(orders)} orders"),
         ("minimum_transaction_volume", int(len(transactions) < 8000), f"{len(transactions)} transactions"),
         ("minimum_cycle_count_volume", int(len(counts) < 450), f"{len(counts)} counts"),
-        ("current_tier_partition",
-         int(sum(tier_counts.values()) != len(pair)),
-         "Critical + High + Watch + Routine equals latest SKU/location records"),
-        ("current_output_partition",
-         int(
-             len(priority_rows) != len(pair)
-             or sum(row["current_action_flag"] == "Y" for row in priority_rows)
-             != len(published_stockout_rows)
-         ),
-         "all latest records retained; action output equals Critical + High"),
-        ("stockout_output_tier_filter",
-         sum(
-             row["risk_tier"] not in {"Critical", "High"}
-             or row["current_action_flag"] != "Y"
-             for row in published_stockout_rows
-         ),
-         "stockout report contains only Critical + High action rows"),
+        ("replenishment_tier_reconciliation", int(sum(sku_tier_counts.values()) != len(replenishment_rows)), "Critical + High + Watch + Routine equals SKU rows"),
+        ("replenishment_output_sku_grain", int(len(replenishment_rows) != len(products) or len({row["sku"] for row in replenishment_rows}) != len(replenishment_rows)), "one replenishment row per SKU"),
+        ("count_tier_reconciliation", int(sum(count_tier_counts.values()) != len(count_rows)), "control tiers reconcile at SKU/location grain"),
+        ("count_output_all_sku_locations", int(len(count_rows) != len(pair) or len(count_rows) != 3600), "all 3,600 SKU/location records retained"),
+        ("replenishment_routine_majority", int(sku_tier_counts["Routine"] <= len(replenishment_rows) / 2), "Routine is the majority of SKU replenishment rows"),
+        ("count_routine_majority", int(count_tier_counts["Routine"] <= len(count_rows) / 2), "Routine is the majority of SKU/location control rows"),
+        ("stockout_report_sku_grain", int(len(published_skus) != len(set(published_skus))), "stockout report has one row per SKU"),
+        ("stockout_report_tier_filter", sum(row["replenishment_tier"] not in {"Critical", "High"} or row["action_flag"] != "Y" for row in stockout_rows), "stockout report contains only Critical + High SKU rows"),
+        ("count_queue_has_no_enterprise_stockout", int(any("stockout" in field.lower() or "replenishment" in field.lower() for field in COUNT_PRIORITY_FIELDS)), "count queue uses location-control signals and does not infer SKU stockout"),
     ]
     for check_name, affected, details in checks:
         quality_rows.append({
@@ -537,19 +520,16 @@ def main() -> None:
         })
 
     write_csv("kpi_summary.csv", kpi_rows, KPI_FIELDS)
-    write_csv("sku_risk_priorities.csv", priority_rows, PRIORITY_FIELDS)
+    write_csv("sku_replenishment_priorities.csv", replenishment_rows, REPLENISHMENT_FIELDS)
+    write_csv("sku_location_count_priorities.csv", count_rows, COUNT_PRIORITY_FIELDS)
     write_csv("location_variance_summary.csv", location_rows, LOCATION_FIELDS)
-    write_csv(
-        "stockout_risk_report.csv",
-        published_stockout_rows,
-        STOCKOUT_FIELDS,
-    )
+    write_csv("stockout_risk_report.csv", stockout_rows, STOCKOUT_FIELDS)
     write_csv("data_quality_checks.csv", quality_rows, QUALITY_FIELDS)
     print(
         f"Analyzed {len(products)} SKUs, {len(snapshots):,} snapshots, "
         f"{len(transactions):,} transactions, {len(orders):,} orders, and "
-        f"{len(counts):,} cycle counts. Current Critical+High: "
-        f"{tier_counts['Critical'] + tier_counts['High']:,}/{len(pair):,}."
+        f"{len(counts):,} cycle counts. Replenishment tiers: "
+        f"{dict(sku_tier_counts)}; count tiers: {dict(count_tier_counts)}."
     )
 
 

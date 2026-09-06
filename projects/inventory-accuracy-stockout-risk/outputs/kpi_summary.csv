@@ -1,18 +1,22 @@
 metric_name,metric_value,metric_unit,calculation_note
-inventory_accuracy_pct,99.98,percent,"100 * (1 - sum(abs(system_qty - physical_qty)) / sum(max(physical_qty, 1)))"
-adjustment_value,1032961.10,currency,sum(abs(system_qty - physical_qty) * unit_cost) across all snapshots
-historical_stockout_observation_rate_pct,70.29,percent,historical observations meeting physical <= reorder point OR days of supply <= lead time / all snapshots
-current_critical_high_count,1636.00,records,latest SKU/location records classified Critical or High
-current_critical_high_rate_pct,45.44,percent,current Critical + High records / latest SKU/location records
-current_critical_count,1525.00,records,latest SKU/location records classified Critical
-current_high_count,111.00,records,latest SKU/location records classified High
-current_watch_count,1428.00,records,latest SKU/location records classified Watch
-current_routine_count,536.00,records,latest SKU/location records classified Routine
-materiality_p75_inventory_value,12368.18,currency,PERCENTILE_CONT(0.75) across latest SKU/location inventory value
-materiality_p75_unit_cost,92.92,currency,PERCENTILE_CONT(0.75) across latest SKU/location unit cost
-materiality_p75_cumulative_adjustment_value,438.50,currency,PERCENTILE_CONT(0.75) across latest SKU/location cumulative adjustment value
-days_of_supply,14.83,days,latest physical quantity / average daily demand
-cycle_count_completion_pct,94.12,percent,completed scheduled cycle counts / scheduled cycle counts
-recount_rate_pct,44.45,percent,recounted completed cycle counts / completed cycle counts
-on_time_shipment_rate_pct,90.91,percent,shipped orders with ship_date <= promised_date / shipped orders
-inventory_value,37957832.60,currency,latest physical quantity * unit cost across SKU/location pairs
+inventory_accuracy_pct,100.00,percent,weighted latest-period accuracy
+adjustment_value,211618.40,currency,cumulative adjustment exposure across snapshots
+historical_stockout_observation_rate_pct,7.08,percent,historical broad trigger / all snapshots; not an enterprise current queue
+replenishment_sku_count,300.00,SKUs,one row per SKU across all locations
+count_priority_sku_location_count,3600.00,SKU/location records,all latest SKU/location pairs retained
+replenishment_critical_count,6.00,SKUs,SKU-level replenishment tier
+replenishment_high_count,2.00,SKUs,SKU-level replenishment tier
+replenishment_watch_count,96.00,SKUs,SKU-level replenishment tier
+replenishment_routine_count,196.00,SKUs,SKU-level replenishment tier
+replenishment_critical_high_rate_pct,2.67,percent,Critical + High SKUs / all SKUs
+count_priority_critical_count,6.00,SKU/location records,SKU/location control tier
+count_priority_high_count,472.00,SKU/location records,SKU/location control tier
+count_priority_watch_count,122.00,SKU/location records,SKU/location control tier
+count_priority_routine_count,3000.00,SKU/location records,SKU/location control tier
+count_priority_critical_high_rate_pct,13.28,percent,Critical + High SKU/location records / all pairs
+materiality_p75_inventory_value,623883.23,currency,PERCENTILE_CONT(0.75) across latest SKU inventory value
+materiality_p75_adjustment_exposure,969.08,currency,PERCENTILE_CONT(0.75) across SKU adjustment exposure
+cycle_count_completion_pct,94.12,percent,completed scheduled cycle counts / scheduled counts
+recount_rate_pct,14.10,percent,recounted completed counts / completed counts
+on_time_shipment_rate_pct,90.90,percent,shipped orders on or before promise
+inventory_value,124676423.10,currency,latest total physical quantity * unit cost
