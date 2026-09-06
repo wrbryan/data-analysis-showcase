@@ -20,3 +20,13 @@ cycle_count_completion_pct,94.12,percent,completed scheduled cycle counts / sche
 recount_rate_pct,14.10,percent,recounted completed counts / completed counts
 on_time_shipment_rate_pct,90.90,percent,shipped orders on or before promise
 inventory_value,124676423.10,currency,latest total physical quantity * unit cost
+replenishment_decision_grain,300.00,records,Replenishment decision grain: SKU across all warehouse locations.
+cycle_count_decision_grain,3600.00,records,Cycle-count decision grain: SKU/location.
+current_replenishment_queue_statement,8.00,SKUs,Current Critical + High replenishment queue: 8 of 300 SKUs.
+weekly_count_priority_statement,6.00,SKU/location records,Weekly: 6 SKU/location records
+biweekly_count_priority_statement,472.00,SKU/location records,Biweekly: 472 SKU/location records
+monthly_count_priority_statement,122.00,SKU/location records,Monthly: 122 SKU/location records
+quarterly_count_priority_statement,3000.00,SKU/location records,"Quarterly: 3,000 SKU/location records"
+historical_exposure_statement,7.08,percent,"Historical stockout-policy exposure: 7.08% of observations. This is a historical monitoring metric, not the current action queue."
+synthetic_data_disclaimer,1.00,statement,All data is deterministic synthetic data.
+data_safety_statement,1.00,statement,"No employer, client, customer, confidential, personal, or proprietary data is included."

@@ -467,7 +467,7 @@ def main() -> None:
         ("inventory_value", sum(float(row["inventory_value"]) for row in replenishment_rows), "currency", "latest total physical quantity * unit cost"),
         ("replenishment_decision_grain", len(replenishment_rows), "records", "Replenishment decision grain: SKU across all warehouse locations."),
         ("cycle_count_decision_grain", len(count_rows), "records", "Cycle-count decision grain: SKU/location."),
-        ("current_replenishment_queue_statement", replenishment_tier_counts["Critical"] + replenishment_tier_counts["High"], "SKUs", f"Current Critical + High replenishment queue: {replenishment_tier_counts['Critical'] + replenishment_tier_counts['High']} of {len(replenishment_rows)} SKUs."),
+        ("current_replenishment_queue_statement", sku_tier_counts["Critical"] + sku_tier_counts["High"], "SKUs", f"Current Critical + High replenishment queue: {sku_tier_counts['Critical'] + sku_tier_counts['High']} of {len(replenishment_rows)} SKUs."),
         ("weekly_count_priority_statement", count_frequency_counts["Weekly"], "SKU/location records", f"Weekly: {count_frequency_counts['Weekly']} SKU/location records"),
         ("biweekly_count_priority_statement", count_frequency_counts["Biweekly"], "SKU/location records", f"Biweekly: {count_frequency_counts['Biweekly']} SKU/location records"),
         ("monthly_count_priority_statement", count_frequency_counts["Monthly"], "SKU/location records", f"Monthly: {count_frequency_counts['Monthly']} SKU/location records"),
