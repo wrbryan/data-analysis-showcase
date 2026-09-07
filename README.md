@@ -30,7 +30,7 @@ A reproducible synthetic operations-analysis case study that separates two decis
 
 - [View the full case study](projects/01-inventory-accuracy-stockout-risk/README.md)
 - [Two-page executive report](projects/01-inventory-accuracy-stockout-risk/reporting/inventory-accuracy-stockout-risk-report.pdf)
-- [Executive brief](projects/01-inventory-accuracy-stockout-risk/docs/executive-brief.pdf)
+- [Executive brief](projects/01-inventory-accuracy-stockout-risk/dashboard/executive-brief.pdf)
 - [Executive summary](projects/01-inventory-accuracy-stockout-risk/docs/executive_summary.md)
 - [Reporting methodology](projects/01-inventory-accuracy-stockout-risk/docs/reporting_package_methodology.md)
 - [Data dictionary](projects/01-inventory-accuracy-stockout-risk/docs/data_dictionary.md)
