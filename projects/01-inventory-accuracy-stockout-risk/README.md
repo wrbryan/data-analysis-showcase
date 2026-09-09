@@ -80,7 +80,7 @@ contains additional analytical logic, source data, or new KPIs.
 | Executive Control Tower PDF | [`dashboard/executive-control-tower.pdf`](dashboard/executive-control-tower.pdf) |
 | Executive Control Tower PNG | [`dashboard/executive-control-tower.png`](dashboard/executive-control-tower.png) |
 | Excel dashboard documentation | [`docs/excel_dashboard_build.md`](docs/excel_dashboard_build.md) |
-| Executive decision brief | [`docs/executive-brief.pdf`](docs/executive-brief.pdf) |
+| Executive decision brief | [`dashboard/executive-brief.pdf`](dashboard/executive-brief.pdf) |
 | Validation evidence | `docs/pr_validation_report.md` |
 
 ## Queue definitions

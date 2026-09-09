@@ -2,8 +2,6 @@
 
 Turn messy CSV files into a lightweight analytics workflow in minutes.
 
-![Project banner](docs/banner.svg)
-
 A polished notebook-based workflow for turning uploaded CSV files into a lightweight DuckDB database, inferring likely relationships, approving them interactively, and exploring the data with SQL, charts, and Google Sheets export.
 
 This project is designed as a boss-friendly demo for showing how raw spreadsheets can become a usable analytics workflow without writing a full application backend.
@@ -39,8 +37,6 @@ For Google Colab, use `duckdb_csv_gui_colab.ipynb`.
 ## Project structure
 
 - `duckdb_csv_gui.py`: core logic for loading CSVs, inferring relationships, and building the GUI.
-
-![Notebook preview](docs/notebook-preview.svg)
 - `duckdb_csv_gui.ipynb`: local notebook UI for the workflow.
 - `duckdb_csv_gui_colab.ipynb`: Colab-compatible version with the same workflow.
 - `data/`: sample CSV files that demonstrate the workflow.
