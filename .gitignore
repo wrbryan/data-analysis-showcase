@@ -1,23 +1,5 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-
 # Environments
+**/.venv/
+*.duckdb
 .env
 venv/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Data
-data/
-# The inventory project keeps only compact, checked-in source examples.
-!projects/01-inventory-accuracy-stockout-risk/data/
-!projects/01-inventory-accuracy-stockout-risk/data/README.md
-!projects/01-inventory-accuracy-stockout-risk/data/sample/
-!projects/01-inventory-accuracy-stockout-risk/data/sample/*.csv
-projects/01-inventory-accuracy-stockout-risk/data/generated/
-excel/
-
-# macOS
-.DS_Store
